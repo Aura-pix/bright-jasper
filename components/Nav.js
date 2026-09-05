@@ -11,6 +11,7 @@ export default function Nav() {
           <Link href="/" className="hover:text-accent">Home</Link>
           <Link href="/blog" className="hover:text-accent">Blog</Link>
           <Link href="/writing-samples" className="hover:text-accent">Writing samples</Link>
+          <Link href="/threads" className="hover:text-accent">Threads</Link>
           <Link href="/about" className="hover:text-accent">About</Link>
         </div>
       </nav>
