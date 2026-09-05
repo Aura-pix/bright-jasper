@@ -9,7 +9,7 @@ export const metadata = {
 export default function BlogIndexPage() {
   const posts = getAllBlogPosts();
 
-  const knownTags = ['Web3', 'Dev Guides', 'Reflections', 'Research Thesis'];
+  const knownTags = ['Web3', 'User Guides', 'Dev Guides', 'Reflections', 'Research Thesis'];
   const tagsPresent = knownTags.filter((tag) => posts.some((post) => post.tag === tag));
 
   return (
