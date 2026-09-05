@@ -1,0 +1,67 @@
+---
+title: "Recursive zk-SNARKs: the mechanism that keeps Mina succinct"
+date: "2026-09-05"
+tag: "Web3"
+excerpt: "What a zk-SNARK actually is, and how recursion lets Mina represent its whole blockchain in a constant, succinct proof."
+readTime: "4 min read"
+sample: true
+sampleCategory: "Research & Explainers"
+canonical: "https://medium.com/@brghtjasper/recursive-zk-snarks-the-mechanism-that-keeps-mina-succinct-1ad7c3e926b0"
+---
+
+In the [last article](/blog/how-does-mina-keep-an-entire-blockchain-at-22kb), I explained that Mina uses recursive composition of zk-SNARKs to represent its blockchain in a constant, succinct form. I left two things unexplained: what a zk-SNARK actually is, and what "recursive" means in this context.
+
+This article covers both. Kimchi and Pickles — the specific proof system Mina runs on top of this idea — get their own article next.
+
+## What a zero-knowledge proof does
+
+A zero-knowledge proof lets someone (the prover) convince someone else (the verifier) that a statement is true, without revealing the information behind that statement.
+
+Mina's own explainer uses a *Where's Waldo?* comparison: instead of pointing at Waldo on the page (which reveals his location), you cut a small hole in a piece of paper laid over the page, so the verifier sees only Waldo — nothing about where he is on the page. The verifier is convinced you found him, without learning anything else.
+
+Applied to a blockchain, the "statement" isn't "I found Waldo." It's closer to: "this sequence of blocks and transactions follows the network's rules, and the resulting state is valid."
+
+## What makes it a SNARK
+
+zk-SNARK stands for Zero-Knowledge Succinct Non-interactive Argument of Knowledge. Each part of that acronym describes a property the proof has:
+
+- **Succinct** — the proof stays small and fast to verify, even when the underlying computation is large.
+- **Non-interactive** — the prover hands over one proof. The verifier doesn't need to send anything back or ask follow-up questions to check it.
+- **Argument** — a term of art in cryptography for this class of proof; the guarantees are computational rather than absolute, but function as proofs in practice.
+- **Knowledge** — the prover must actually possess the information behind the statement, not just know that the statement happens to be true.
+
+Every zk-SNARK has these four properties. What Mina adds on top is *recursion*.
+
+## Why "just" succinct isn't enough
+
+A succinct proof is small. But on a blockchain, a new one of these proofs would normally need to be generated for every single block, and a verifier would still need to check the entire *sequence* of proofs going back to genesis to trust the current state. That's exactly the storage-and-replay problem the first article described — succinctness alone doesn't remove it.
+
+Recursion is what removes it.
+
+## What recursion means in Mina
+
+A recursive zk-SNARK is a proof that can verify another proof — including a previous version of itself. Mina describes this as being like a Russian nesting doll: each new layer of proof contains the previous one, so a single outer proof carries forward the validity of everything inside it.
+
+Concretely, in Mina's own phrasing, this means:
+
+> There was a valid proof for some sequence of blocks, and one new block on top is also valid.
+
+Each new block doesn't just prove itself. It proves that the block before it was valid, which in turn already proved the block before *that* was valid, all the way back to genesis. The proof for block *N* doesn't grow larger than the proof for block *N-1* — it stays the same succinct size no matter how far back the chain goes.
+
+This is what Mina means when it says a proof can "refer to itself" without increasing in size. A verifier only needs to check the newest proof. Checking it is equivalent to having checked every proof that came before it, without replaying any of that history.
+
+## Proof composition, in short
+
+"Proof composition" is the general term for building a new proof out of existing proofs, rather than starting from scratch each time. Recursion is a specific, self-referential case of composition — a proof composed, in part, from an earlier version of itself.
+
+This is the piece that makes the 22KB (now closer to 11KB, per Mina's own updated measurement) figure from the last article possible. A node doesn't store a shrunk-down copy of blockchain history. It stores a constant-sized proof that stands in for the validity of that entire history.
+
+## What Mina actually runs
+
+The concept above — proofs verifying proofs — is a general cryptographic idea, and Mina isn't the only project exploring it. What's specific to Mina is the proof system it built to make this practical at blockchain scale: **Pickles**, which removed the need for a trusted setup — the "someone in the past had to behave honestly" assumption that many earlier SNARK systems depended on.
+
+Pickles builds on a technique called Halo, published by Electric Coin Company (the team behind Zcash) in 2019 as the first *research* construction of trusted-setup-free recursion. But Halo's own production version, Halo 2, didn't go live on a blockchain until May 2022, when Zcash activated it in its Orchard upgrade. Mina's mainnet — running on Pickles — launched over a year earlier, in March 2021. So Mina's claim to have shipped the first *deployed* SNARK with trusted-setup-free recursive composition holds up against the most direct comparison available: it reached production before the system it was built on did.
+
+How Pickles actually works — along with Kimchi, the proving backend underneath it — is the subject of the next article.
+
+*Sources: Mina Protocol's official blog, "[What are zk-SNARKs?](https://minaprotocol.com/blog/what-are-zk-snarks)" and "[Meet Pickles SNARK](https://minaprotocol.com/blog/meet-pickles-snark-enabling-smart-contracts-on-coda-protocol)"; Bowe, Grigg & Hopwood, "[Halo: Recursive Proof Composition without a Trusted Setup](https://eprint.iacr.org/2019/1021)" (2019); Mina's mainnet launch announcement (March 2021); Zcash's NU5/Orchard mainnet activation (May 2022).*

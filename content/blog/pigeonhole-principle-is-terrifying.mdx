@@ -1,0 +1,55 @@
+---
+title: "The pigeonhole principle is stupidly simple. That's what makes it terrifying."
+date: "2026-09-05"
+tag: "Reflections"
+excerpt: "A dumb-sounding idea from a math class that turns out to be quietly load-bearing across half of computer science."
+readTime: "5 min read"
+sample: false
+---
+
+
+When I came across the pigeonhole principle last semester, my first reaction was, honestly, disrespect.
+
+"If you have more pigeons than holes, at least one hole contains more than one pigeon."
+
+Cool. Groundbreaking. Someone alert the Fields Medal committee. What do you mean "there exists at least one"? Of course there's gonna be one! You put 10 pigeons in 9 holes, one hole's getting a roommate. I don't need a theorem for this, I need functioning eyes.
+
+I moved on with my life, mildly annoyed that this counted as "real math."
+
+Then I did some research (newspeak for chatted with AI about it at 1am because I couldn't sleep), and found out this embarrassingly obvious idea is quietly load-bearing across half of computer science. I owed it an apology.
+
+**Exhibit A: Hash collisions**
+
+You know how hash functions are supposed to turn any input into a "unique" fixed-size output? Except they can't. Not really. Not ever.
+
+Here's why: there are infinite possible input files, but only a finite number of possible hash outputs (2^256 for SHA-256, which sounds like a lot until you remember "infinite" is also a lot). More pigeons than holes. Collisions — two different files producing the same hash — aren't a flaw in the design. They're a mathematical guarantee baked in from day one.
+
+Cryptographers don't get to ask "can this happen." They only get to ask "how do I make it happen so rarely that nobody finds one before the heat death of the universe." That's the whole game. Pigeonhole set the rules before anyone wrote a line of code.
+
+**Exhibit B: Compression will always disappoint someone**
+
+Somewhere, someone is trying to build a compression algorithm that shrinks *every possible file*, no exceptions. That person will fail, and pigeonhole is why.
+
+If your compressor genuinely shrinks every input, then you have more possible inputs than possible (smaller) outputs. Which means, by pigeonhole, at least two different inputs must map to the same compressed output. Now decompression opens that file and has a full identity crisis — which original file was this supposed to be?
+
+This is why "compress absolutely everything" is a lie your compression software politely doesn't tell you. Some files get bigger. It's not incompetence. It's pigeons.
+
+**Exhibit C: The birthday "paradox" isn't a paradox**
+
+Put 367 people in a room. At least two of them share a birthday. Not probably. Not "pretty likely." *Guaranteed.* There are only 366 possible birthdays (yes, leap day counts, don't email me), so 367 people is one pigeon too many for the holes available.
+
+The actually mind-bending part is that you don't need anywhere near 367 people for a shared birthday to become *likely* — just 23 people gets you past 50% odds, which is its own rabbit hole (probability, not pigeonhole, but they're cousins). But the guaranteed version, the pigeonhole version, needs zero probability theory. It needs counting. That's what makes it almost insulting how powerful it is.
+
+**So what changed my mind?**
+
+Nothing about the principle changed. It's still "more pigeons than holes means a hole gets doubled up." I could've told you that in kindergarten with actual pigeons and actual holes.
+
+What changed is realizing that "obviously true" and "powerful" aren't opposites. Pigeonhole doesn't feel like a tool because it doesn't compute anything, prove anything clever, or show off. It just quietly guarantees that certain bad (or good, depending on who's asking) things *must* happen once you've got enough stuff and not enough room for it.
+
+Half of cryptography, a chunk of compression theory, and a fun party trick about birthdays are all, underneath, the same shrug: "yeah, something's gotta repeat, there's nowhere else for it to go."
+
+I used to think the simplest ideas in math were the least interesting. Turns out the simplest ones are just the ones nobody bothered to explain properly — right before they show up everywhere, uninvited, holding your entire field of study together.
+
+---
+
+*If you're into more of this — deep dives into the concepts quietly running the systems we use, follow along. Next up: how Mina Protocol keeps an entire blockchain succinct using math that sounds just as "obvious" until you actually look at it.*

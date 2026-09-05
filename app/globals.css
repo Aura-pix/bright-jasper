@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Fraunces', Georgia, serif;
+  color: #0A1F5C;
+  background: #FFFFFF;
+}
+
+/* narrow reading column for long-form post bodies */
+.prose-content {
+  max-width: 68ch;
+}
+
+.prose-content p {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  color: #0A1F5C;
+}
+
+.prose-content h2 {
+  font-size: 1.375rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-content h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-content ul,
+.prose-content ol {
+  margin: 0 0 1.25rem 1.25rem;
+  line-height: 1.75;
+}
+
+.prose-content ul {
+  list-style: disc;
+}
+
+.prose-content ol {
+  list-style: decimal;
+}
+
+.prose-content blockquote {
+  border-left: 3px solid #185FA5;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #5B6B82;
+}
+
+.prose-content a {
+  color: #185FA5;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose-content code {
+  background: #F7FAFD;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* visible keyboard focus, kept simple and consistent site-wide */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #185FA5;
+  outline-offset: 2px;
+}
+
+/* respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

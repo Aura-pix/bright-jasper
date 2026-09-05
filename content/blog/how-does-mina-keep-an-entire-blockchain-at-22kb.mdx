@@ -1,0 +1,33 @@
+---
+title: "How does Mina keep an entire blockchain at 22KB?"
+date: "2026-08-01"
+tag: "Web3"
+excerpt: "What Mina is actually doing, and what the 22KB (now closer to 11KB) figure means in practice."
+readTime: "3 min read"
+sample: true
+sampleCategory: "Research & Explainers"
+canonical: "https://medium.com/@brghtjasper/how-does-mina-keep-an-entire-blockchain-at-22kb-05ac04006ae7"
+---
+
+This is the first piece in a deep dive series on Mina Protocol. The original version of this
+article is published on
+[Medium](https://medium.com/@brghtjasper/how-does-mina-keep-an-entire-blockchain-at-22kb-05ac04006ae7) —
+head there for the full piece. The rest of the series, starting with recursive zk-SNARKs, continues here on the blog.
+
+## The short version
+
+One characteristic of blockchain technology is decentralization: the network runs on
+independent nodes rather than a single central authority. Normally, that means every node has
+to store and verify the entire transaction history to trust the current state — and that
+history only grows.
+
+Mina takes a different approach. Instead of storing the full chain, a Mina node holds a
+constant-sized cryptographic proof — historically described as 22KB, though Mina's own updated
+technical breakdown puts the core figure closer to 11KB, depending on what a given node needs
+to do with it (a light client verifying state has different requirements than a block
+producer).
+
+That number stays the same size whether the network is a day old or ten years old. The next
+article in this series explains the mechanism that makes that possible: recursive zk-SNARKs.
+
+[Continue to Article 2 →](/blog/recursive-zk-snarks-the-mechanism-that-keeps-mina-succinct)
