@@ -17,7 +17,7 @@ export default function WritingSamplesPage() {
       <p className="text-[15px] text-muted mb-10 max-w-lg">
         If you're checking out my work for a project, start here. A shorter list, picked to
         actually show range — technical documentation (JS/TS, Python, Solidity), protocol
-        explainers, and dev-facing guides.
+        explainers, user-facing guides, and dev-facing guides.
       </p>
 
       {samples.length === 0 ? (
