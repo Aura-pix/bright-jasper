@@ -10,6 +10,8 @@ const links = [
     href: "https://www.upwork.com/freelancers/~018d2a2818ff617a2b",
   },
   { label: "GitHub", href: "https://GitHub.com/Aura-pix" },
+  { label: "Telegram", href: "https://t.me/Jasper074" },
+  { label: "Email", href: "mailto:brghtjasper@gmail.com" },
 ];
 
 export default function Footer() {
@@ -26,8 +28,12 @@ export default function Footer() {
             <a
               key={link.label}
               href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={
+                link.href.startsWith("mailto:")
+                  ? undefined
+                  : "noopener noreferrer"
+              }
               className="hover:text-accent"
             >
               {link.label}
