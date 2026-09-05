@@ -1,6 +1,7 @@
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { getBlogPostBySlug, getAllBlogSlugs } from '@/lib/posts';
-import { notFound } from 'next/navigation';
+import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
+import { getBlogPostBySlug, getAllBlogSlugs } from "@/lib/posts";
+import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/blog at build time.
 // Add a new file there -> a new slug appears here automatically, no code change needed.
@@ -27,7 +28,11 @@ export function generateMetadata({ params }) {
 function formatDate(dateString) {
   if (!dateString) return null;
   const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 export default function BlogPostPage({ params }) {
@@ -49,7 +54,10 @@ export default function BlogPostPage({ params }) {
       </h1>
 
       <div className="prose-content">
-        <MDXRemote source={post.content} />
+        <MDXRemote
+          source={post.content}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+        />
       </div>
     </article>
   );

@@ -110,6 +110,25 @@ body {
   font-size: 0.9em;
 }
 
+.prose-content pre {
+  overflow-x: auto;
+  margin: 1.25rem 0 1.5rem;
+  padding: 1rem 1.1rem;
+  border-radius: 6px;
+  background: #0a1f5c;
+  color: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+.prose-content pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+}
+
 /* visible keyboard focus, kept simple and consistent site-wide */
 a:focus-visible,
 button:focus-visible {

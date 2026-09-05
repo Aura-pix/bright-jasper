@@ -1,0 +1,589 @@
+---
+title: "Roomly API Specification"
+date: "2026-09-05"
+tag: "Dev Guides"
+excerpt: "Proposed API specification for exposing Roomly's student housing data, property listings, availability, locations, and market information to developers."
+readTime: "12 min read"
+sample: true
+sampleCategory: "Technical Documentation"
+---
+
+Roomly API Specification
+
+«Status: Proposed
+
+This document defines a proposed API for exposing Roomly's student housing data and services to external applications. The API described here is a portfolio specification and does not represent a currently deployed public API.»
+
+Roomly is a student housing platform that connects students with verified accommodation and provides features including property discovery, bookings, escrow-protected payments, receipt verification, reviews, and roommate matching.
+
+This API is designed around a longer-term vision for Roomly as a student housing data and infrastructure layer. External applications could use the API to discover properties, query availability, retrieve location information, and build housing experiences on top of Roomly's underlying data.
+
+API goals
+
+The API should allow developers to:
+
+- Discover student accommodation.
+- Filter properties by location, school, price, type, availability, and verification status.
+- Retrieve detailed property information.
+- Explore supported schools and locations.
+- Check property availability.
+- Retrieve aggregated housing market data.
+- Build student housing applications and services using Roomly data.
+
+The API is designed to be read-oriented in its initial version. Actions involving payments, bookings, withdrawals, and account management remain controlled by Roomly's own application until corresponding public API capabilities are explicitly introduced.
+
+Base URL
+
+The proposed production base URL is:
+
+https://api.roomly.com.ng/v1
+
+The "/v1" path identifies the first version of the API.
+
+«Note: This URL is proposed and is not currently presented as a live public API endpoint.»
+
+Authentication
+
+Authenticated requests use an API key supplied as a Bearer token.
+
+Authorization: Bearer YOUR_API_KEY
+
+Example:
+
+curl "https://api.roomly.com.ng/v1/properties" \
+ -H "Authorization: Bearer YOUR_API_KEY"
+
+API keys should be kept private and must not be exposed in client-side applications or committed to source control.
+
+Response format
+
+Successful responses use JSON.
+
+Collection endpoints return their results inside a "data" property.
+
+{
+"data": [
+{
+"id": "prop_123",
+"name": "Example Lodge",
+"propertyType": "self_contain",
+"area": "Bosso",
+"school": "FUTMINNA",
+"rent": 250000,
+"available": true,
+"verified": true
+}
+]
+}
+
+Single-resource endpoints return the requested resource directly inside "data".
+
+{
+"data": {
+"id": "prop_123",
+"name": "Example Lodge",
+"propertyType": "self_contain",
+"area": "Bosso",
+"school": "FUTMINNA",
+"rent": 250000,
+"available": true,
+"verified": true
+}
+}
+
+Resources
+
+The initial API is organized around five primary resources:
+
+Resource| Purpose
+"properties"| Student accommodation listings
+"schools"| Schools and institutions served by Roomly
+"areas"| Geographic areas where properties are listed
+"availability"| Current availability information for properties
+"market-data"| Aggregated housing and pricing information
+
+---
+
+Properties
+
+Properties are the primary resource in the Roomly API.
+
+List properties
+
+GET /v1/properties
+
+Returns a paginated list of properties.
+
+Query parameters
+
+Parameter| Type| Required| Description
+"school"| string| No| Filter by school identifier
+"area"| string| No| Filter by area identifier
+"minPrice"| integer| No| Minimum rent
+"maxPrice"| integer| No| Maximum rent
+"propertyType"| string| No| Filter by property type
+"gender"| string| No| Filter by gender preference
+"verified"| boolean| No| Return only verified properties
+"available"| boolean| No| Return only currently available properties
+"page"| integer| No| Page number. Defaults to "1".
+"limit"| integer| No| Number of results per page. Defaults to "20".
+
+Supported property types
+
+The public Roomly product currently presents property types including:
+
+- Self Contain
+- One Bedroom
+- Room & Parlor
+- Two Bedroom
+
+The API uses machine-readable identifiers for these values:
+
+Display name| API value
+Self Contain| "self_contain"
+One Bedroom| "one_bedroom"
+Room & Parlor| "room_parlor"
+Two Bedroom| "two_bedroom"
+
+Example request
+
+curl "https://api.roomly.com.ng/v1/properties?area=bosso&propertyType=self_contain&available=true" \
+ -H "Authorization: Bearer YOUR_API_KEY"
+
+Example response
+
+{
+"data": [
+{
+"id": "prop_123",
+"name": "Example Lodge",
+"propertyType": "self_contain",
+"area": {
+"id": "area_bosso",
+"name": "Bosso"
+},
+"school": {
+"id": "school_futminna",
+"name": "FUTMINNA"
+},
+"rent": 250000,
+"gender": "any",
+"available": true,
+"verified": true
+}
+],
+"pagination": {
+"page": 1,
+"limit": 20,
+"total": 1,
+"totalPages": 1
+}
+}
+
+Retrieve a property
+
+GET /v1/properties/{propertyId}
+
+Returns detailed information about a single property.
+
+Example
+
+curl "https://api.roomly.com.ng/v1/properties/prop_123" \
+ -H "Authorization: Bearer YOUR_API_KEY"
+
+Example response
+
+{
+"data": {
+"id": "prop_123",
+"name": "Example Lodge",
+"description": "Student accommodation near FUTMINNA.",
+"propertyType": "self_contain",
+"rent": 250000,
+"gender": "any",
+"verified": true,
+"available": true,
+"area": {
+"id": "area_bosso",
+"name": "Bosso"
+},
+"school": {
+"id": "school_futminna",
+"name": "FUTMINNA"
+},
+"amenities": [
+"water",
+"electricity",
+"security"
+]
+}
+}
+
+---
+
+Schools
+
+Schools represent educational institutions associated with Roomly properties.
+
+List schools
+
+GET /v1/schools
+
+Returns schools available for property discovery.
+
+Example response
+
+{
+"data": [
+{
+"id": "school_futminna",
+"name": "Federal University of Technology, Minna",
+"shortName": "FUTMINNA"
+}
+]
+}
+
+Retrieve a school
+
+GET /v1/schools/{schoolId}
+
+Returns information about a specific school.
+
+Properties near a school
+
+GET /v1/schools/{schoolId}/properties
+
+This endpoint provides a convenient way for applications to retrieve accommodation associated with a particular institution.
+
+Example:
+
+curl "https://api.roomly.com.ng/v1/schools/school_futminna/properties" \
+ -H "Authorization: Bearer YOUR_API_KEY"
+
+---
+
+Areas
+
+Areas represent geographic locations used for property discovery.
+
+List areas
+
+GET /v1/areas
+
+The API may return areas such as Bosso, Gidan Kwano, Gidan Mangoro, Gidan Painti, Dama, and Albishiri, which are currently presented as popular Roomly locations.
+
+Retrieve an area
+
+GET /v1/areas/{areaId}
+
+Properties in an area
+
+GET /v1/areas/{areaId}/properties
+
+Example:
+
+curl "https://api.roomly.com.ng/v1/areas/area_bosso/properties" \
+ -H "Authorization: Bearer YOUR_API_KEY"
+
+---
+
+Availability
+
+Availability allows applications to determine whether a property currently has accommodation available.
+
+Check property availability
+
+GET /v1/properties/{propertyId}/availability
+
+Example response
+
+{
+"data": {
+"propertyId": "prop_123",
+"available": true,
+"availableUnits": 3,
+"lastUpdated": "2026-09-05T12:30:00Z"
+}
+}
+
+Availability data should be treated as time-sensitive. Applications should not assume that a property remains available after retrieving this response.
+
+---
+
+Market data
+
+The market-data resource provides aggregated information rather than individual property records.
+
+This allows developers to build applications that answer questions such as:
+
+- What is the average rent in an area?
+- How many verified properties are available?
+- Which property types are most common?
+- How does pricing vary between areas?
+
+Retrieve market data
+
+GET /v1/market-data
+
+Query parameters
+
+Parameter| Type| Required| Description
+"area"| string| No| Restrict statistics to an area
+"school"| string| No| Restrict statistics to a school
+"propertyType"| string| No| Restrict statistics to a property type
+
+Example response
+
+{
+"data": {
+"area": "Bosso",
+"propertyType": "self_contain",
+"averageRent": 250000,
+"medianRent": 230000,
+"availableProperties": 143,
+"verifiedProperties": 98
+}
+}
+
+Area statistics
+
+GET /v1/areas/{areaId}/statistics
+
+Returns aggregated housing statistics for an area.
+
+---
+
+Pagination
+
+Collection endpoints use page-based pagination.
+
+GET /v1/properties?page=2&limit=20
+
+A paginated response contains:
+
+{
+"pagination": {
+"page": 2,
+"limit": 20,
+"total": 143,
+"totalPages": 8
+}
+}
+
+The maximum permitted "limit" should be enforced by the API to prevent unnecessarily large responses.
+
+---
+
+Filtering
+
+Filters can be combined in a single request.
+
+For example:
+
+GET /v1/properties?school=school_futminna&area=area_bosso&minPrice=150000&maxPrice=300000&verified=true&available=true
+
+Applications should treat unspecified filters as unrestricted.
+
+If no properties match the supplied filters, the API returns an empty "data" array rather than an error.
+
+{
+"data": [],
+"pagination": {
+"page": 1,
+"limit": 20,
+"total": 0,
+"totalPages": 0
+}
+}
+
+---
+
+Sorting
+
+Collection endpoints may support sorting using the "sort" and "order" parameters.
+
+GET /v1/properties?sort=rent&order=asc
+
+Supported sorting fields should be limited to fields for which predictable ordering is available.
+
+For example:
+
+- "rent"
+- "createdAt"
+- "updatedAt"
+
+---
+
+Errors
+
+The API uses standard HTTP status codes.
+
+Status| Meaning
+"200"| Request succeeded
+"400"| Invalid request
+"401"| Authentication required or invalid
+"403"| Request not permitted
+"404"| Resource not found
+"429"| Rate limit exceeded
+"500"| Internal server error
+
+Errors use a consistent response structure.
+
+{
+"error": {
+"code": "PROPERTY_NOT_FOUND",
+"message": "The requested property does not exist."
+}
+}
+
+Example: invalid request
+
+{
+"error": {
+"code": "INVALID_PARAMETER",
+"message": "maxPrice must be greater than or equal to minPrice."
+}
+}
+
+Applications should use the HTTP status code for broad error handling and the error code for application-specific handling.
+
+---
+
+Rate limits
+
+The proposed API should enforce rate limits to protect the service from excessive requests.
+
+Authenticated applications may initially receive:
+
+1,000 requests per hour
+
+When a client exceeds its limit, the API returns:
+
+429 Too Many Requests
+
+Rate limits may vary by API plan and can be changed as the service scales.
+
+«These limits are part of the proposed API design and are not current Roomly production limits.»
+
+---
+
+Versioning
+
+The API uses URL-based versioning.
+
+https://api.roomly.com.ng/v1/
+
+Breaking changes should result in a new API version rather than silently changing the behaviour of an existing version.
+
+For example:
+
+/v1/properties
+/v2/properties
+
+Existing API versions should remain available for a defined deprecation period before removal.
+
+---
+
+Resource relationships
+
+Roomly resources are related through stable identifiers.
+
+A property belongs to an area and may be associated with a school.
+
+Property
+├── Area
+├── School
+├── Property Type
+├── Amenities
+└── Availability
+
+Applications should use resource IDs when making API requests rather than relying on display names.
+
+For example:
+
+area_bosso
+
+is preferred over:
+
+Bosso
+
+when requesting a specific area.
+
+---
+
+Read and write operations
+
+The initial proposed API focuses on read operations.
+
+Available in the initial API design
+
+GET /v1/properties
+GET /v1/properties/{propertyId}
+
+GET /v1/schools
+GET /v1/schools/{schoolId}
+GET /v1/schools/{schoolId}/properties
+
+GET /v1/areas
+GET /v1/areas/{areaId}
+GET /v1/areas/{areaId}/properties
+GET /v1/areas/{areaId}/statistics
+
+GET /v1/properties/{propertyId}/availability
+
+GET /v1/market-data
+
+Future capabilities
+
+Write operations could eventually expose selected Roomly functionality, including:
+
+- Creating or updating listings
+- Managing availability
+- Creating reservations
+- Retrieving booking information
+- Managing reviews
+- Receipt verification
+- Partner integrations
+
+These operations require additional authentication, authorization, validation, and security considerations and are outside the scope of this initial specification.
+
+---
+
+API design principles
+
+The proposed API follows these principles:
+
+1. Resource-oriented URLs — URLs represent resources rather than actions.
+2. Predictable responses — related endpoints use consistent response structures.
+3. Explicit filtering — clients can narrow results without requiring separate endpoints for every use case.
+4. Stable identifiers — resources are referenced by IDs rather than display names.
+5. Versioned contracts — breaking changes are isolated behind API versions.
+6. Progressive capability — the initial API exposes useful read operations before introducing higher-risk write operations.
+7. Developer usability — endpoints, parameters, responses, and errors should be predictable enough for developers to integrate without needing access to Roomly's internal implementation.
+
+Proposed API surface
+
+The initial API can therefore be summarized as:
+
+Properties
+GET /v1/properties
+GET /v1/properties/{propertyId}
+GET /v1/properties/{propertyId}/availability
+
+Schools
+GET /v1/schools
+GET /v1/schools/{schoolId}
+GET /v1/schools/{schoolId}/properties
+
+Areas
+GET /v1/areas
+GET /v1/areas/{areaId}
+GET /v1/areas/{areaId}/properties
+GET /v1/areas/{areaId}/statistics
+
+Market Data
+GET /v1/market-data
+
+This specification serves as the proposed contract from which the Roomly Developer Guides can be written.
+
+The guides will explain how to accomplish specific tasks with this API, while this specification defines what the API exposes and how its contract behaves.
