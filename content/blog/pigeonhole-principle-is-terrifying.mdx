@@ -1,12 +1,11 @@
 ---
 title: "The pigeonhole principle is stupidly simple. That's what makes it terrifying."
-date: "2026-09-05"
+date: "2026-09-04"
 tag: "Reflections"
 excerpt: "A dumb-sounding idea from a math class that turns out to be quietly load-bearing across half of computer science."
-readTime: "5 min read"
+readTime: "3 min read"
 sample: false
 ---
-
 
 When I came across the pigeonhole principle last semester, my first reaction was, honestly, disrespect.
 
@@ -28,7 +27,7 @@ Cryptographers don't get to ask "can this happen." They only get to ask "how do 
 
 **Exhibit B: Compression will always disappoint someone**
 
-Somewhere, someone is trying to build a compression algorithm that shrinks *every possible file*, no exceptions. That person will fail, and pigeonhole is why.
+Somewhere, someone is trying to build a compression algorithm that shrinks _every possible file_, no exceptions. That person will fail, and pigeonhole is why.
 
 If your compressor genuinely shrinks every input, then you have more possible inputs than possible (smaller) outputs. Which means, by pigeonhole, at least two different inputs must map to the same compressed output. Now decompression opens that file and has a full identity crisis — which original file was this supposed to be?
 
@@ -36,15 +35,15 @@ This is why "compress absolutely everything" is a lie your compression software 
 
 **Exhibit C: The birthday "paradox" isn't a paradox**
 
-Put 367 people in a room. At least two of them share a birthday. Not probably. Not "pretty likely." *Guaranteed.* There are only 366 possible birthdays (yes, leap day counts, don't email me), so 367 people is one pigeon too many for the holes available.
+Put 367 people in a room. At least two of them share a birthday. Not probably. Not "pretty likely." _Guaranteed._ There are only 366 possible birthdays (yes, leap day counts, don't email me), so 367 people is one pigeon too many for the holes available.
 
-The actually mind-bending part is that you don't need anywhere near 367 people for a shared birthday to become *likely* — just 23 people gets you past 50% odds, which is its own rabbit hole (probability, not pigeonhole, but they're cousins). But the guaranteed version, the pigeonhole version, needs zero probability theory. It needs counting. That's what makes it almost insulting how powerful it is.
+The actually mind-bending part is that you don't need anywhere near 367 people for a shared birthday to become _likely_ — just 23 people gets you past 50% odds, which is its own rabbit hole (probability, not pigeonhole, but they're cousins). But the guaranteed version, the pigeonhole version, needs zero probability theory. It needs counting. That's what makes it almost insulting how powerful it is.
 
 **So what changed my mind?**
 
 Nothing about the principle changed. It's still "more pigeons than holes means a hole gets doubled up." I could've told you that in kindergarten with actual pigeons and actual holes.
 
-What changed is realizing that "obviously true" and "powerful" aren't opposites. Pigeonhole doesn't feel like a tool because it doesn't compute anything, prove anything clever, or show off. It just quietly guarantees that certain bad (or good, depending on who's asking) things *must* happen once you've got enough stuff and not enough room for it.
+What changed is realizing that "obviously true" and "powerful" aren't opposites. Pigeonhole doesn't feel like a tool because it doesn't compute anything, prove anything clever, or show off. It just quietly guarantees that certain bad (or good, depending on who's asking) things _must_ happen once you've got enough stuff and not enough room for it.
 
 Half of cryptography, a chunk of compression theory, and a fun party trick about birthdays are all, underneath, the same shrug: "yeah, something's gotta repeat, there's nowhere else for it to go."
 
@@ -52,4 +51,4 @@ I used to think the simplest ideas in math were the least interesting. Turns out
 
 ---
 
-*If you're into more of this — deep dives into the concepts quietly running the systems we use, follow along. Next up: how Mina Protocol keeps an entire blockchain succinct using math that sounds just as "obvious" until you actually look at it.*
+_If you're into more of this — deep dives into the concepts quietly running the systems we use, follow along. Next up: how Mina Protocol keeps an entire blockchain succinct using math that sounds just as "obvious" until you actually look at it._
