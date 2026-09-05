@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -9,9 +9,9 @@ html {
 }
 
 body {
-  font-family: 'Fraunces', Georgia, serif;
-  color: #0A1F5C;
-  background: #FFFFFF;
+  font-family: "Fraunces", Georgia, serif;
+  color: #0a1f5c;
+  background: #ffffff;
 }
 
 /* narrow reading column for long-form post bodies */
@@ -23,7 +23,7 @@ body {
   font-size: 1rem;
   line-height: 1.75;
   margin-bottom: 1.25rem;
-  color: #0A1F5C;
+  color: #0a1f5c;
 }
 
 .prose-content h2 {
@@ -55,21 +55,26 @@ body {
 }
 
 .prose-content blockquote {
-  border-left: 3px solid #185FA5;
+  border-left: 3px solid #185fa5;
   padding-left: 1rem;
   margin: 1.5rem 0;
   font-style: italic;
-  color: #5B6B82;
+  color: #5b6b82;
 }
 
 .prose-content a {
-  color: #185FA5;
+  color: #185fa5;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
+.prose-content a.download-button {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .prose-content code {
-  background: #F7FAFD;
+  background: #f7fafd;
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
   font-size: 0.9em;
@@ -78,7 +83,7 @@ body {
 /* visible keyboard focus, kept simple and consistent site-wide */
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid #185FA5;
+  outline: 2px solid #185fa5;
   outline-offset: 2px;
 }
 
