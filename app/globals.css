@@ -73,6 +73,36 @@ body {
   text-decoration: none;
 }
 
+.table-scroll {
+  margin: 1.5rem 0 1.25rem;
+  overflow-x: auto;
+}
+
+.prose-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.prose-content th,
+.prose-content td {
+  border-bottom: 1px solid rgb(10 31 92 / 15%);
+  padding: 0.75rem 1rem;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.prose-content th {
+  background: #f7fafd;
+  font-weight: 500;
+}
+
+.prose-content tr:last-child td {
+  border-bottom: 0;
+}
+
 .prose-content code {
   background: #f7fafd;
   padding: 0.15rem 0.4rem;
