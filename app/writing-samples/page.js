@@ -6,7 +6,7 @@ export const metadata = {
   description: 'A curated set of technical documentation, research, and guides.',
 };
 
-const CATEGORIES = ['Technical Documentation', 'User Guides', 'Research & Explainers', 'Technical Ghostwriting'];
+const CATEGORIES = ['Technical Documentations', 'User Guides', 'Research & Explainers', 'Company Breakdowns'];
 
 export default function WritingSamplesPage() {
   const samples = getAllSamples();
