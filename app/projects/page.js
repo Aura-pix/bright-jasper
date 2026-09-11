@@ -1,30 +1,25 @@
-import Link from 'next/link';
+import { getAllProjects } from '@/lib/projects';
 
 export const metadata = {
   title: 'Projects — Bright Jasper',
   description: 'Projects built or audited, separate from the writing samples — what I did, how I did it, and what I delivered.',
 };
 
-const projects = [
-  {
-    name: 'Startup Documentation Audit', // TODO: swap in startup name when public
-    role: 'Technical writer / content auditor',
-    tools: 'TBD once confirmed', // TODO: fill in actual tools used
-    status: 'Completed — pending founder feedback',
-    description:
-      "A documentation audit identifying gaps in existing docs and proposing a structure to close them. Done pro bono as a first Projects entry.", // TODO: swap for your edited copy
-    link: null, // TODO: add writeup link once published
-    linkLabel: 'Read the full writeup',
-  },
-];
+const STATUS_LABELS = {
+  'in-progress': 'In progress',
+  completed: 'Completed',
+  live: 'Live',
+  'on-hold': 'On hold',
+};
 
 export default function ProjectsPage() {
+  const projects = getAllProjects();
+
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-4">Projects</h1>
 
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        {/* TODO: swap for your edited intro copy */}
         Things I've built or audited, separate from the writing samples above. Each entry
         links to a full writeup — what I did, how I did it, and what I delivered.
       </p>
@@ -32,24 +27,31 @@ export default function ProjectsPage() {
       <div className="space-y-6">
         {projects.map((project) => (
           <div
-            key={project.name}
+            key={project.slug}
             className="border border-ink/10 rounded-lg p-6 hover:border-accent transition-colors"
           >
-            <div className="flex items-center justify-between gap-3 mb-2">
-              <h2 className="text-[18px] font-medium text-ink">{project.name}</h2>
-              <span className="text-[12px] text-muted whitespace-nowrap">{project.status}</span>
-            </div>
-
-            <p className="text-[13px] text-muted mb-1">
-              <span className="font-medium text-ink/80">Role:</span> {project.role}
-            </p>
-            <p className="text-[13px] text-muted mb-4">
-              <span className="font-medium text-ink/80">Tools:</span> {project.tools}
+            <h2 className="text-[18px] font-medium text-ink mb-1">{project.title}</h2>
+            <p className="text-[12px] text-muted mb-3">
+              {STATUS_LABELS[project.status] || project.status}
+              {project.statusNote ? ` — ${project.statusNote}` : ''}
             </p>
 
-            <p className="text-[15px] text-ink/90 leading-relaxed mb-4">
-              {project.description}
-            </p>
+            {project.role && (
+              <p className="text-[13px] text-muted mb-1">
+                <span className="font-medium text-ink/80">Role:</span> {project.role}
+              </p>
+            )}
+            {project.tools && (
+              <p className="text-[13px] text-muted mb-4">
+                <span className="font-medium text-ink/80">Tools:</span> {project.tools}
+              </p>
+            )}
+
+            {project.excerpt && (
+              <p className="text-[15px] text-ink/90 leading-relaxed mb-4">
+                {project.excerpt}
+              </p>
+            )}
 
             {project.link ? (
               <a
