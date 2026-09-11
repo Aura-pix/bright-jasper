@@ -26,10 +26,10 @@ export default function ProjectsPage() {
       </p>
 
       <div className="space-y-6">
-        {projects.map((project) => (
+        {projts.map((project) => (
           <Link
             key={project.slug}
-            href={`/projts/${project.slug}`}
+            href={`/projects/${project.slug}`}
             className="block border border-ink/10 rounded-lg p-6 hover:border-accent transition-colors"
           >
             <h2 className="text-[18px] font-medium text-ink mb-1">{project.title}</h2>
