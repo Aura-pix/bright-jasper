@@ -26,7 +26,7 @@ export default function ProjectsPage() {
       </p>
 
       <div className="space-y-6">
-        {projects.map((proct) => (
+        {projects.map((project) => (
           <Link
             key={project.slug}
             href={`/projects/${project.slug}`}
