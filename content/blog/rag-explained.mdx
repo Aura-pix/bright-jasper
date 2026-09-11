@@ -1,0 +1,80 @@
+---
+title: "How RAG Actually Works: From Query to Response"
+date: "2026-09-11"
+tag: "Technical Explainers"
+excerpt: "A grounded, mechanics-first look at retrieval-augmented generation — what it solves, how the pipeline actually works, and where it quietly breaks."
+readTime: "7 min read"
+sample: true
+sampleCategory: "Technical Explainers"
+---
+
+Ask a large language model a question about your company's internal onboarding process, and it will confidently make something up. Not because it's broken — because it was never trained on your onboarding process. This is the problem retrieval-augmented generation, or RAG, exists to solve.
+
+RAG is an architecture that connects a language model to an external knowledge base at the moment a query comes in, so the model can ground its answer in something it wasn't trained on. It's become the default pattern for building AI systems that need to answer questions about internal documentation, product catalogs, or anything that changes faster than a model's training cycle.
+
+Here's what's actually happening under the hood.
+
+## The problem RAG solves
+
+A language model's knowledge is frozen at training time. It doesn't know about your product changes from last week, your internal wiki, or the incident report your team filed yesterday. Fine-tuning can adjust a model's tone or format, but it doesn't solve this — the model still doesn't know your data, and retraining every time something changes isn't practical.
+
+RAG sidesteps this by not asking the model to *know* the answer. Instead, it retrieves the relevant information at query time and hands it to the model as context, alongside the question. The model's job shifts from "recall this from memory" to "read this and answer."
+
+## Two pipelines, not one
+
+Most RAG systems are really two separate pipelines working together: an offline ingestion pipeline that runs ahead of time, and a real-time query pipeline that runs when a user asks something.
+
+**The ingestion pipeline** takes your source documents, breaks them into smaller pieces (chunks), converts each chunk into a numerical representation (an embedding) using an embedding model, and stores those embeddings in a vector database. This happens once, or whenever your source data changes — not on every query.
+
+**The query pipeline** is what happens when a user actually asks a question. The query itself gets converted into an embedding using the same method, the vector database is searched for chunks whose embeddings are mathematically closest to the query's embedding, and the most relevant chunks are pulled out and inserted into the prompt sent to the language model.
+
+The model then generates its answer using both the original question and the retrieved chunks as context — which is the "augmented" part of retrieval-augmented generation.
+
+## Where naive RAG breaks: chunking
+
+The single biggest source of retrieval errors in a basic RAG setup isn't the language model — it's how the source documents were chunked in the first place. Splitting documents into fixed-size blocks (say, every 500 tokens) is simple to implement, but it routinely cuts sentences and ideas in half, so the retriever ends up handing the model incomplete context.
+
+A few more deliberate strategies exist:
+
+- **Semantic chunking** splits documents at natural boundaries — paragraph breaks, topic shifts, section headers — instead of at a fixed token count.
+- **Parent-child chunking** stores small chunks for precise retrieval, but expands to the surrounding parent section once a chunk is actually retrieved, so the model gets enough context to form a coherent answer.
+- **Sliding window chunking** overlaps consecutive chunks by roughly 10–20%, so information sitting at a chunk boundary doesn't get lost entirely.
+
+Which strategy fits depends on the source material: structured documentation tends to do well with semantic chunking, dense technical manuals often need parent-child chunking, and conversational data like support tickets works reasonably well with sliding windows.
+
+## What "augmented" actually looks like in practice
+
+Once relevant chunks are retrieved, they're not just appended randomly. A typical augmented prompt looks something like:
+
+```
+Context: [retrieved chunk 1] [retrieved chunk 2] [retrieved chunk 3]
+Question: [original user question]
+Instruction: Answer using only the context above.
+```
+
+The language model then generates a response grounded in that context rather than its training data alone. Some systems add a ranking step before this — scoring retrieved chunks by relevance and discarding the weaker ones — since handing the model too much irrelevant context can dilute the quality of its answer as easily as handing it too little.
+
+## Where RAG still fails
+
+RAG reduces hallucination, but it doesn't eliminate it, and the failure mode is usually retrieval, not generation. If the retriever pulls the wrong chunks — because the embedding model didn't capture the query's actual intent, or the chunking split apart the information that mattered — the language model will still generate a confident, fluent answer. It'll just be confidently wrong about the wrong context, not the absence of context.
+
+This is worth being precise about: RAG's reputation for "reducing hallucination" is really a claim about *retrieval quality*, not about the language model becoming more honest. A RAG system with poor chunking or a mismatched embedding model can still hallucinate freely — it's just hallucinating on top of bad context instead of no context.
+
+## When RAG is the wrong tool
+
+RAG is not a universal fix. It adds latency (a retrieval step before generation), infrastructure (a vector database, an embedding pipeline), and a new failure surface (retrieval quality) to a system that didn't have one before. If the knowledge you need the model to use is small, stable, and could reasonably fit in a prompt directly, you may not need RAG's ceremony to solve the problem — a well-designed prompt might be enough.
+
+RAG earns its complexity when the knowledge base is large, changes frequently, or is too big to fit in a single prompt. For a single company wiki, a static FAQ, or documentation that rarely changes, that complexity may not pay for itself.
+
+---
+
+**A note on the numbers:** you'll find plenty of blog posts citing precise percentage improvements from adding RAG (accuracy gains, hallucination reduction rates). Most of these figures trace back to a single vendor's internal benchmark rather than an independently reproduced study, so I've left them out here rather than repeat an unverified number as settled fact. If you're evaluating RAG for a specific use case, the more reliable path is benchmarking retrieval quality against your own data rather than borrowing someone else's percentage.
+
+## References
+
+- IBM, ["What is RAG (Retrieval Augmented Generation)?"](https://www.ibm.com/think/topics/retrieval-augmented-generation)
+- AWS, ["What is Retrieval-Augmented Generation (RAG)?"](https://aws.amazon.com/what-is/retrieval-augmented-generation/)
+- NVIDIA, ["What is Retrieval-Augmented Generation (RAG)?" — Glossary](https://www.nvidia.com/en-us/glossary/retrieval-augmented-generation/)
+- BigDataBoutique, ["RAG Architecture Explained: How Retrieval-Augmented Generation Actually Works"](https://bigdataboutique.com/blog/rag-architecture-explained-how-retrieval-augmented-generation-works)
+- K2View, ["What is Retrieval-Augmented Generation (RAG)? A Practical Guide"](https://www.k2view.com/what-is-retrieval-augmented-generation)
+- Lewis et al., 2020 — the original RAG paper (referenced via K2View's summary above)
