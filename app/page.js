@@ -57,7 +57,7 @@ export default function HomePage() {
         <h2 className="text-[20px] font-medium text-ink mb-6">What I write</h2>
         <ul className="space-y-3 text-[15px] text-ink/90">
           <li>Protocol and technical deep dives — breaking down how a system actually works, for readers who need real understanding</li>
-          <li>Developer docs and how-to guides (JS/TS, Node, Python, Solidity) — the kind that answer a question before it becomes a support ticket</li>
+          <li>Developer docs and how-to guides (JS/TS, Node, Python, Solidity), so your engineers spend more time shipping and the volume of your support ticket reduces</li>
           <li>Web3 content — explainers, product writing, onboarding flows, written for non-specialists without losing accuracy</li>
           <li>Research pieces, verified against primary sources and flagged when a claim needs further checking</li>
         </ul>
@@ -90,8 +90,7 @@ export default function HomePage() {
       <section className="max-w-3xl mx-auto px-6 py-14 text-center">
         <h2 className="text-[20px] font-medium text-ink mb-4">If you're building something</h2>
         <p className="text-[15px] text-ink/90 leading-relaxed max-w-md mx-auto mb-6">
-          Need docs written for your product, a guide for your users, or content that actually
-          explains what you built instead of just describing it? That's what I do. Reach out
+          Need docs written for your product, a guide for your users, or content that explains what you built? That's what I do. Reach out
           and let's talk about what you need.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
