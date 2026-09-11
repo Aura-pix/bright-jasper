@@ -16,7 +16,9 @@ export default function BlogIndexPage() {
     "Dev Guides",
     "Reflections",
     "Research Thesis",
+    "Technical Explainers"
     "Product",
+
   ];
   const tagsPresent = knownTags.filter((tag) =>
     posts.some((post) => post.tag === tag),
