@@ -14,7 +14,7 @@ export default function HomePage() {
         style={{ background: 'linear-gradient(160deg, #E6F1FB 0%, #ffffff 75%)' }}
       >
         <div className="max-w-2xl mx-auto">
-          <p className="text-[15px] text-muted mb-2">Technical writer and researcher — web2 and web3</p>
+          <p className="text-[15px] text-muted mb-2">Technical writer and content strategist — web2 and web3</p>
           <h1 className="text-[28px] sm:text-[32px] font-medium text-ink mb-6 leading-tight">
             Bright Jasper
           </h1>
@@ -30,8 +30,9 @@ export default function HomePage() {
 
           <p className="text-[16px] text-ink/90 leading-relaxed mb-8 max-w-lg mx-auto">
             I write documentation, guides, and explainers for people building things — mostly
-            around JavaScript/TypeScript, Python, and Solidity. I research before I write, so
-            what you get is accurate, not just readable.
+            around JavaScript/TypeScript, Python, and Solidity. I also help teams figure out
+            what content they actually need and how it should be structured. I research before
+            I write, so what you get is accurate as well as readable.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -55,10 +56,10 @@ export default function HomePage() {
       <section className="max-w-3xl mx-auto px-6 py-14">
         <h2 className="text-[20px] font-medium text-ink mb-6">What I write</h2>
         <ul className="space-y-3 text-[15px] text-ink/90">
-          <li>Protocol and technical deep dives</li>
-          <li>Developer docs and how-to guides (JS/TS, Node, Python, Solidity)</li>
-          <li>Web3 content — explainers, product writing, onboarding flows</li>
-          <li>Research pieces, checked against primary sources before they're published</li>
+          <li>Protocol and technical deep dives — breaking down how a system actually works, for readers who need real understanding</li>
+          <li>Developer docs and how-to guides (JS/TS, Node, Python, Solidity) — the kind that answer a question before it becomes a support ticket</li>
+          <li>Web3 content — explainers, product writing, onboarding flows, written for non-specialists without losing accuracy</li>
+          <li>Research pieces, verified against primary sources and flagged when a claim needs further checking</li>
         </ul>
       </section>
 
