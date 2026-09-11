@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getAllProjects } from '@/lib/projects';
 
 export const metadata = {
@@ -26,9 +27,10 @@ export default function ProjectsPage() {
 
       <div className="space-y-6">
         {projects.map((project) => (
-          <div
+          <Link
             key={project.slug}
-            className="border border-ink/10 rounded-lg p-6 hover:border-accent transition-colors"
+            href={`/projects/${project.slug}`}
+            className="block border border-ink/10 rounded-lg p-6 hover:border-accent transition-colors"
           >
             <h2 className="text-[18px] font-medium text-ink mb-1">{project.title}</h2>
             <p className="text-[12px] text-muted mb-3">
@@ -48,26 +50,11 @@ export default function ProjectsPage() {
             )}
 
             {project.excerpt && (
-              <p className="text-[15px] text-ink/90 leading-relaxed mb-4">
+              <p className="text-[15px] text-ink/90 leading-relaxed">
                 {project.excerpt}
               </p>
             )}
-
-            {project.link ? (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[14px] text-accent hover:underline"
-              >
-                {project.linkLabel} →
-              </a>
-            ) : (
-              <span className="text-[14px] text-muted italic">
-                Writeup coming soon
-              </span>
-            )}
-          </div>
+          </Link>
         ))}
       </div>
 
