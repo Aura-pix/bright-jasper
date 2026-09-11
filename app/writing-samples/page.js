@@ -15,10 +15,19 @@ export default function WritingSamplesPage() {
     <div className="max-w-3xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-3">Writing samples</h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        If you're checking out my work for a project, start here. A shorter list, picked to
-        actually show range — technical documentation (JS/TS, Python, Solidity), protocol
-        explainers, user-facing guides, and dev-facing guides.
-      </p>
+  If you're checking out my work for a project, start here. A shorter list, picked to
+  actually show range — technical documentation (JS/TS, Python, Solidity), protocol
+  explainers, user-facing guides, and dev-facing guides, following the{' '}
+  <a
+    href="https://diataxis.fr"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-accent hover:underline"
+  >
+    Diataxis framework
+  </a>
+  .
+</p>
 
       {samples.length === 0 ? (
         <p className="text-[14px] text-muted">
