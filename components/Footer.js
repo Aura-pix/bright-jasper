@@ -9,8 +9,9 @@ const links = [
     label: "Upwork",
     href: "https://www.upwork.com/freelancers/~018d2a2818ff617a2b",
   },
-  { label: "GitHub", href: "https://GitHub.com/Aura-pix" },
+  { label: "GitHub", href: "https://github.com/Aura-pix/bright-jasper" },
   { label: "Telegram", href: "https://t.me/Jasper074" },
+  { label: "WhatsApp", href: "https://wa.me/2347088596835" },
   { label: "Email", href: "mailto:brghtjasper@gmail.com" },
 ];
 
