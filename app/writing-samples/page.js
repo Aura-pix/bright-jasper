@@ -3,10 +3,10 @@ import { getAllSamples } from '@/lib/posts';
 
 export const metadata = {
   title: 'Writing samples — Bright Jasper',
-  description: 'A curated set of technical documentation, research, and guides.',
+  description: 'A curated set of technical documentation, research, tutorials and guides.',
 };
 
-const CATEGORIES = ['Technical Documentations', 'User Guides', 'Research Explainers', 'Technical Explainers', 'Documentation Audits', 'Company Breakdowns'];
+const CATEGORIES = ['Technical Documentations', 'User Guides', 'Research Explainers', 'Technical Explainers', 'Tutorials', 'Documentation Audits', 'Company Breakdowns'];
 
 export default function WritingSamplesPage() {
   const samples = getAllSamples();
