@@ -1,0 +1,373 @@
+---
+title: "Build a RAG Pipeline from Scratch: A Node.js + TypeScript Walkthrough"
+date: "2026-09-12"
+tag: "Tutorials"
+excerpt: "A hands-on, start-to-finish tutorial: install the tools, get your API keys, build a working RAG pipeline in TypeScript, then harden it with real error handling."
+readTime: "16 min read"
+sample: true
+sampleCategory: "Tutorials"
+---
+
+This is a tutorial, not a reference — follow it in order, and by the end you'll have a working command-line tool that answers questions using your own documents, built the same way you'd build one for a real project. If you already understand RAG conceptually and just want the mechanics, see the [RAG explainer](/writing-samples) first; this piece assumes you've read something like it.
+
+## What you'll build
+
+A small Node.js script that:
+1. Takes a folder of text documents
+2. Chunks and embeds them
+3. Stores those embeddings in Pinecone (a hosted vector database)
+4. Answers a question by retrieving the most relevant chunks and handing them to an LLM — your choice of Claude or GPT
+
+We'll build it twice: once as a minimal proof of concept, then again with the error handling and structure a real project needs.
+
+## Device & environment requirements
+
+- **Node.js 20 or later** — the Pinecone TypeScript client requires it. Check with `node -v`.
+- **TypeScript 5.2+** — installed as a project dependency below, not globally required.
+- **npm** (ships with Node) or another package manager of your choice.
+- **~200MB free disk space** for `node_modules` — vector database clients and SDKs add up.
+- **Any OS** — macOS, Linux, or Windows (with WSL recommended, though not required) all work identically here; nothing in this pipeline touches the GPU or requires local compute.
+- A terminal and a code editor. That's the full hardware bar — this tutorial does no local model inference, so there's no GPU requirement at all.
+
+> 🛟 **Stuck on Node.js itself?** Use [nvm](https://github.com/nvm-sh/nvm) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows) to install and switch Node versions cleanly. If Node's own installer is failing, [Node.js's own support/issues page →](https://github.com/nodejs/node/issues) is the right place, not this tutorial.
+
+## Before you start: getting your API keys
+
+You'll need three accounts. All have free tiers sufficient for this tutorial.
+
+**1. Pinecone (vector database)**
+Sign up at [pinecone.io](https://www.pinecone.io/), open the console, go to **API Keys**, and copy your key. Pinecone's free Starter plan gives you one project and enough storage for this entire tutorial.
+
+> 🛟 **Can't find your API key or your account seems stuck?** [Pinecone support →](https://www.pinecone.io/contact/) — this is a Pinecone account issue, not a code issue, and their team will resolve it faster than debugging it here.
+
+**2. OpenAI (embeddings — required regardless of which model you use for generation)**
+Sign up at [platform.openai.com](https://platform.openai.com/), go to **API Keys**, and create a new secret key. Worth knowing upfront: Anthropic doesn't offer an embeddings model at all, so this pipeline uses OpenAI's `text-embedding-3-small` for the embedding step no matter which provider you pick for generation. That's not a workaround — it's the standard setup even in Anthropic's own documentation.
+
+> 🛟 **Billing or key errors on OpenAI's side?** [OpenAI's help center →](https://help.openai.com/) handles account and billing issues directly.
+
+**3. Your generation provider — pick Claude, OpenAI, or set up both**
+- **Claude**: sign up at [console.anthropic.com](https://console.anthropic.com/), go to **API Keys**, create one.
+- **OpenAI**: reuse the same key from step 2 — same account, same key.
+
+> 🛟 **Anthropic console access issues?** [Anthropic support →](https://support.claude.com/) is the right place for account-level problems.
+
+Store all keys somewhere safe for now — you'll drop them into a `.env` file in the next step, and that file should never be committed to version control.
+
+## Installation
+
+Create a project folder and initialize it:
+
+```bash
+mkdir rag-tutorial && cd rag-tutorial
+npm init -y
+npm install typescript tsx dotenv --save-dev
+npm install @pinecone-database/pinecone openai @anthropic-ai/sdk
+```
+
+> 🛟 **Quick troubleshooting:** if `npm init` or `npm install` fails immediately with a permissions error, you're likely running global npm with elevated permissions somewhere upstream — avoid `sudo npm install` (it causes more permission problems than it fixes); reinstalling Node via nvm resolves this in almost every case.
+
+Create a minimal `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts"]
+}
+```
+
+And a `.env` file in the project root:
+
+```
+PINECONE_API_KEY=your-pinecone-key
+OPENAI_API_KEY=your-openai-key
+ANTHROPIC_API_KEY=your-anthropic-key
+LLM_PROVIDER=anthropic
+```
+
+> 🛟 **Quick troubleshooting:** `.env` values with spaces or quotes around them are a common source of "invalid API key" errors that look like a wrong key when they aren't. Don't quote the values — `KEY=abc123`, not `KEY="abc123"`.
+
+Add `.env` and `node_modules` to a `.gitignore` file before you do anything else:
+
+```
+node_modules
+.env
+dist
+```
+
+## Part 1: The simple version
+
+This first version hardcodes a few sample documents so you can see the whole pipeline work end to end before adding real complexity. Create `src/simple.ts`:
+
+```typescript
+import "dotenv/config";
+import { Pinecone } from "@pinecone-database/pinecone";
+import OpenAI from "openai";
+import Anthropic from "@anthropic-ai/sdk";
+
+const pc = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+
+const INDEX_NAME = "rag-tutorial-simple";
+const EMBEDDING_MODEL = "text-embedding-3-small";
+const EMBEDDING_DIMENSION = 1536;
+
+// A tiny sample knowledge base — swap this for real documents in Part 2
+const documents = [
+  { id: "doc1", text: "Roomly is a student housing marketplace for FUTMINNA students, connecting them with verified off-campus rooms." },
+  { id: "doc2", text: "RAG (retrieval-augmented generation) retrieves relevant text chunks and passes them to a language model as context before it answers." },
+  { id: "doc3", text: "Pinecone is a managed vector database — it stores embeddings and finds the closest matches to a query embedding." },
+];
+
+async function embed(text: string): Promise<number[]> {
+  const response = await openai.embeddings.create({
+    model: EMBEDDING_MODEL,
+    input: text,
+  });
+  return response.data[0].embedding;
+}
+
+async function setupIndex() {
+  const existing = await pc.listIndexes();
+  const alreadyExists = existing.indexes?.some((i) => i.name === INDEX_NAME);
+
+  if (!alreadyExists) {
+    await pc.createIndex({
+      name: INDEX_NAME,
+      dimension: EMBEDDING_DIMENSION,
+      metric: "cosine",
+      spec: { serverless: { cloud: "aws", region: "us-east-1" } },
+    });
+    // Serverless indexes take a few seconds to become ready
+    await new Promise((resolve) => setTimeout(resolve, 10_000));
+  }
+}
+
+async function ingestDocuments() {
+  const index = pc.index(INDEX_NAME);
+  const vectors = await Promise.all(
+    documents.map(async (doc) => ({
+      id: doc.id,
+      values: await embed(doc.text),
+      metadata: { text: doc.text },
+    }))
+  );
+  await index.upsert(vectors);
+}
+
+async function answerQuestion(question: string): Promise<string> {
+  const index = pc.index(INDEX_NAME);
+  const queryEmbedding = await embed(question);
+
+  const results = await index.query({
+    vector: queryEmbedding,
+    topK: 2,
+    includeMetadata: true,
+  });
+
+  const context = results.matches
+    .map((match) => match.metadata?.text)
+    .join("\n\n");
+
+  const prompt = `Answer the question using only the context below.\n\nContext:\n${context}\n\nQuestion: ${question}`;
+
+  if (process.env.LLM_PROVIDER === "openai") {
+    const completion = await openai.chat.completions.create({
+      model: "gpt-5.6-terra",
+      messages: [{ role: "user", content: prompt }],
+    });
+    return completion.choices[0].message.content ?? "";
+  }
+
+  const message = await anthropic.messages.create({
+    model: "claude-sonnet-5",
+    max_tokens: 500,
+    messages: [{ role: "user", content: prompt }],
+  });
+  return message.content[0].type === "text" ? message.content[0].text : "";
+}
+
+async function main() {
+  console.log("Setting up index...");
+  await setupIndex();
+  console.log("Ingesting documents...");
+  await ingestDocuments();
+  console.log("Asking a question...");
+  const answer = await answerQuestion("What does Pinecone do?");
+  console.log("\nAnswer:", answer);
+}
+
+main().catch(console.error);
+```
+
+Run it:
+
+```bash
+npx tsx src/simple.ts
+```
+
+You should see the index get created, the three documents get embedded and stored, and a final answer printed that's clearly grounded in the sample text — not a generic definition pulled from the model's training data.
+
+> 🛟 **Quick troubleshooting:** if you get a dimension mismatch error here, it means an index with the same name already exists from an earlier run with a different embedding model. Delete it from the Pinecone console and re-run, or change `INDEX_NAME`.
+
+Switch providers by changing `LLM_PROVIDER=openai` in your `.env` — no code changes needed. That's the "provider-agnostic" part: one pipeline, one switch.
+
+## Part 2: The production-shaped version
+
+The simple version works, but it has no error handling, no real document ingestion, and no protection against rate limits. Here's what changes.
+
+**Real documents instead of hardcoded strings.** Read and chunk actual files:
+
+```typescript
+import { readFileSync, readdirSync } from "fs";
+import { join } from "path";
+
+function chunkText(text: string, chunkSize = 800, overlap = 100): string[] {
+  const chunks: string[] = [];
+  let start = 0;
+  while (start < text.length) {
+    const end = Math.min(start + chunkSize, text.length);
+    chunks.push(text.slice(start, end));
+    start += chunkSize - overlap;
+  }
+  return chunks;
+}
+
+function loadDocuments(folderPath: string) {
+  const files = readdirSync(folderPath).filter((f) => f.endsWith(".txt"));
+  return files.flatMap((filename) => {
+    const content = readFileSync(join(folderPath, filename), "utf-8");
+    return chunkText(content).map((chunk, i) => ({
+      id: `${filename}-chunk-${i}`,
+      text: chunk,
+      source: filename,
+    }));
+  });
+}
+```
+
+This uses fixed-size chunking with a 100-character overlap — simple, and enough for this tutorial. The [RAG explainer](/writing-samples) covers semantic and parent-child chunking if your documents need something more deliberate.
+
+**Batching embedding calls.** Calling the embeddings API once per chunk is slow and burns through rate limits fast. Batch them:
+
+```typescript
+async function embedBatch(texts: string[]): Promise<number[][]> {
+  const response = await openai.embeddings.create({
+    model: EMBEDDING_MODEL,
+    input: texts, // OpenAI accepts an array directly
+  });
+  return response.data.map((d) => d.embedding);
+}
+```
+
+**Retry logic with backoff**, for when a request hits a transient failure or a rate limit:
+
+```typescript
+async function withRetry<T>(fn: () => Promise<T>, retries = 3): Promise<T> {
+  for (let attempt = 0; attempt < retries; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      const isLastAttempt = attempt === retries - 1;
+      if (isLastAttempt) throw err;
+
+      const status = (err as { status?: number }).status;
+      const isRetryable = status === 429 || (status !== undefined && status >= 500);
+      if (!isRetryable) throw err; // don't retry a 401 or a bad request — that won't fix itself
+
+      const delayMs = 500 * 2 ** attempt; // 500ms, 1s, 2s
+      console.warn(`Retryable error (status ${status}), retrying in ${delayMs}ms...`);
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+  throw new Error("Unreachable");
+}
+```
+
+Wrap your embedding and generation calls in it: `await withRetry(() => embedBatch(texts))`.
+
+## Error handling, in depth
+
+A tutorial that skips this is teaching you a demo, not a pipeline. Here's what actually goes wrong and how to handle each one deliberately, rather than letting a generic try/catch swallow the distinction between them.
+
+**Missing or invalid API key.** Fail immediately, at startup, with a clear message — not three steps into a script:
+
+```typescript
+function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}. Check your .env file.`);
+  }
+  return value;
+}
+
+const PINECONE_API_KEY = requireEnv("PINECONE_API_KEY");
+```
+
+**Rate limits (HTTP 429).** Covered above by `withRetry`. The one addition worth making: if OpenAI or Anthropic returns a `retry-after` header, respect it instead of guessing at a backoff delay — check the error object's headers before falling back to exponential backoff.
+
+**Empty retrieval results.** If your vector search returns nothing relevant — a new index, an unmatched query, or a topK that filtered too aggressively — don't silently hand the model an empty context and let it hallucinate a confident answer. Check explicitly:
+
+```typescript
+if (results.matches.length === 0) {
+  return "I don't have any relevant information to answer that.";
+}
+```
+
+**Network or timeout failures.** Both the OpenAI and Anthropic Node SDKs throw on network failure the same way they throw on a 5xx — `withRetry` catches both, since a `status` of `undefined` on a network error still needs a distinct check. Add a maximum total timeout around the whole pipeline call if you're running this behind a user-facing request, so a stalled network call doesn't hang a response indefinitely.
+
+**Pinecone index not ready yet.** Right after `createIndex`, the index isn't immediately queryable. The simple version's `setTimeout(10_000)` is a blunt fix; a more correct one polls `describeIndex` until `status.ready` is `true`, rather than guessing at a fixed delay:
+
+```typescript
+async function waitUntilReady(indexName: string, timeoutMs = 60_000) {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    const description = await pc.describeIndex(indexName);
+    if (description.status?.ready) return;
+    await new Promise((resolve) => setTimeout(resolve, 2_000));
+  }
+  throw new Error(`Index ${indexName} did not become ready within ${timeoutMs}ms`);
+}
+```
+
+## Troubleshooting
+
+**`Error: Cannot find module '@pinecone-database/pinecone'`**
+The install step didn't complete or ran in the wrong folder. Confirm you're in the project root (`package.json` should be present) and re-run `npm install`.
+
+**`401 Unauthorized` from any provider**
+The key in `.env` is wrong, expired, or unquoted incorrectly. Regenerate the key from that provider's console and paste it fresh — copy-paste errors (trailing spaces, partial copies) are the most common cause.
+
+**`429 Too Many Requests`**
+You've hit a rate limit, usually from embedding too many chunks too fast on a free-tier key. The `withRetry` wrapper in Part 2 handles transient cases; if it persists, batch fewer chunks per call or check your provider's current rate limit tier.
+
+**Pinecone query returns matches with `undefined` metadata**
+You upserted vectors without a `metadata` field, or queried without `includeMetadata: true`. Both are required to get text back alongside the match score.
+
+**TypeScript errors about `moduleResolution` or import paths**
+Confirm `tsconfig.json` matches the one in the Installation section exactly — `NodeNext` module resolution is required for the SDKs used here, and an older `commonjs` config will produce confusing import errors that look unrelated to the actual cause.
+
+**The model's answer ignores the retrieved context entirely**
+Check that `context` isn't empty before it reaches the prompt (see Error handling above), and confirm your prompt actually instructs the model to use only the provided context — without that instruction, the model may blend its own training knowledge with what you retrieved.
+
+**Still stuck?**
+If none of the above matches what you're seeing, the fastest path is usually the provider whose call is actually failing — [Pinecone support](https://www.pinecone.io/contact/), [Anthropic support](https://support.claude.com/), or [OpenAI's help center](https://help.openai.com/) — since account-, billing-, and region-specific issues aren't things a tutorial can debug on your behalf.
+
+## What's next
+
+From here, the natural extensions are the ones covered conceptually in the [RAG explainer](/writing-samples): smarter chunking strategies, a reranking step before generation, and swapping fixed-size chunking for something that respects document structure. The pipeline you just built is the full mechanical shape — everything past this point is refinement, not a different architecture.
+
+## References
+
+- Pinecone, [official Node.js/TypeScript client documentation](https://github.com/pinecone-io/pinecone-ts-client)
+- OpenAI, [embeddings API documentation](https://developers.openai.com/api/docs/guides/embeddings)
+- Anthropic, [embeddings guide](https://platform.claude.com/docs/en/build-with-claude/embeddings) — including why Anthropic recommends a third-party provider for this step
+- Anthropic, [Messages API reference](https://platform.claude.com/docs/en/api/messages)
