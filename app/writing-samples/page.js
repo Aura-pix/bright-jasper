@@ -1,12 +1,21 @@
-import Link from 'next/link';
-import { getAllSamples } from '@/lib/posts';
+import Link from "next/link";
+import { getAllSamples } from "@/lib/posts";
 
 export const metadata = {
-  title: 'Writing samples — Bright Jasper',
-  description: 'A curated set of technical documentation, research, tutorials and guides.',
+  title: "Writing samples — Bright Jasper",
+  description:
+    "A curated set of technical documentation, research, tutorials and guides.",
 };
 
-const CATEGORIES = ['Technical Documentations', 'User Guides', 'Research Explainers', 'Technical Explainers', 'Tutorials', 'Documentation Audits', 'Company Breakdowns'];
+const CATEGORIES = [
+  "Technical Documentations",
+  "User Guides",
+  "Technical Explainers",
+  "Tutorials",
+  "Web3",
+  "Documentation Audits",
+  "Company Breakdowns",
+];
 
 export default function WritingSamplesPage() {
   const samples = getAllSamples();
@@ -15,24 +24,28 @@ export default function WritingSamplesPage() {
     <div className="max-w-3xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-3">Writing samples</h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-  If you're checking out my work for a project, start here. A shorter list, picked to
-  actually show range — technical documentation (JS/TS, Python, Solidity), protocol
-  explainers, user-facing guides, and dev-facing guides, following the{' '}
-  <a
-    href="https://diataxis.fr"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-accent hover:underline"
-  >
-    Diataxis framework
-  </a>
-  .
-</p>
+        If you're checking out my work for a project, start here. A shorter
+        list, picked to actually show range — technical documentation (JS/TS,
+        Python, Solidity), protocol explainers, user-facing guides, and
+        dev-facing guides, following the{" "}
+        <a
+          href="https://diataxis.fr"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent hover:underline"
+        >
+          Diataxis framework
+        </a>
+        .
+      </p>
 
       {samples.length === 0 ? (
         <p className="text-[14px] text-muted">
-          Samples are being added — check back soon, or see the full{' '}
-          <Link href="/blog" className="text-accent hover:underline">blog</Link> in the meantime.
+          Samples are being added — check back soon, or see the full{" "}
+          <Link href="/blog" className="text-accent hover:underline">
+            blog
+          </Link>{" "}
+          in the meantime.
         </p>
       ) : (
         CATEGORIES.map((category) => {
@@ -41,7 +54,9 @@ export default function WritingSamplesPage() {
 
           return (
             <div key={category} className="mb-10">
-              <h2 className="text-[16px] font-medium text-ink mb-4">{category}</h2>
+              <h2 className="text-[16px] font-medium text-ink mb-4">
+                {category}
+              </h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {items.map((sample) => (
                   <Link
@@ -49,9 +64,13 @@ export default function WritingSamplesPage() {
                     href={`/blog/${sample.slug}`} // same post, same slug - samples is just a curated view
                     className="block p-4 rounded-lg border border-ink/10 hover:border-accent"
                   >
-                    <p className="text-[15px] font-medium text-ink mb-1">{sample.title}</p>
+                    <p className="text-[15px] font-medium text-ink mb-1">
+                      {sample.title}
+                    </p>
                     {sample.excerpt && (
-                      <p className="text-[13px] text-muted leading-relaxed">{sample.excerpt}</p>
+                      <p className="text-[13px] text-muted leading-relaxed">
+                        {sample.excerpt}
+                      </p>
                     )}
                   </Link>
                 ))}
