@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/projects";
+import ResponsiveTable from "@/components/ResponsiveTable";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/projects at build time.
@@ -54,12 +55,14 @@ export default function ProjectDetailPage({ params }) {
       <div className="flex flex-wrap gap-x-8 gap-y-1 text-[13px] text-muted mb-8">
         {project.role && (
           <p>
-            <span className="font-medium text-ink/80">Role:</span> {project.role}
+            <span className="font-medium text-ink/80">Role:</span>{" "}
+            {project.role}
           </p>
         )}
         {project.tools && (
           <p>
-            <span className="font-medium text-ink/80">Tools:</span> {project.tools}
+            <span className="font-medium text-ink/80">Tools:</span>{" "}
+            {project.tools}
           </p>
         )}
       </div>
@@ -68,6 +71,7 @@ export default function ProjectDetailPage({ params }) {
         <MDXRemote
           source={project.content}
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          components={{ table: ResponsiveTable }}
         />
       </div>
     </article>

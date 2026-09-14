@@ -99,6 +99,15 @@ body {
   font-weight: 500;
 }
 
+.table-scroll table th:first-child,
+.table-scroll table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #ffffff;
+  z-index: 1;
+  box-shadow: 1px 0 0 rgb(0 0 0 / 6%);
+}
+
 .prose-content tr:last-child td {
   border-bottom: 0;
 }

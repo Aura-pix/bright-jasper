@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { getBlogPostBySlug, getAllBlogSlugs } from "@/lib/posts";
+import ResponsiveTable from "@/components/ResponsiveTable";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/blog at build time.
@@ -57,6 +58,7 @@ export default function BlogPostPage({ params }) {
         <MDXRemote
           source={post.content}
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          components={{ table: ResponsiveTable }}
         />
       </div>
     </article>
