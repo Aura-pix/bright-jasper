@@ -5,10 +5,13 @@ import { useState, useRef, useEffect } from "react";
 // Contact channels shown in the popover.
 const CONTACT_LINKS = [
   { label: "X", href: "https://x.com/brightjasp" },
-  { label: "Discord", href: "https://discord.gg/sEus6tda" },
-  { label: "Telegram", href: "https://t.me/Jasper074" },
-  { label: "WhatsApp", href: "https://wa.me/2347088596835" },
   { label: "Email", href: "mailto:brghtjasper@gmail.com" },
+  { label: "Telegram", href: "https://t.me/Jasper074" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
+  },
+  { label: "WhatsApp", href: "https://wa.me/2347088596835" },
 ];
 
 /**
