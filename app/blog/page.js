@@ -5,6 +5,9 @@ export const metadata = {
   title: "Blog — Bright Jasper",
   description:
     "Technical writing, content writing, SEO writing, and product copy from Bright Jasper, with deep dives, developer guides, and web3 explainers.",
+  alternates: {
+    canonical: "https://brightjasper.com/blog",
+  },
 };
 
 export default function BlogIndexPage() {
@@ -30,11 +33,11 @@ export default function BlogIndexPage() {
     name: "Blog",
     description:
       "Deep dives, developer guides, and research-driven writing from Bright Jasper.",
-    url: "https://brightjasper.vercel.app/blog",
+    url: "https://brightjasper.com/blog",
     hasPart: posts.slice(0, 10).map((post) => ({
       "@type": "TechArticle",
       name: post.title,
-      url: `https://brightjasper.vercel.app/blog/${post.slug}`,
+      url: `https://brightjasper.com/blog/${post.slug}`,
     })),
   };
 

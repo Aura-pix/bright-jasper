@@ -1,10 +1,10 @@
-const SITE_URL = 'https://brightjasper.vercel.app';
+const SITE_URL = "https://brightjasper.com";
 
 export default function robots() {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
+      userAgent: "*",
+      allow: "/",
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,

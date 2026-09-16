@@ -2,7 +2,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-const SITE_URL = "https://brightjasper.vercel.app";
+const SITE_URL = "https://brightjasper.com";
 
 const siteSchema = {
   "@context": "https://schema.org",

@@ -6,6 +6,9 @@ export const metadata = {
   title: "Technical Writing Samples — Bright Jasper",
   description:
     "Technical documentation, developer guides, API references, protocol explainers, and research pieces.",
+  alternates: {
+    canonical: "https://brightjasper.com/writing-samples/technical",
+  },
 };
 
 const CATEGORIES = [

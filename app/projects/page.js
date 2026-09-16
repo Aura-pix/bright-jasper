@@ -6,6 +6,9 @@ export const metadata = {
   title: "Projects — Bright Jasper",
   description:
     "Selected client work and product-side deliverables from Bright Jasper, with proof of work as projects are completed.",
+  alternates: {
+    canonical: "https://brightjasper.com/projects",
+  },
 };
 
 const STATUS_LABELS = {

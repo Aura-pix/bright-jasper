@@ -4,6 +4,9 @@ export const metadata = {
   title: "Threads — Bright Jasper",
   description:
     "Short-form X posts on product thinking, technical takes, and sharp observations from Bright Jasper.",
+  alternates: {
+    canonical: "https://brightjasper.com/threads",
+  },
 };
 
 function formatDate(dateString) {

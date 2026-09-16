@@ -4,6 +4,9 @@ export const metadata = {
   title: "Writing samples — Bright Jasper",
   description:
     "Technical writing, SEO writing, persuasive writing, and product copy samples from Bright Jasper.",
+  alternates: {
+    canonical: "https://brightjasper.com/writing-samples",
+  },
 };
 
 export default function WritingSamplesPage() {
@@ -13,17 +16,17 @@ export default function WritingSamplesPage() {
     name: "Writing samples",
     description:
       "Technical writing and persuasive writing samples from Bright Jasper.",
-    url: "https://brightjasper.vercel.app/writing-samples",
+    url: "https://brightjasper.com/writing-samples",
     hasPart: [
       {
         "@type": "CollectionPage",
         name: "Technical writing samples",
-        url: "https://brightjasper.vercel.app/writing-samples/technical",
+        url: "https://brightjasper.com/writing-samples/technical",
       },
       {
         "@type": "CollectionPage",
         name: "Persuasive writing samples",
-        url: "https://brightjasper.vercel.app/writing-samples/persuasive",
+        url: "https://brightjasper.com/writing-samples/persuasive",
       },
     ],
   };

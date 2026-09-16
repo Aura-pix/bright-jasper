@@ -6,6 +6,9 @@ export const metadata = {
   title: "Persuasive Writing Samples — Bright Jasper",
   description:
     "Product copy, landing pages, SEO content, and developer-facing marketing written to convert.",
+  alternates: {
+    canonical: "https://brightjasper.com/writing-samples/persuasive",
+  },
 };
 
 export default function PersuasiveWritingSamplesPage() {

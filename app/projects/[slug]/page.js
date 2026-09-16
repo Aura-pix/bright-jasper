@@ -17,6 +17,9 @@ export function generateMetadata({ params }) {
   return {
     title: `${project.title} — Bright Jasper`,
     description: project.excerpt,
+    alternates: {
+      canonical: `https://brightjasper.com/projects/${project.slug}`,
+    },
   };
 }
 

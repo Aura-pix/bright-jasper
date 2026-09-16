@@ -6,6 +6,9 @@ export const metadata = {
   title: "About — Bright Jasper",
   description:
     "Technical writer, content writer, SEO writer, and product copywriter helping web2 and web3 teams explain complex products clearly.",
+  alternates: {
+    canonical: "https://brightjasper.com/about",
+  },
 };
 
 export default function AboutPage() {

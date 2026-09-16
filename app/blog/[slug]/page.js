@@ -21,7 +21,7 @@ export function generateMetadata({ params }) {
     // crossposted to Medium, set `canonical` in that Medium import to point
     // back here, so this site keeps the SEO credit as the original source.
     alternates: {
-      canonical: `https://brightjasper.vercel.app/blog/${post.slug}`,
+      canonical: `https://brightjasper.com/blog/${post.slug}`,
     },
   };
 }
@@ -50,18 +50,18 @@ export default function BlogPostPage({ params }) {
     author: {
       "@type": "Person",
       name: "Bright Jasper",
-      url: "https://brightjasper.vercel.app/about",
+      url: "https://brightjasper.com/about",
     },
     publisher: {
       "@type": "Person",
       name: "Bright Jasper",
-      url: "https://brightjasper.vercel.app",
+      url: "https://brightjasper.com",
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://brightjasper.vercel.app/blog/${post.slug}`,
+      "@id": `https://brightjasper.com/blog/${post.slug}`,
     },
-    image: "https://brightjasper.vercel.app/illustrations/book-writer.svg",
+    image: "https://brightjasper.com/illustrations/book-writer.svg",
     keywords: [
       post.tag || "technical writing",
       "developer documentation",
@@ -79,19 +79,19 @@ export default function BlogPostPage({ params }) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://brightjasper.vercel.app/",
+        item: "https://brightjasper.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: "https://brightjasper.vercel.app/blog",
+        item: "https://brightjasper.com/blog",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: post.title,
-        item: `https://brightjasper.vercel.app/blog/${post.slug}`,
+        item: `https://brightjasper.com/blog/${post.slug}`,
       },
     ],
   };

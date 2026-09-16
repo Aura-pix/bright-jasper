@@ -1,7 +1,7 @@
 import { getAllBlogPosts } from "@/lib/posts";
 import { getAllProjects } from "@/lib/projects";
 
-const SITE_URL = "https://brightjasper.vercel.app";
+const SITE_URL = "https://brightjasper.com";
 
 export default function sitemap() {
   const staticRoutes = [

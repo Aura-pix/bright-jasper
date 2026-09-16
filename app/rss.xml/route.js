@@ -1,12 +1,12 @@
-import { getAllBlogPosts } from '@/lib/posts';
+import { getAllBlogPosts } from "@/lib/posts";
 
-const SITE_URL = 'https://brightjasper.vercel.app'; // update once a custom domain is added
+const SITE_URL = "https://brightjasper.com";
 
 function escapeXml(str) {
   return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
 }
 
 export async function GET() {
@@ -19,11 +19,11 @@ export async function GET() {
       <title>${escapeXml(post.title)}</title>
       <link>${SITE_URL}/blog/${post.slug}</link>
       <guid>${SITE_URL}/blog/${post.slug}</guid>
-      ${post.date ? `<pubDate>${new Date(post.date).toUTCString()}</pubDate>` : ''}
-      <description>${escapeXml(post.excerpt || '')}</description>
-    </item>`
+      ${post.date ? `<pubDate>${new Date(post.date).toUTCString()}</pubDate>` : ""}
+      <description>${escapeXml(post.excerpt || "")}</description>
+    </item>`,
     )
-    .join('');
+    .join("");
 
   const feed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
@@ -37,7 +37,7 @@ export async function GET() {
 
   return new Response(feed, {
     headers: {
-      'Content-Type': 'application/xml',
+      "Content-Type": "application/xml",
     },
   });
 }
