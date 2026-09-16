@@ -1,5 +1,5 @@
 ---
-title: "What It Actually Costs to Run an LLM in Production"
+title: "What it costs to run an LLM in Production"
 date: "2026-09-12"
 tag: "Technical Explainers"
 track: "technical"
@@ -24,18 +24,20 @@ The practical consequence: a chatty, verbose model output is a bigger line item 
 Rather than repeat the many blog posts that quote pricing from months-old snapshots, here's what both companies' own current documentation states, checked directly against their official pricing pages:
 
 **Anthropic (per million tokens, input / output):**
+
 - Claude Haiku 4.5: $1 / $5
 - Claude Sonnet 5: $2 / $10
 - Claude Opus 5: $5 / $25
 - Claude Fable 5.1 (top tier): $10 / $50
 
 **OpenAI (per million tokens, standard short-context, input / output):**
+
 - GPT-5.6 Luna: $0.20 / $1.20
 - GPT-5.6 Terra: $2 / $12
 - GPT-5.6 Sol: $4 / $20
 - GPT-6 Astra (flagship): $10 / $50
 
-What's notable here isn't which provider is "cheaper" — the two companies have converged on nearly identical price points at the top and bottom of their respective lineups ($10/$50 flagship, sub-$1 budget tier). What actually moves your bill is model *selection* within a lineup, not which company you pick. Both companies also publish substantial discounts on top of these base rates: batch processing (asynchronous, non-real-time work) cuts both providers' rates by 50%, and prompt caching — reusing previously-processed context instead of resending it — drops repeated-input costs to roughly 10% of the standard rate. Stacked together, an application with a stable system prompt and predictable, batchable workloads can pay a small fraction of the sticker price.
+What's notable here isn't which provider is "cheaper" — the two companies have converged on nearly identical price points at the top and bottom of their respective lineups ($10/$50 flagship, sub-$1 budget tier). What actually moves your bill is model _selection_ within a lineup, not which company you pick. Both companies also publish substantial discounts on top of these base rates: batch processing (asynchronous, non-real-time work) cuts both providers' rates by 50%, and prompt caching — reusing previously-processed context instead of resending it — drops repeated-input costs to roughly 10% of the standard rate. Stacked together, an application with a stable system prompt and predictable, batchable workloads can pay a small fraction of the sticker price.
 
 ## Self-hosting: the formula, and where it gets murky
 

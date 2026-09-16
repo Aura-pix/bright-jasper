@@ -121,7 +121,7 @@ export default function HomePage() {
             </h3>
             <p className="text-[15px] text-ink/90 leading-relaxed">
               Research-backed articles, explainers, editorial content, and
-              thought leadership for teams that need clarity without fluff.
+              analysis for teams that need clarity without fluff.
             </p>
           </div>
 
