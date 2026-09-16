@@ -12,7 +12,9 @@ export default function PersuasiveWritingSamplesPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
-      <h1 className="text-[26px] font-medium text-ink mb-3">Persuasive writing samples</h1>
+      <h1 className="text-[26px] font-medium text-ink mb-3">
+        Persuasive writing samples
+      </h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
         Landing pages, product copy, SEO articles, and developer-facing
         marketing written to explain value clearly and move readers toward
@@ -25,12 +27,12 @@ export default function PersuasiveWritingSamplesPage() {
             This track is being built. No samples to show yet.
           </p>
           <p className="text-[14px] text-muted mb-6">
-            Real posts will appear here as they&apos;re finished, same pattern as
-            the technical track.
+            Real posts will appear here as they&apos;re finished, same pattern
+            as the technical track.
           </p>
           <Link
             href="/writing-samples/technical"
-            className="text-[14px] px-5 py-2.5 rounded-full border border-ink/15 text-ink hover:border-accent hover:text-accent"
+            className="inline-flex w-full max-w-[18rem] items-center justify-center rounded-full border border-ink/15 px-5 py-2.5 text-center text-[14px] leading-snug text-ink transition-colors hover:border-accent hover:text-accent sm:max-w-none"
           >
             View technical writing samples instead
           </Link>
