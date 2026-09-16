@@ -2,7 +2,7 @@ import { getAllThreads } from '@/lib/threads';
 
 export const metadata = {
   title: 'Threads — Bright Jasper',
-  description: 'Short-form threads posted on X — quick takes that never became full articles.',
+  description: 'Short-form threads posted on X: quick takes that never became full articles.',
 };
 
 function formatDate(dateString) {
@@ -17,7 +17,7 @@ export default function ThreadsPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-3">Threads</h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        Shorter takes that live on X instead of here — quick thoughts, not full articles.
+        Shorter takes that live on X instead of here: quick thoughts, not full articles.
       </p>
 
       {threads.length === 0 ? (

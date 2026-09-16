@@ -12,22 +12,17 @@ export default function AboutPage() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-8">About</h1>
-
       <div className="prose-content">
         <p>
-          I'm Bright Jasper. I write technical content and documentation, mostly
-          for web2 and web3 products — think developer guides, protocol
-          explainers, and the occasional deep dive into something I got curious
-          about at 1am.
+          I'm Bright Jasper. I write technical content and documentation for
+          web2 and web3 products. Developer guides, protocol explainers, and
+          deep dives into things worth understanding properly.
         </p>
 
         <p>
-          I'm also a computer science student, and I build things on the side —
-          smart contracts, small tools, whatever I'm messing with that week. I'm
-          active in DeFi daily, not as a trader — I just like being in that
-          world and paying attention to it. Honestly I'm a bit of a generalist —
-          CS, blockchain, writing, whatever pulls my curiosity that week — and
-          it shows in the range of what I end up writing about.
+          I'm a Computer Science student and I build on the side: smart
+          contracts, small tools, internal docs systems. I'm in DeFi daily as a
+          builder and researcher, paying attention to how things work.
         </p>
 
         <div className="my-8">
@@ -40,23 +35,23 @@ export default function AboutPage() {
         </div>
 
         <p>
-          The one thing that stays consistent: I check what I write before I
-          publish it. If I can't verify something, I say so instead of guessing
-          and hoping it's right.
+          My range is wide: CS, blockchain, developer tooling — but the thread
+          is consistent: I check what I write before I publish it. If I can't
+          verify it, I say so. I don't guess.
         </p>
 
         <p>
-          I move between three related jobs on the same skill: writing the
-          documentation, deciding what content a product actually needs and how
-          it should be structured, and — increasingly — being the
-          developer-facing voice explaining it. Technical writer, technical
-          content strategist, and developer advocate aren't separate identities
-          for me; they're the same instinct applied at different scope.
+          I move between three kinds of writing on the same skill: writing the
+          documentation, writing content that ranks and teaches, and writing
+          product copy that explains value and moves people to act. Technical
+          writer, content writer, and product copywriter aren't separate
+          identities for me; they're the same instinct applied at different
+          scope.
         </p>
 
         <h2>How I work</h2>
         <p>
-          I write docs-as-code — content lives in version control, gets reviewed
+          I write docs-as-code: content lives in version control, gets reviewed
           like code, and ships the same way. This portfolio is built that way
           too: pages and posts are version-controlled files, not entries in a
           CMS dashboard (you can see the repo{" "}
@@ -77,20 +72,18 @@ export default function AboutPage() {
           >
             Diataxis framework
           </a>
-          , keeping tutorials, how-to guides, reference material, and
-          explanation distinct instead of blurring them into one long page. And
-          before anything gets published, I verify claims against primary
-          sources, compare sources when they disagree, and flag what still needs
-          checking instead of asserting it as settled.
+          — keeping tutorials, how-to guides, reference material, and
+          explanation separate, not blurred into one long page. And before
+          anything ships, I verify claims against primary sources, compare
+          sources when they disagree, and flag what still needs checking rather
+          than asserting it as settled.
         </p>
 
         <h2>Background</h2>
         <p>
-          Software engineering background — I studied Google's Technical Writing
+          Software engineering background: I studied Google's Technical Writing
           One and Two courses, and I'm comfortable in HTML, CSS, JavaScript, and
-          Markdown. Documentation and CMS tools I use: Confluence, GitBook,
-          ReadMe, MadCap Flare, Sanity CMS (used in production on Roomly), Git,
-          MS Word, Adobe FrameMaker, and Jira.
+          Markdown. Git, GitBook, ReadMe, and CMS workflows.
         </p>
 
         <p>Based in UTC+1, open to remote work.</p>

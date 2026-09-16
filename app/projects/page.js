@@ -5,7 +5,7 @@ import HireMeButton from "@/components/HireMeButton";
 export const metadata = {
   title: "Projects — Bright Jasper",
   description:
-    "Projects built or audited, separate from the writing samples — what I did, how I did it, and what I delivered.",
+    "Projects built or audited, separate from the writing samples: what I did, how I did it, and what I delivered.",
 };
 
 const STATUS_LABELS = {
@@ -23,9 +23,9 @@ export default function ProjectsPage() {
       <h1 className="text-[26px] font-medium text-ink mb-4">Projects</h1>
 
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        Things I've built or audited, separate from the writing samples above.
-        Each entry links to a full writeup — what I did, how I did it, and what
-        I delivered.
+        Things I've built or audited, separate from the writing samples. Each
+        entry links to a full writeup: what I did, how I did it, and what I
+        delivered.
       </p>
 
       <div className="space-y-6">
@@ -69,7 +69,7 @@ export default function ProjectsPage() {
       <div className="mt-14 text-center">
         <p className="text-[15px] text-ink/90 mb-4">
           Working on something that could use documentation, a content audit, or
-          a developer-facing voice?
+          a developer-facing voice? Let's talk.
         </p>
         <HireMeButton />
       </div>

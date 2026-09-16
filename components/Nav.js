@@ -1,20 +1,45 @@
-import Link from 'next/link';
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import HamburgerMenu from "@/components/nav/HamburgerMenu";
+
+const NAV_LINKS = [
+  { href: "/", label: "Home" },
+  { href: "/blog", label: "Blog" },
+  { href: "/writing-samples/technical", label: "Technical Writing" },
+  { href: "/writing-samples/persuasive", label: "Persuasive Writing" },
+  { href: "/threads", label: "Threads" },
+  { href: "/about", label: "About" },
+];
 
 export default function Nav() {
+  const pathname = usePathname();
+
   return (
     <header className="border-b border-ink/10">
-      <nav className="max-w-3xl mx-auto px-6 py-5 flex flex-wrap items-center justify-between gap-y-2">
-        <Link href="/" className="text-[15px] font-medium text-ink">
+      <nav className="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
+        <Link href="/" className="text-[15px] font-medium text-ink flex-shrink-0">
           Bright Jasper
         </Link>
-        <div className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] sm:text-[14px] text-muted">
-          <Link href="/" className="hover:text-accent">Home</Link>
-          <Link href="/blog" className="hover:text-accent">Blog</Link>
-          <Link href="/writing-samples" className="hover:text-accent">Writing samples</Link>
-          <Link href="/projects" className="hover:text-accent">Projects</Link>
-          <Link href="/threads" className="hover:text-accent">Threads</Link>
-          <Link href="/about" className="hover:text-accent">About</Link>
+
+        <div className="hidden sm:flex flex-1 justify-end gap-x-6 gap-y-1">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-[13px] ${
+                pathname === link.href
+                  ? "text-accent font-medium"
+                  : "text-muted hover:text-ink"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
+
+        <HamburgerMenu />
       </nav>
     </header>
   );
