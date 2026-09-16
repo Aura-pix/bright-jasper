@@ -6,9 +6,49 @@ import { getAllBlogPosts } from "@/lib/posts";
 
 export default function HomePage() {
   const recentPosts = getAllBlogPosts().slice(0, 3);
+  const faqItems = [
+    {
+      question: "What kind of writing does Bright Jasper do?",
+      answer:
+        "Bright Jasper provides technical writing, content writing, SEO writing, and product copy for web2 and web3 teams. Typical work includes developer documentation, explainers, research-backed articles, landing pages, and product messaging.",
+    },
+    {
+      question:
+        "Can Bright Jasper write about technical or blockchain products?",
+      answer:
+        "Yes. Bright Jasper writes about software, developer tools, infrastructure, blockchain, and web3 products. A software engineering background and Computer Science study support a research-first process for understanding technical systems before explaining them.",
+    },
+    {
+      question: "Who is the writing for?",
+      answer:
+        "The writing is adapted for developers, technical decision-makers, product users, and broader audiences. The goal is to make complex products accurate, useful, and understandable without flattening the important details.",
+    },
+    {
+      question: "What makes Bright Jasper's process technical?",
+      answer:
+        "The process uses source verification, documentation frameworks, version-controlled docs-as-code workflows, and familiarity with software development concepts. Claims are checked against primary sources before publication.",
+    },
+  ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
 
   return (
-    <div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Hero - soft gradient background, restrained illustration */}
       <section
         className="px-6 pt-16 pb-14 text-center"
@@ -156,6 +196,36 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-    </div>
+
+      <section className="border-t border-ink/10 bg-[#F7FAFD]">
+        <div className="max-w-3xl mx-auto px-6 py-14">
+          <h2 className="text-[20px] font-medium text-ink mb-6">
+            Common questions
+          </h2>
+          <div className="divide-y divide-ink/10 border-y border-ink/10">
+            {faqItems.map((item, index) => (
+              <details
+                key={item.question}
+                className="group py-4"
+                open={index === 0}
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[16px] font-medium text-ink">
+                  <span>{item.question}</span>
+                  <span
+                    aria-hidden="true"
+                    className="text-[20px] font-normal text-muted transition-transform group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 max-w-2xl text-[15px] text-ink/90 leading-relaxed">
+                  {item.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
