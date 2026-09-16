@@ -1,7 +1,12 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import { getProjectBySlug, getAllProjectSlugs } from "@/lib/projects";
+import {
+  getProjectBySlug,
+  getAllProjectSlugs,
+  getAdjacentProjects,
+} from "@/lib/projects";
 import ResponsiveTable from "@/components/ResponsiveTable";
+import AdjacentLinks from "@/components/AdjacentLinks";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/projects at build time.
@@ -43,6 +48,7 @@ function formatDate(dateString) {
 export default function ProjectDetailPage({ params }) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
+  const adjacentProjects = getAdjacentProjects(params.slug);
 
   return (
     <article className="max-w-2xl mx-auto px-6 py-16">
@@ -77,6 +83,12 @@ export default function ProjectDetailPage({ params }) {
           components={{ table: ResponsiveTable }}
         />
       </div>
+
+      <AdjacentLinks
+        previous={adjacentProjects.previous}
+        next={adjacentProjects.next}
+        type="project"
+      />
     </article>
   );
 }

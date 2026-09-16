@@ -1,7 +1,12 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
-import { getBlogPostBySlug, getAllBlogSlugs } from "@/lib/posts";
+import {
+  getBlogPostBySlug,
+  getAllBlogSlugs,
+  getAdjacentBlogPosts,
+} from "@/lib/posts";
 import ResponsiveTable from "@/components/ResponsiveTable";
+import AdjacentLinks from "@/components/AdjacentLinks";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/blog at build time.
@@ -39,6 +44,7 @@ function formatDate(dateString) {
 export default function BlogPostPage({ params }) {
   const post = getBlogPostBySlug(params.slug);
   if (!post) notFound();
+  const adjacentPosts = getAdjacentBlogPosts(params.slug, post.track);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -128,6 +134,11 @@ export default function BlogPostPage({ params }) {
             components={{ table: ResponsiveTable }}
           />
         </div>
+
+        <AdjacentLinks
+          previous={adjacentPosts.previous}
+          next={adjacentPosts.next}
+        />
       </article>
     </>
   );
