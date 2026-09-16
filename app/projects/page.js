@@ -65,11 +65,11 @@ export default function ProjectsPage() {
         ))}
       </div>
 
-      {/* Hire Me trigger — placeholder link until popover component is built */}
+      {/* Hire Me trigger */}
       <div className="mt-14 text-center">
         <p className="text-[15px] text-ink/90 mb-4">
-          Working on something that could use documentation, a content audit, or
-          a developer-facing voice? Let's talk.
+          Working on something that could use documentation, a content audit, a
+          product copy or a developer-facing voice? Let's talk.
         </p>
         <HireMeButton />
       </div>

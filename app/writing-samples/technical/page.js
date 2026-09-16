@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HireMeButton from "@/components/HireMeButton";
 import { getAllSamples } from "@/lib/posts";
 
 export const metadata = {
@@ -21,7 +22,9 @@ export default function TechnicalWritingSamplesPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
-      <h1 className="text-[26px] font-medium text-ink mb-3">Technical writing samples</h1>
+      <h1 className="text-[26px] font-medium text-ink mb-3">
+        Technical writing samples
+      </h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
         Documentation, developer guides, API references, protocol explainers,
         and research pieces written for engineers who need accuracy.
@@ -67,6 +70,14 @@ export default function TechnicalWritingSamplesPage() {
           );
         })
       )}
+
+      <div className="mt-14 text-center">
+        <p className="mb-4 text-[15px] text-ink/90">
+          Need docs, guides, API explanations, or a clearer developer story for
+          your product? Let&apos;s talk.
+        </p>
+        <HireMeButton />
+      </div>
     </div>
   );
 }

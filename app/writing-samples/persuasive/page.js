@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HireMeButton from "@/components/HireMeButton";
 import { getAllSamples } from "@/lib/posts";
 
 export const metadata = {
@@ -57,6 +58,14 @@ export default function PersuasiveWritingSamplesPage() {
           ))}
         </div>
       )}
+
+      <div className="mt-14 text-center">
+        <p className="mb-4 text-[15px] text-ink/90">
+          Need landing pages, product messaging, or conversion-focused copy that
+          turns interest into action? Let&apos;s talk.
+        </p>
+        <HireMeButton />
+      </div>
     </div>
   );
 }
