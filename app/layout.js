@@ -71,6 +71,11 @@ export const metadata = {
     "Bright Jasper — Technical writer, content writer, SEO writer, and product copywriter",
   description:
     "Technical writing, content writing, SEO writing, and product copy for web2 and web3. Developer docs, explainers, landing pages, and research-backed content that turns complexity into clarity.",
+  verification: {
+    other: {
+      "msvalidate.01": "DDA1FF5AFF1ED2FED485B8AAFB1AC876",
+    },
+  },
   alternates: {
     canonical: SITE_URL,
     types: {
