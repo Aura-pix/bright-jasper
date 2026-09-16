@@ -18,8 +18,11 @@ export default function Nav() {
 
   return (
     <header className="border-b border-ink/10">
-      <nav className="max-w-3xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
-        <Link href="/" className="text-[15px] font-medium text-ink flex-shrink-0">
+      <nav className="relative max-w-3xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
+        <Link
+          href="/"
+          className="text-[15px] font-medium text-ink flex-shrink-0"
+        >
           Bright Jasper
         </Link>
 

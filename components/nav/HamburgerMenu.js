@@ -18,10 +18,10 @@ export default function HamburgerMenu() {
   const pathname = usePathname();
 
   return (
-    <>
+    <div className="relative ml-auto sm:hidden">
       <button
         type="button"
-        className="sm:hidden p-2 text-ink hover:text-accent"
+        className="flex items-center justify-center p-2 text-ink hover:text-accent rounded-full transition-colors"
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={open ? "Close menu" : "Open menu"}
@@ -62,8 +62,10 @@ export default function HamburgerMenu() {
 
       <div
         id="mobile-menu"
-        className={`sm:hidden transition-all duration-200 ease-in-out overflow-hidden ${
-          open ? "max-h-64 opacity-100 mt-2" : "max-h-0 opacity-0"
+        className={`absolute right-0 top-full z-50 mt-2 w-56 origin-top-right rounded-xl border border-ink/10 bg-white p-2 shadow-[0_16px_40px_rgba(15,23,42,0.12)] transition-all duration-200 ease-out ${
+          open
+            ? "pointer-events-auto scale-100 opacity-100"
+            : "pointer-events-none scale-95 opacity-0"
         }`}
       >
         <nav className="flex flex-col gap-1">
@@ -71,10 +73,10 @@ export default function HamburgerMenu() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-3 py-2 rounded text-[14px] ${
+              className={`rounded-lg px-3 py-2 text-[14px] transition-colors ${
                 pathname === link.href
                   ? "bg-accent/10 text-accent font-medium"
-                  : "text-muted hover:text-ink"
+                  : "text-muted hover:bg-ink/5 hover:text-ink"
               }`}
               onClick={() => setOpen(false)}
             >
@@ -83,6 +85,6 @@ export default function HamburgerMenu() {
           ))}
         </nav>
       </div>
-    </>
+    </div>
   );
 }
