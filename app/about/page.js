@@ -14,15 +14,16 @@ export default function AboutPage() {
       <h1 className="text-[26px] font-medium text-ink mb-8">About</h1>
       <div className="prose-content">
         <p>
-          I'm Bright Jasper. I write technical content and documentation for
-          web2 and web3 products. Developer guides, protocol explainers, and
-          deep dives into things worth understanding properly.
+          I&apos;m Bright Jasper — a technical writer, content writer, SEO
+          writer, and product copywriter working across web2 and web3.
         </p>
 
         <p>
-          I'm a Computer Science student and I build on the side: smart
-          contracts, small tools, internal docs systems. I'm in DeFi daily as a
-          builder and researcher, paying attention to how things work.
+          I write for teams building complex products and need their value
+          explained clearly: developer docs, protocol explainers, SEO content,
+          product messaging, and everything in between. I work across technical
+          and non-technical audiences, turning complexity into language people
+          can understand and use.
         </p>
 
         <div className="my-8">
@@ -35,18 +36,18 @@ export default function AboutPage() {
         </div>
 
         <p>
-          My range is wide: CS, blockchain, developer tooling — but the thread
-          is consistent: I check what I write before I publish it. If I can't
-          verify it, I say so. I don't guess.
+          I&apos;m comfortable in both web2 and web3 environments, from
+          developer tooling and infrastructure to wallets, protocols, and
+          product narratives. Before I write, I research the source material,
+          verify what matters, and make sure the final copy is accurate,
+          readable, and useful.
         </p>
 
         <p>
-          I move between three kinds of writing on the same skill: writing the
-          documentation, writing content that ranks and teaches, and writing
-          product copy that explains value and moves people to act. Technical
-          writer, content writer, and product copywriter aren't separate
-          identities for me; they're the same instinct applied at different
-          scope.
+          The common thread across my work is simple: I help people understand
+          what something is, how it works, and why it matters. Whether I&apos;m
+          writing documentation, content, SEO copy, or product messaging, the
+          goal is the same — clear communication built on real understanding.
         </p>
 
         <h2>How I work</h2>
@@ -73,25 +74,27 @@ export default function AboutPage() {
             Diataxis framework
           </a>
           — keeping tutorials, how-to guides, reference material, and
-          explanation separate, not blurred into one long page. And before
-          anything ships, I verify claims against primary sources, compare
-          sources when they disagree, and flag what still needs checking rather
-          than asserting it as settled.
+          explanations separate, not blurred into one long page. Before anything
+          ships, I verify claims against primary sources, compare sources when
+          they disagree, and flag what still needs checking rather than
+          asserting it as settled.
         </p>
 
         <h2>Background</h2>
         <p>
-          Software engineering background: I studied Google's Technical Writing
-          One and Two courses, and I'm comfortable in HTML, CSS, JavaScript, and
-          Markdown. Git, GitBook, ReadMe, and CMS workflows.
+          I have a software engineering background and I&apos;m studying
+          Computer Science, which gives me a practical foundation for
+          understanding the products and systems I write about. I&apos;m
+          comfortable in HTML, CSS, JavaScript, and Markdown, with workflows
+          built around Git, GitBook, ReadMe, and documentation systems.
         </p>
 
         <p>Based in UTC+1, open to remote work.</p>
 
         <h2>Right now</h2>
         <p>
-          Studying CS, writing for web2 and web3 clients, and building my own
-          projects.
+          Studying Computer Science, writing for web2 and web3 clients, and
+          building my own projects.
         </p>
       </div>
 

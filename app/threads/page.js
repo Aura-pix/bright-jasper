@@ -1,13 +1,17 @@
-import { getAllThreads } from '@/lib/threads';
+import { getAllThreads } from "@/lib/threads";
 
 export const metadata = {
-  title: 'Threads — Bright Jasper',
-  description: 'Short-form threads posted on X: quick takes that never became full articles.',
+  title: "Threads — Bright Jasper",
+  description:
+    "Short-form X posts on product thinking, technical takes, and sharp observations from Bright Jasper.",
 };
 
 function formatDate(dateString) {
   if (!dateString) return null;
-  return new Date(dateString).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  return new Date(dateString).toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
 }
 
 export default function ThreadsPage() {
@@ -17,11 +21,21 @@ export default function ThreadsPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-3">Threads</h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        Shorter takes that live on X instead of here: quick thoughts, not full articles.
+        I use X as a lighter publishing layer: quick takes, product thinking,
+        and technical observations that deserve a public record without needing
+        a full article.
       </p>
 
       {threads.length === 0 ? (
-        <p className="text-[14px] text-muted">Nothing posted here yet.</p>
+        <div className="rounded-lg border border-ink/10 p-8 text-center">
+          <p className="text-[15px] text-ink/90 mb-2">
+            I&apos;m curating my X posts for the portfolio.
+          </p>
+          <p className="text-[14px] text-muted">
+            This section will fill up with short-form ideas, product notes, and
+            technical takes as I publish them.
+          </p>
+        </div>
       ) : (
         <div>
           {threads.map((thread) => (
@@ -33,7 +47,9 @@ export default function ThreadsPage() {
               className="block py-5 border-b border-ink/10 group"
             >
               {thread.date && (
-                <p className="text-[12px] text-muted mb-2">{formatDate(thread.date)}</p>
+                <p className="text-[12px] text-muted mb-2">
+                  {formatDate(thread.date)}
+                </p>
               )}
               <p className="text-[16px] text-ink group-hover:text-accent leading-relaxed">
                 {thread.hook}

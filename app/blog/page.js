@@ -47,9 +47,10 @@ export default function BlogIndexPage() {
       <div className="max-w-3xl mx-auto px-6 py-16">
         <h1 className="text-[26px] font-medium text-ink mb-3">Blog</h1>
         <p className="text-[15px] text-muted mb-8 max-w-lg">
-          Everything I've written, roughly in the order I wrote it. Deep dives,
-          dev guides, and some reflections when an idea I ran into turned out
-          more interesting than expected.
+          I write about technical systems, product narratives, and the ideas
+          people need explained clearly. This blog includes developer docs,
+          protocol explainers, research-backed writing, SEO content, and
+          product-facing material for web2 and web3 teams.
         </p>
 
         <TagFilter posts={posts} tags={tagsPresent} />

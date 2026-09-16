@@ -39,8 +39,9 @@ export default function WritingSamplesPage() {
           Writing samples
         </h1>
         <p className="text-[15px] text-muted mb-10 max-w-lg">
-          Pick a track to browse curated samples. All posts live in the blog;
-          these pages filter by intent.
+          I write for technical audiences and non-technical audiences. The work
+          changes with the goal, but the standard stays the same: clear,
+          accurate, useful writing.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-6">
@@ -52,8 +53,9 @@ export default function WritingSamplesPage() {
               Technical Writing
             </h2>
             <p className="text-[14px] text-muted leading-relaxed">
-              API references, developer guides, protocol explainers, tutorials,
-              and research pieces written for engineers who need accuracy.
+              Developer docs, API references, protocol explainers, tutorials,
+              and research-backed technical content for engineers and technical
+              decision-makers.
             </p>
           </Link>
 
@@ -65,8 +67,9 @@ export default function WritingSamplesPage() {
               Persuasive Writing
             </h2>
             <p className="text-[14px] text-muted leading-relaxed">
-              Landing pages, product copy, SEO content, and developer-facing
-              marketing written to explain value and move readers to action.
+              Landing pages, product messaging, SEO articles, and
+              conversion-focused copy that explains value and moves people to
+              action.
             </p>
           </Link>
         </div>

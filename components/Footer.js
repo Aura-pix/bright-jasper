@@ -22,7 +22,7 @@ export default function Footer() {
     <footer className="border-t border-ink/10 mt-24">
       <div className="max-w-3xl mx-auto px-6 py-10">
         <p className="text-[15px] font-medium text-ink mb-4">
-          I research, understand, then write.
+          I research, understand, then write clearly.
         </p>
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-muted mb-6">
           {links.map((link) => (

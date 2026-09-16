@@ -11,7 +11,7 @@ const siteSchema = {
   url: SITE_URL,
   inLanguage: "en",
   description:
-    "Technical writing, research, product copy and developer-facing content for web2 and web3 teams.",
+    "Technical writing, content writing, SEO writing, product copy, and research-backed developer content for web2 and web3 teams.",
   publisher: {
     "@type": "Person",
     name: "Bright Jasper",
@@ -57,7 +57,11 @@ const personSchema = {
     "Product copy",
     "Developer documentation",
     "Web3 content",
+    "Blockchain",
     "Technical explainers",
+    "Software engineering",
+    "Agile software development",
+    "Documentation systems",
   ],
 };
 

@@ -18,10 +18,13 @@ export default function HomePage() {
       >
         <div className="max-w-2xl mx-auto">
           <p className="text-[15px] text-muted mb-2">
-            Technical writer, content & SEO writer — web2 and web3
+            Technical writer • content writer • SEO writer • product copywriter
+            <span className="mx-2">•</span>
+            web2 and web3
           </p>
           <h1 className="text-[28px] sm:text-[32px] font-medium text-ink mb-6 leading-tight">
-            Bright Jasper
+            I turn complex products into clear language for users, developers,
+            and search.
           </h1>
 
           <Image
@@ -34,10 +37,11 @@ export default function HomePage() {
           />
 
           <p className="text-[16px] text-ink/90 leading-relaxed mb-8 max-w-lg mx-auto">
-            I write docs, guides, and explainers for people building things,
-            mostly JavaScript, TypeScript, Python, and Solidity. I also write
-            SEO content and product copy for web2 and web3 teams. I research
-            before I write, so what you get is accurate and readable.
+            I write technical docs, explainers, content, SEO articles, and
+            product copy for teams building in web2 and web3. From developer
+            documentation and protocol explainers to landing pages and
+            conversion copy, I turn complexity into clarity without losing
+            accuracy.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -59,34 +63,50 @@ export default function HomePage() {
 
       {/* What I write */}
       <section className="max-w-3xl mx-auto px-6 py-14">
-        <h2 className="text-[20px] font-medium text-ink mb-6">What I write</h2>
-        <ul className="space-y-3 text-[15px] text-ink/90">
-          <li>
-            Protocol and technical deep dives — I explain how a system works
-            under the hood so readers come away with real understanding
-          </li>
-          <li>
-            Developer docs and how-to guides (JavaScript, TypeScript, Node,
-            Python, Solidity) written to reduce support tickets and let engineers
-            focus on shipping
-          </li>
-          <li>
-            Web3 content: explainers, product pages, onboarding flows for
-            people who aren't deep in web3 but still need accuracy
-          </li>
-          <li>
-            Research pieces where I verify against primary sources and flag what
-            needs more checking rather than assuming
-          </li>
-          <li>
-            SEO content built around real search intent and keyword research,
-            structured for readability and optimized to rank
-          </li>
-          <li>
-            Product copy for landing pages and onboarding that explains what you
-            built in plain language and helps users know what to do next
-          </li>
-        </ul>
+        <h2 className="text-[20px] font-medium text-ink mb-6">What I do</h2>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="rounded-lg border border-ink/10 p-5">
+            <h3 className="text-[16px] font-medium text-ink mb-2">
+              Technical writing
+            </h3>
+            <p className="text-[15px] text-ink/90 leading-relaxed">
+              Developer docs, API references, onboarding guides, how-to guides,
+              protocol explainers, and deep dives for technical audiences.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-ink/10 p-5">
+            <h3 className="text-[16px] font-medium text-ink mb-2">
+              Content writing
+            </h3>
+            <p className="text-[15px] text-ink/90 leading-relaxed">
+              Research-backed articles, explainers, editorial content, and
+              thought leadership for teams that need clarity without fluff.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-ink/10 p-5">
+            <h3 className="text-[16px] font-medium text-ink mb-2">
+              SEO writing
+            </h3>
+            <p className="text-[15px] text-ink/90 leading-relaxed">
+              Search-focused articles and content built around intent,
+              structure, readability, and ranking potential for web2 and web3
+              topics.
+            </p>
+          </div>
+
+          <div className="rounded-lg border border-ink/10 p-5">
+            <h3 className="text-[16px] font-medium text-ink mb-2">
+              Product copy
+            </h3>
+            <p className="text-[15px] text-ink/90 leading-relaxed">
+              Landing pages, product messaging, user onboarding, feature copy,
+              and conversion-focused writing that helps people understand the
+              value.
+            </p>
+          </div>
+        </div>
       </section>
 
       {/* Recent writing */}
@@ -119,13 +139,12 @@ export default function HomePage() {
       {/* If you're building something */}
       <section className="max-w-3xl mx-auto px-6 py-14 text-center">
         <h2 className="text-[20px] font-medium text-ink mb-4">
-          If you're building something
+          Need clear writing for a web2 or web3 product?
         </h2>
         <p className="text-[15px] text-ink/90 leading-relaxed max-w-md mx-auto mb-6">
-          Need docs for your product, a guide for your users, content that
-          explains what you built, or SEO articles and product copy that helps
-          people find and use it? That's what I do. Reach out, let's talk
-          about what you need.
+          I can help with technical docs, product messaging, SEO content, and
+          editorial writing that makes complex ideas readable and useful for the
+          people who need them most.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <HireMeButton />
