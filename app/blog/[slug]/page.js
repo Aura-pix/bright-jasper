@@ -17,11 +17,11 @@ export function generateMetadata({ params }) {
   return {
     title: `${post.title} — Bright Jasper`,
     description: post.excerpt,
-    // This is the canonical URL mechanism discussed: if a post is also
-    // crossposted to Medium, set `canonical` in that Medium import to point
-    // back here, so this site keeps the SEO credit as the original source.
     alternates: {
-      canonical: `https://brightjasper.com/blog/${post.slug}`,
+      canonical:
+        post.canonical && !post.canonical.includes("URL_PLACEHOLDER")
+          ? post.canonical
+          : `https://brightjasper.com/blog/${post.slug}`,
     },
   };
 }
@@ -62,12 +62,14 @@ export default function BlogPostPage({ params }) {
       "@id": `https://brightjasper.com/blog/${post.slug}`,
     },
     image: "https://brightjasper.com/illustrations/book-writer.svg",
-    keywords: [
-      post.tag || "technical writing",
-      "developer documentation",
-      "web3",
-      "technical explainers",
-    ].filter(Boolean),
+    keywords: post.keywords?.length
+      ? post.keywords
+      : [
+          post.tag || "technical writing",
+          "developer documentation",
+          "web3",
+          "technical explainers",
+        ].filter(Boolean),
     articleSection: post.tag || "Technical writing",
   };
 
