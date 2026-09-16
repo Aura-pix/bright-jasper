@@ -5,7 +5,7 @@ import ResumeButton from "@/components/ResumeButton";
 export const metadata = {
   title: "About — Bright Jasper",
   description:
-    "Technical writer, researcher, and computer science student writing for web2 and web3.",
+    "Technical writer, content writer, SEO writer, and product copywriter helping web2 and web3 teams explain complex products clearly.",
 };
 
 export default function AboutPage() {
