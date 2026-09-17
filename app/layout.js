@@ -1,6 +1,7 @@
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 
 const SITE_URL = "https://brightjasper.com";
 
@@ -19,7 +20,7 @@ const siteSchema = {
       "https://x.com/brightjasp",
       "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
       "https://medium.com/@brghtjasper",
-      "https://www.facebook.com/share/1EvxWUj7Vn/",
+      "https://www.facebook.com/brightjasp",
     ],
   },
 };
@@ -34,7 +35,7 @@ const organizationSchema = {
     "https://x.com/brightjasp",
     "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
     "https://medium.com/@brghtjasper",
-    "https://www.facebook.com/share/1EvxWUj7Vn/",
+    "https://www.facebook.com/brightjasp",
     "https://github.com/Aura-pix/bright-jasper",
   ],
 };
@@ -48,7 +49,7 @@ const personSchema = {
     "https://x.com/brightjasp",
     "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
     "https://medium.com/@brghtjasper",
-    "https://www.facebook.com/share/1EvxWUj7Vn/",
+    "https://www.facebook.com/brightjasp",
     "https://github.com/Aura-pix/bright-jasper",
   ],
   jobTitle:
@@ -105,6 +106,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-NQ2P6Y51RT"
+        />
+        <Script id="google-tag">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NQ2P6Y51RT');`}
+        </Script>
+      </head>
       <body className="min-h-screen flex flex-col">
         <script
           type="application/ld+json"

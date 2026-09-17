@@ -138,7 +138,7 @@ export default function AboutPage() {
           Medium
         </a>
         <a
-          href="https://www.facebook.com/share/1EvxWUj7Vn/"
+          href="https://www.facebook.com/brightjasp"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-accent"

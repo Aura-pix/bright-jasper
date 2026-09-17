@@ -11,7 +11,7 @@ const links = [
   },
   { label: "GitHub", href: "https://github.com/Aura-pix/bright-jasper" },
   { label: "Telegram", href: "https://t.me/Jasper074" },
-  { label: "Facebook", href: "https://www.facebook.com/share/1EvxWUj7Vn/" },
+  { label: "Facebook", href: "https://www.facebook.com/brightjasp" },
   { label: "Email", href: "mailto:brghtjasper@gmail.com" },
 ];
 
