@@ -114,10 +114,10 @@ export default function RootLayout({ children }) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-NQ2P6Y51RT"
         />
-        <Script
-          async
+        <script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="bSwjnnoQtUFx4W8McgxHnQ"
+          async
         />
         <Script id="google-tag">
           {`window.dataLayer = window.dataLayer || [];
