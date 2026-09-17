@@ -81,7 +81,19 @@ export default function ProjectDetailPage({ params }) {
         <MDXRemote
           source={project.content}
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-          components={{ table: ResponsiveTable }}
+          components={{
+            table: ResponsiveTable,
+            a: ({ href, children, ...props }) => (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                {...props}
+              >
+                {children}
+              </a>
+            ),
+          }}
         />
       </div>
 
