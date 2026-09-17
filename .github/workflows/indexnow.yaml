@@ -1,6 +1,7 @@
 name: IndexNow ping on publish
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
@@ -22,7 +23,9 @@ jobs:
         shell: bash
         run: |
           BEFORE="${{ github.event.before }}"
-          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            FILES=$(find content/blog -maxdepth 1 -type f -name '*.mdx' -print)
+          elif [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
             FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'content/blog/*.mdx' || true)
           else
             FILES=$(git diff --name-only --diff-filter=AM "$BEFORE" "${{ github.sha }}" -- 'content/blog/*.mdx')
@@ -39,9 +42,9 @@ jobs:
       - name: Submit to IndexNow
         if: steps.urls.outputs.urls != '[]'
         env:
-          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
           URLS: ${{ steps.urls.outputs.urls }}
         run: |
+          INDEXNOW_KEY=$(tr -d '\r\n' < "public/3da3fdd8350690809016ea2ea9463c76c6040b5d0339d43f7835cea88f5f0963.txt")
           jq -n \
             --arg host "brightjasper.com" \
             --arg key "$INDEXNOW_KEY" \
