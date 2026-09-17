@@ -7,6 +7,7 @@ import {
 } from "@/lib/posts";
 import ResponsiveTable from "@/components/ResponsiveTable";
 import AdjacentLinks from "@/components/AdjacentLinks";
+import { getLinkProps } from "@/lib/linkProps";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/blog at build time.
@@ -104,6 +105,15 @@ export default function BlogPostPage({ params }) {
     ],
   };
 
+  const mdxComponents = {
+    table: ResponsiveTable,
+    a: ({ href, children, ...props }) => (
+      <a {...props} {...getLinkProps(href)}>
+        {children}
+      </a>
+    ),
+  };
+
   return (
     <>
       <script
@@ -131,7 +141,7 @@ export default function BlogPostPage({ params }) {
           <MDXRemote
             source={post.content}
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-            components={{ table: ResponsiveTable }}
+            components={mdxComponents}
           />
         </div>
 

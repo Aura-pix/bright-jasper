@@ -1,6 +1,7 @@
 import Link from "next/link";
 import HireMeButton from "@/components/HireMeButton";
 import { getAllSamples } from "@/lib/posts";
+import { getAllProjects } from "@/lib/projects";
 
 export const metadata = {
   title: "Persuasive Writing Samples — Bright Jasper",
@@ -13,6 +14,11 @@ export const metadata = {
 
 export default function PersuasiveWritingSamplesPage() {
   const samples = getAllSamples().filter((s) => s.track === "persuasive");
+  const productProjects = getAllProjects().filter((project) =>
+    ["noelessentials-product-copy", "roomly-student-housing-platform"].includes(
+      project.slug,
+    ),
+  );
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -20,9 +26,9 @@ export default function PersuasiveWritingSamplesPage() {
         Persuasive writing samples
       </h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        Landing pages, product copy, SEO articles, and developer-facing
-        marketing written to explain value clearly and move readers toward
-        action.
+        Landing pages, product copy, blog posts, SEO articles, and
+        developer-facing marketing written to explain value clearly and move
+        readers toward action.
       </p>
 
       {samples.length === 0 ? (
@@ -61,6 +67,34 @@ export default function PersuasiveWritingSamplesPage() {
           ))}
         </div>
       )}
+
+      <section className="mt-12" aria-labelledby="product-copy-heading">
+        <h2
+          id="product-copy-heading"
+          className="text-[18px] font-medium text-ink mb-4"
+        >
+          Product copy in practice
+        </h2>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {productProjects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/projects/${project.slug}`}
+              className="block p-4 rounded-lg border border-ink/10 hover:border-accent"
+            >
+              <p className="text-[15px] font-medium text-ink mb-1">
+                {project.title}
+              </p>
+              <p className="text-[13px] text-muted leading-relaxed">
+                {project.excerpt}
+              </p>
+              <p className="text-[12px] text-accent mt-3">
+                View project case study
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <div className="mt-14 text-center">
         <p className="mb-4 text-[15px] text-ink/90">

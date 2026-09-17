@@ -7,6 +7,7 @@ import {
 } from "@/lib/projects";
 import ResponsiveTable from "@/components/ResponsiveTable";
 import AdjacentLinks from "@/components/AdjacentLinks";
+import { getLinkProps } from "@/lib/linkProps";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/projects at build time.
@@ -84,12 +85,7 @@ export default function ProjectDetailPage({ params }) {
           components={{
             table: ResponsiveTable,
             a: ({ href, children, ...props }) => (
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                {...props}
-              >
+              <a {...props} {...getLinkProps(href)}>
                 {children}
               </a>
             ),
