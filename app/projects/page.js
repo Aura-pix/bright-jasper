@@ -26,21 +26,19 @@ export default function ProjectsPage() {
       <h1 className="text-[26px] font-medium text-ink mb-4">Projects</h1>
 
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        This is where I keep the strongest proof of work: client work,
-        product-side documentation, and implementation support that I can point
-        to. I&apos;m still early in the journey, so this section stays
-        intentionally light until fresh case studies are ready.
+        This is where I keep the strongest proof of work: products I have built,
+        product copy I have shipped, client work, and documentation that shows
+        how the work holds together in practice.
       </p>
 
       {projects.length === 0 ? (
         <div className="rounded-lg border border-ink/10 p-8 text-center">
           <p className="text-[15px] text-ink/90 mb-2">
-            No client work is on display yet.
+            No projects are on display yet.
           </p>
           <p className="text-[14px] text-muted max-w-md mx-auto">
-            This section is intentionally empty while I build stronger case
-            studies and client deliverables that show the actual work behind the
-            writing.
+            New products, case studies, and client deliverables will appear here
+            as they are ready to share.
           </p>
         </div>
       ) : (
