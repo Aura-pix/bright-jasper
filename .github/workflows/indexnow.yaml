@@ -1,0 +1,53 @@
+name: IndexNow ping on publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/blog/**/*.mdx"
+
+jobs:
+  ping-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for deploy
+        run: sleep 60
+
+      - name: Build changed URL list
+        id: urls
+        shell: bash
+        run: |
+          BEFORE="${{ github.event.before }}"
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'content/blog/*.mdx' || true)
+          else
+            FILES=$(git diff --name-only --diff-filter=AM "$BEFORE" "${{ github.sha }}" -- 'content/blog/*.mdx')
+          fi
+
+          URLS="[]"
+          for file in $FILES; do
+            slug=$(basename "$file" .mdx)
+            URLS=$(jq --arg url "https://brightjasper.com/blog/$slug" '. + [$url]' <<< "$URLS")
+          done
+
+          echo "urls=$(jq -c . <<< "$URLS")" >> "$GITHUB_OUTPUT"
+
+      - name: Submit to IndexNow
+        if: steps.urls.outputs.urls != '[]'
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+          URLS: ${{ steps.urls.outputs.urls }}
+        run: |
+          jq -n \
+            --arg host "brightjasper.com" \
+            --arg key "$INDEXNOW_KEY" \
+            --arg keyLocation "https://brightjasper.com/$INDEXNOW_KEY.txt" \
+            --argjson urlList "$URLS" \
+            '{host: $host, key: $key, keyLocation: $keyLocation, urlList: $urlList}' \
+            | curl --fail-with-body -sS -X POST "https://api.indexnow.org/indexnow" \
+                -H "Content-Type: application/json; charset=utf-8" \
+                --data-binary @-
