@@ -7,6 +7,13 @@ excerpt: "The mechanics behind Kubernetes' Horizontal Pod Autoscaler — the con
 readTime: "6 min read"
 sample: true
 sampleCategory: "Technical Explainers"
+keywords:
+  - "Kubernetes Horizontal Pod Autoscaler explained"
+  - "Kubernetes autoscaling formula"
+  - "how HPA decides to scale"
+  - "Kubernetes scale up and scale down"
+  - "Horizontal Pod Autoscaler target utilization"
+  - "Kubernetes autoscaling defaults"
 ---
 
 "Autoscaling" gets used as a single word for three different things, and conflating them is where most confusion starts.
@@ -63,13 +70,13 @@ I'd treat any claim that autoscaling "reacts instantly" or "just works" out of t
 
 ## Quick reference: key defaults
 
-| Setting | Default | Flag |
-|---|---|---|
-| Control loop interval | 15 seconds | `--horizontal-pod-autoscaler-sync-period` |
-| Scaling tolerance | 0.1 (10%) | configurable via HPA behavior spec |
-| Downscale stabilization window | 5 minutes | `--horizontal-pod-autoscaler-downscale-stabilization` |
-| Initial readiness delay | 30 seconds | `--horizontal-pod-autoscaler-initial-readiness-delay` |
-| CPU initialization period | 5 minutes | `--horizontal-pod-autoscaler-cpu-initialization-period` |
+| Setting                        | Default    | Flag                                                    |
+| ------------------------------ | ---------- | ------------------------------------------------------- |
+| Control loop interval          | 15 seconds | `--horizontal-pod-autoscaler-sync-period`               |
+| Scaling tolerance              | 0.1 (10%)  | configurable via HPA behavior spec                      |
+| Downscale stabilization window | 5 minutes  | `--horizontal-pod-autoscaler-downscale-stabilization`   |
+| Initial readiness delay        | 30 seconds | `--horizontal-pod-autoscaler-initial-readiness-delay`   |
+| CPU initialization period      | 5 minutes  | `--horizontal-pod-autoscaler-cpu-initialization-period` |
 
 ---
 

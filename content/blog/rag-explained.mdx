@@ -7,6 +7,13 @@ excerpt: "A grounded, mechanics-first look at retrieval-augmented generation —
 readTime: "7 min read"
 sample: true
 sampleCategory: "Technical Explainers"
+keywords:
+  - "how RAG works"
+  - "retrieval augmented generation explained"
+  - "RAG pipeline explained"
+  - "RAG chunking strategies"
+  - "RAG retrieval and generation"
+  - "when to use RAG"
 ---
 
 Ask a large language model a question about your company's internal onboarding process, and it will confidently make something up. Not because it's broken — because it was never trained on your onboarding process. This is the problem retrieval-augmented generation, or RAG, exists to solve.
@@ -19,7 +26,7 @@ Here's what's actually happening under the hood.
 
 A language model's knowledge is frozen at training time. It doesn't know about your product changes from last week, your internal wiki, or the incident report your team filed yesterday. Fine-tuning can adjust a model's tone or format, but it doesn't solve this — the model still doesn't know your data, and retraining every time something changes isn't practical.
 
-RAG sidesteps this by not asking the model to *know* the answer. Instead, it retrieves the relevant information at query time and hands it to the model as context, alongside the question. The model's job shifts from "recall this from memory" to "read this and answer."
+RAG sidesteps this by not asking the model to _know_ the answer. Instead, it retrieves the relevant information at query time and hands it to the model as context, alongside the question. The model's job shifts from "recall this from memory" to "read this and answer."
 
 ## Two pipelines, not one
 
@@ -59,7 +66,7 @@ The language model then generates a response grounded in that context rather tha
 
 RAG reduces hallucination, but it doesn't eliminate it, and the failure mode is usually retrieval, not generation. If the retriever pulls the wrong chunks — because the embedding model didn't capture the query's actual intent, or the chunking split apart the information that mattered — the language model will still generate a confident, fluent answer. It'll just be confidently wrong about the wrong context, not the absence of context.
 
-This is worth being precise about: RAG's reputation for "reducing hallucination" is really a claim about *retrieval quality*, not about the language model becoming more honest. A RAG system with poor chunking or a mismatched embedding model can still hallucinate freely — it's just hallucinating on top of bad context instead of no context.
+This is worth being precise about: RAG's reputation for "reducing hallucination" is really a claim about _retrieval quality_, not about the language model becoming more honest. A RAG system with poor chunking or a mismatched embedding model can still hallucinate freely — it's just hallucinating on top of bad context instead of no context.
 
 ## When RAG is the wrong tool
 
