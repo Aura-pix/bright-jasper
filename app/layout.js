@@ -63,7 +63,7 @@ const personSchema = {
     "SEO writing",
     "Product copy",
     "Developer documentation",
-    "Web3 content",
+    "Web3 content writing",
     "Blockchain",
     "Technical explainers",
     "Software engineering",
@@ -113,6 +113,11 @@ export default function RootLayout({ children }) {
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-NQ2P6Y51RT"
+        />
+        <Script
+          async
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="bSwjnnoQtUFx4W8McgxHnQ"
         />
         <Script id="google-tag">
           {`window.dataLayer = window.dataLayer || [];
