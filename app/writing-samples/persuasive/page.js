@@ -15,9 +15,7 @@ export const metadata = {
 export default function PersuasiveWritingSamplesPage() {
   const samples = getAllSamples().filter((s) => s.track === "persuasive");
   const productProjects = getAllProjects().filter((project) =>
-    ["noelessentials-product-copy", "roomly-student-housing-platform"].includes(
-      project.slug,
-    ),
+    project.tracks.includes("persuasive"),
   );
 
   return (

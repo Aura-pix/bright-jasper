@@ -23,6 +23,30 @@ export function generateMetadata({ params }) {
   return {
     title: `${post.title} — Bright Jasper`,
     description: post.excerpt,
+    ...(post.slug === "dangote-refinery-stock-10000"
+      ? {
+          openGraph: {
+            type: "article",
+            title: `${post.title} — Bright Jasper`,
+            description: post.excerpt,
+            url: `https://brightjasper.com/blog/${post.slug}`,
+            images: [
+              {
+                url: "https://brightjasper.com/refinery.png",
+                width: 1280,
+                height: 853,
+                alt: "Dangote refinery at sunset with the Nigerian flag",
+              },
+            ],
+          },
+          twitter: {
+            card: "summary_large_image",
+            title: `${post.title} — Bright Jasper`,
+            description: post.excerpt,
+            images: ["https://brightjasper.com/refinery.png"],
+          },
+        }
+      : {}),
     alternates: {
       canonical:
         post.canonical && !post.canonical.includes("URL_PLACEHOLDER")
@@ -68,7 +92,10 @@ export default function BlogPostPage({ params }) {
       "@type": "WebPage",
       "@id": `https://brightjasper.com/blog/${post.slug}`,
     },
-    image: "https://brightjasper.com/illustrations/book-writer.svg",
+    image:
+      post.slug === "dangote-refinery-stock-10000"
+        ? "https://brightjasper.com/refinery.png"
+        : "https://brightjasper.com/illustrations/book-writer.svg",
     keywords: post.keywords?.length
       ? post.keywords
       : [
