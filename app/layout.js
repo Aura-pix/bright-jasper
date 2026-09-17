@@ -19,6 +19,7 @@ const siteSchema = {
       "https://x.com/brightjasp",
       "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
       "https://medium.com/@brghtjasper",
+      "https://www.facebook.com/share/1EvxWUj7Vn/",
     ],
   },
 };
@@ -33,6 +34,7 @@ const organizationSchema = {
     "https://x.com/brightjasp",
     "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
     "https://medium.com/@brghtjasper",
+    "https://www.facebook.com/share/1EvxWUj7Vn/",
     "https://github.com/Aura-pix/bright-jasper",
   ],
 };
@@ -46,6 +48,7 @@ const personSchema = {
     "https://x.com/brightjasp",
     "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
     "https://medium.com/@brghtjasper",
+    "https://www.facebook.com/share/1EvxWUj7Vn/",
     "https://github.com/Aura-pix/bright-jasper",
   ],
   jobTitle:

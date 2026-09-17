@@ -138,6 +138,14 @@ export default function AboutPage() {
           Medium
         </a>
         <a
+          href="https://www.facebook.com/share/1EvxWUj7Vn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-accent"
+        >
+          Facebook
+        </a>
+        <a
           href="https://github.com/Aura-pix/bright-jasper"
           target="_blank"
           rel="noopener noreferrer"
