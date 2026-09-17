@@ -7,10 +7,8 @@ excerpt: "A task-oriented guide to building on Roomly's proposed student housing
 readTime: "12 min read"
 sample: true
 sampleCategory: "Technical Documentations"
-canonical: https://bright-jasper-blog.vercel.app/blog/roomly-developer-guide
+canonical: https://brightjasper.com/blog/roomly-developer-guide
 ---
-
-# Roomly Developer Guide
 
 > **Status: Proposed** — This guide documents a proposed API design and does not represent a currently deployed public API. It is written against the [Roomly API Specification](/blog/roomly-api-specification), which defines the contract this guide builds on.
 
@@ -247,9 +245,12 @@ async function getPropertyDetails(propertyId) {
     fetch(`https://api.roomly.com.ng/v1/properties/${propertyId}`, {
       headers: { Authorization: `Bearer ${API_KEY}` },
     }),
-    fetch(`https://api.roomly.com.ng/v1/properties/${propertyId}/availability`, {
-      headers: { Authorization: `Bearer ${API_KEY}` },
-    }),
+    fetch(
+      `https://api.roomly.com.ng/v1/properties/${propertyId}/availability`,
+      {
+        headers: { Authorization: `Bearer ${API_KEY}` },
+      },
+    ),
   ]);
 
   const property = (await propertyRes.json()).data;
@@ -269,7 +270,7 @@ If you only need a lightweight availability widget — for example, a badge on a
 async function checkAvailability(propertyId) {
   const res = await fetch(
     `https://api.roomly.com.ng/v1/properties/${propertyId}/availability`,
-    { headers: { Authorization: `Bearer ${API_KEY}` } }
+    { headers: { Authorization: `Bearer ${API_KEY}` } },
   );
   const { data } = await res.json();
   return data.available;
@@ -287,7 +288,7 @@ async function getMarketOverview(areaIds) {
   const requests = areaIds.map((id) =>
     fetch(`https://api.roomly.com.ng/v1/market-data?area=${id}`, {
       headers: { Authorization: `Bearer ${API_KEY}` },
-    }).then((res) => res.json())
+    }).then((res) => res.json()),
   );
 
   const results = await Promise.all(requests);
@@ -338,13 +339,13 @@ The API uses standard HTTP status codes, with a consistent error body:
 ```
 
 | Status | Meaning                            |
-| ------ | ----------------------------------- |
-| `400`  | Invalid request                     |
-| `401`  | Authentication required or invalid  |
-| `403`  | Request not permitted               |
-| `404`  | Resource not found                  |
-| `429`  | Rate limit exceeded                 |
-| `500`  | Internal server error               |
+| ------ | ---------------------------------- |
+| `400`  | Invalid request                    |
+| `401`  | Authentication required or invalid |
+| `403`  | Request not permitted              |
+| `404`  | Resource not found                 |
+| `429`  | Rate limit exceeded                |
+| `500`  | Internal server error              |
 
 Handle errors in two layers: use the HTTP status for broad branching (retry, redirect to login, show a generic failure state), and the `error.code` for anything specific enough to show the user a targeted message — for example, distinguishing `PROPERTY_NOT_FOUND` from `INVALID_PARAMETER`.
 
@@ -396,12 +397,12 @@ This gives you a place to hold your API key securely, cache frequently requested
 
 Not all Roomly data changes at the same rate, so it shouldn't all be cached the same way:
 
-| Data                     | Change frequency | Suggested caching       |
-| ------------------------ | ----------------- | ------------------------ |
-| Schools, areas           | Rarely            | Cache for hours or a day |
-| Property details         | Occasionally       | Cache for minutes        |
-| Market data              | Daily-ish          | Cache for an hour or more |
-| Availability             | Frequently         | Avoid caching; re-check before booking actions |
+| Data             | Change frequency | Suggested caching                              |
+| ---------------- | ---------------- | ---------------------------------------------- |
+| Schools, areas   | Rarely           | Cache for hours or a day                       |
+| Property details | Occasionally     | Cache for minutes                              |
+| Market data      | Daily-ish        | Cache for an hour or more                      |
+| Availability     | Frequently       | Avoid caching; re-check before booking actions |
 
 The general rule: cache data proportionally to how expensive being wrong about it would be. Showing a stale school name costs nothing. Showing a property as available when it isn't costs the user a failed booking attempt — so treat [4.4](#44-check-availability) as close to real-time as your architecture allows.
 
