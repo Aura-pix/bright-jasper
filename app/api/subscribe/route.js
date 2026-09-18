@@ -86,7 +86,7 @@ export async function POST(req) {
       body: JSON.stringify({
         email_address: normalized,
         first_name,
-        tags: [53595],
+        tags: [23717485],
       }),
     });
 
