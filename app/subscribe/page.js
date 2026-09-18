@@ -4,25 +4,38 @@ import { useState } from "react";
 
 export default function SubscribePage() {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState("idle"); // idle, loading, success, error
+  const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("loading");
+    setErrorMessage("");
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, honeypot }),
       });
-      if (res.ok) {
+      const data = await res.json();
+      
+      if (res.ok && data.success) {
         setStatus("success");
+        if (data.status === 'already_subscribed') {
+          setMessage("You're already on the list 🎉 — you'll get the next issue Tuesday 2pm WAT");
+        } else {
+          setMessage("You're in — welcome email is on its way! (Note: It may land in spam. Please click 'Not Spam' so future emails go straight to your inbox).");
+        }
         setEmail("");
       } else {
         setStatus("error");
+        setErrorMessage(data.error || "Something went wrong. Please try again.");
       }
     } catch {
       setStatus("error");
+      setErrorMessage("Network error. Please try again.");
     }
   };
 
@@ -57,16 +70,25 @@ export default function SubscribePage() {
               Welcome to the chaotic side of life.
             </h2>
             <p className="text-[15px] text-ink/80">
-              Check your inbox! I sent a confirmation email. Click it to confirm
-              and you&apos;ll get the welcome mail.
+              {message}
             </p>
           </div>
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row gap-3"
+            className="flex flex-col gap-3"
           >
             <input
+              type="text"
+              name="_gotcha"
+              style={{ display: "none" }}
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
               type="email"
               required
               value={email}
@@ -81,12 +103,13 @@ export default function SubscribePage() {
             >
               {status === "loading" ? "Subscribing..." : "Subscribe"}
             </button>
+            </div>
           </form>
         )}
 
         {status === "error" && (
           <p className="text-red-500 text-[14px] mt-3">
-            Something went wrong. Please try again.
+            {errorMessage}
           </p>
         )}
       </div>

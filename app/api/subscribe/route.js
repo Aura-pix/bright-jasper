@@ -1,35 +1,99 @@
 import { NextResponse } from 'next/server';
 
-export async function POST(req) {
-  try {
-    const { email } = await req.json();
+// Simple in-memory rate limit
+const recentRequests = new Map();
 
-    if (!email || !email.includes('@')) {
-      return NextResponse.json({ error: 'Valid email required' }, { status: 400 });
+export async function POST(req) {
+  const ip = req.headers.get('x-forwarded-for') || 'unknown';
+  const now = Date.now();
+
+  // 1. Rate limit: 3 requests per minute per IP
+  const last = recentRequests.get(ip) || 0;
+  if (now - last < 20_000) {
+    return NextResponse.json({ error: 'Slow down — try again in 20s' }, { status: 429 });
+  }
+  recentRequests.set(ip, now);
+
+  const { email, honeypot } = await req.json();
+
+  // 2. Bot check - hidden field should be empty
+  if (honeypot) {
+    return NextResponse.json({ success: true }); // fake success for bots
+  }
+
+  // 3. Validate & normalize
+  const normalized = email?.trim().toLowerCase();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!normalized || !emailRegex.test(normalized)) {
+    return NextResponse.json({ error: 'Please enter a valid email' }, { status: 400 });
+  }
+
+  try {
+    // 4. Check if already exists first
+    const checkRes = await fetch(
+      `https://api.kit.com/v4/subscribers?email_address=${encodeURIComponent(normalized)}`,
+      {
+        headers: { 'X-Kit-Api-Key': process.env.KIT_API_SECRET },
+      }
+    );
+
+    if (checkRes.ok) {
+      const existing = await checkRes.json();
+      const sub = existing.subscribers?.[0];
+
+      if (sub) {
+        if (sub.state === 'active') {
+          return NextResponse.json({
+            success: true,
+            status: 'already_subscribed',
+            message: 'You are already subscribed — check your inbox on Tuesdays!'
+          });
+        }
+        if (sub.state === 'cancelled' || sub.state === 'bounced') {
+          // Kit won't let you re-add bounced emails via API, needs manual
+          return NextResponse.json({
+            error: 'This email had issues before. Email hello@brightjasper.com and I will add you manually.'
+          }, { status: 400 });
+        }
+        // If inactive/unconfirmed - we'll try to re-subscribe below which re-sends confirmation
+      }
     }
 
+    // 5. Create / re-send confirmation
     const res = await fetch('https://api.kit.com/v4/subscribers', {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
         'X-Kit-Api-Key': process.env.KIT_API_SECRET,
       },
-      body: JSON.stringify({ 
-        email_address: email.trim().toLowerCase() 
+      body: JSON.stringify({
+        email_address: normalized,
       }),
     });
 
-    // Check if the response was ok. We don't strictly need to parse the data if it failed 
-    // unless we want the error message, but we'll try catching any JSON parse errors too.
+    const data = await res.json();
+
     if (!res.ok) {
-      const errorText = await res.text();
-      console.error("Kit API error response:", res.status, errorText);
-      return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
+      // Kit returns 400 when already exists - treat as success
+      if (JSON.stringify(data).toLowerCase().includes('already')) {
+        return NextResponse.json({
+          success: true,
+          status: 'already_subscribed'
+        });
+      }
+      console.error('Kit error:', data);
+      return NextResponse.json({ error: 'Could not subscribe, try again' }, { status: 500 });
     }
 
-    return NextResponse.json({ success: true, message: 'Check your email to confirm' });
+    return NextResponse.json({
+      success: true,
+      status: 'subscribed',
+      message: "You're in — welcome email is on its way!"
+    });
+
   } catch (err) {
-    console.error("Subscription error:", err);
-    return NextResponse.json({ error: 'Something went wrong' }, { status: 500 });
+    console.error(err);
+    return NextResponse.json({ error: 'Network error' }, { status: 500 });
   }
 }
