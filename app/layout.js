@@ -78,6 +78,9 @@ export const metadata = {
   title: "Bright Jasper | Technical writer, content writer, and SEO copywriter",
   description:
     "Technical writing, SEO content, and product copy for web2 and web3 teams. Developer docs, explainers, and research-backed writing that make complex products understandable.",
+  icons: {
+    icon: "/logo.png",
+  },
   verification: {
     other: {
       "msvalidate.01": "DDA1FF5AFF1ED2FED485B8AAFB1AC876",
