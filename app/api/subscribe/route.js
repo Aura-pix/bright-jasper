@@ -22,6 +22,8 @@ export async function POST(req) {
     // Check if the response was ok. We don't strictly need to parse the data if it failed 
     // unless we want the error message, but we'll try catching any JSON parse errors too.
     if (!res.ok) {
+      const errorText = await res.text();
+      console.error("Kit API error response:", res.status, errorText);
       return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
     }
 
