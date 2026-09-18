@@ -3,9 +3,9 @@ import HireMeButton from "@/components/HireMeButton";
 import { getAllSamples } from "@/lib/posts";
 
 export const metadata = {
-  title: "Technical Writing Samples — Bright Jasper",
+  title: "Technical writing samples | Bright Jasper",
   description:
-    "Technical documentation, developer guides, API references, protocol explainers, and research pieces.",
+    "Developer docs, API references, protocol explainers, and technical writing samples for product teams.",
   alternates: {
     canonical: "https://brightjasper.com/writing-samples/technical",
   },

@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Writing samples — Bright Jasper",
+  title: "Writing samples | Bright Jasper",
   description:
-    "Technical writing, SEO writing, persuasive writing, and product copy samples from Bright Jasper.",
+    "Technical writing, persuasive copy, and SEO content samples from Bright Jasper.",
   alternates: {
     canonical: "https://brightjasper.com/writing-samples",
   },

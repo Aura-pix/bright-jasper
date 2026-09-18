@@ -3,9 +3,9 @@ import Link from "next/link";
 import ResumeButton from "@/components/ResumeButton";
 
 export const metadata = {
-  title: "About — Bright Jasper",
+  title: "About | Bright Jasper",
   description:
-    "Technical writer, content writer, SEO writer, and product copywriter helping web2 and web3 teams explain complex products clearly.",
+    "Technical writer and content strategist for web2 and web3 teams that need clear docs, explainers, and product messaging.",
   alternates: {
     canonical: "https://brightjasper.com/about",
   },

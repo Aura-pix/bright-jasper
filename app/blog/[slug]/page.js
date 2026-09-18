@@ -21,13 +21,13 @@ export function generateMetadata({ params }) {
   if (!post) return {};
 
   return {
-    title: `${post.title} — Bright Jasper`,
+    title: post.title,
     description: post.excerpt,
     ...(post.slug === "dangote-refinery-stock-10000"
       ? {
           openGraph: {
             type: "article",
-            title: `${post.title} — Bright Jasper`,
+            title: post.title,
             description: post.excerpt,
             url: `https://brightjasper.com/blog/${post.slug}`,
             images: [
@@ -41,7 +41,7 @@ export function generateMetadata({ params }) {
           },
           twitter: {
             card: "summary_large_image",
-            title: `${post.title} — Bright Jasper`,
+            title: post.title,
             description: post.excerpt,
             images: ["https://brightjasper.com/refinery.png"],
           },

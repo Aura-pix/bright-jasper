@@ -3,9 +3,9 @@ import { getAllProjects } from "@/lib/projects";
 import HireMeButton from "@/components/HireMeButton";
 
 export const metadata = {
-  title: "Projects — Bright Jasper",
+  title: "Projects | Bright Jasper",
   description:
-    "Selected client work and product-side deliverables from Bright Jasper, with proof of work as projects are completed.",
+    "Selected product work, client deliverables, and case studies showing how Bright Jasper ships clear technical and brand messaging.",
   alternates: {
     canonical: "https://brightjasper.com/projects",
   },

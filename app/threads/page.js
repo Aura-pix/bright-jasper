@@ -1,9 +1,9 @@
 import { getAllThreads } from "@/lib/threads";
 
 export const metadata = {
-  title: "Threads — Bright Jasper",
+  title: "Threads | Bright Jasper",
   description:
-    "Short-form X posts on product thinking, technical takes, and sharp observations from Bright Jasper.",
+    "Short-form observations on product thinking, technical systems, and web3 ideas from Bright Jasper.",
   alternates: {
     canonical: "https://brightjasper.com/threads",
   },

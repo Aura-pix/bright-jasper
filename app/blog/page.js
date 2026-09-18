@@ -2,9 +2,9 @@ import TagFilter from "@/components/TagFilter";
 import { getAllBlogPosts } from "@/lib/posts";
 
 export const metadata = {
-  title: "Blog — Bright Jasper",
+  title: "Blog | Bright Jasper",
   description:
-    "Technical writing, content writing, SEO writing, and product copy from Bright Jasper, with deep dives, developer guides, and web3 explainers.",
+    "Deep dives, developer guides, and web3 explainers on technical systems, product narratives, and research-backed writing.",
   alternates: {
     canonical: "https://brightjasper.com/blog",
   },

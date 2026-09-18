@@ -75,10 +75,9 @@ const personSchema = {
 
 export const metadata = {
   metadataBase: new URL(CANONICAL_HOST),
-  title:
-    "Bright Jasper — Technical writer, content writer, SEO writer, and product copywriter",
+  title: "Bright Jasper | Technical writer, content writer, and SEO copywriter",
   description:
-    "Technical writing, content writing, SEO writing, and product copy for web2 and web3. Developer docs, explainers, landing pages, and research-backed content that turns complexity into clarity.",
+    "Technical writing, SEO content, and product copy for web2 and web3 teams. Developer docs, explainers, and research-backed writing that make complex products understandable.",
   verification: {
     other: {
       "msvalidate.01": "DDA1FF5AFF1ED2FED485B8AAFB1AC876",

@@ -4,9 +4,9 @@ import { getAllSamples } from "@/lib/posts";
 import { getAllProjects } from "@/lib/projects";
 
 export const metadata = {
-  title: "Persuasive Writing Samples — Bright Jasper",
+  title: "Persuasive writing samples | Bright Jasper",
   description:
-    "Product copy, landing pages, SEO content, and developer-facing marketing written to convert.",
+    "Landing pages, SEO articles, and product copy written to explain value and convert readers into action.",
   alternates: {
     canonical: "https://brightjasper.com/writing-samples/persuasive",
   },
