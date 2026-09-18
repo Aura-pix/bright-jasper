@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 
 const SITE_URL = "https://brightjasper.com";
+const CANONICAL_HOST = "https://brightjasper.com";
 
 const siteSchema = {
   "@context": "https://schema.org",
@@ -73,7 +74,7 @@ const personSchema = {
 };
 
 export const metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(CANONICAL_HOST),
   title:
     "Bright Jasper — Technical writer, content writer, SEO writer, and product copywriter",
   description:
@@ -84,7 +85,7 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: SITE_URL,
+    canonical: CANONICAL_HOST,
     types: {
       "application/rss+xml": "/rss.xml",
     },
