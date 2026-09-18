@@ -7,7 +7,7 @@ import { getAllBlogPosts } from "@/lib/posts";
 export const metadata = {
   title: "Bright Jasper | Technical writer and SEO content specialist",
   description:
-    "Technical writing, developer documentation, SEO content, and product copy for web2 and web3 teams.",
+    "Technical writing, developer documentation, and product copy for web2 and web3 teams that need complex ideas explained clearly.",
   alternates: {
     canonical: "https://brightjasper.com",
   },

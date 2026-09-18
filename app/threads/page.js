@@ -3,7 +3,7 @@ import { getAllThreads } from "@/lib/threads";
 export const metadata = {
   title: "Threads | Bright Jasper",
   description:
-    "Short-form observations on product thinking, technical systems, and web3 ideas from Bright Jasper.",
+    "Short-form product thinking, technical observations, and web3 takes from Bright Jasper — written for quick, sharp reading.",
   alternates: {
     canonical: "https://brightjasper.com/threads",
   },

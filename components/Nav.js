@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import HamburgerMenu from "@/components/nav/HamburgerMenu";
@@ -22,9 +23,17 @@ export default function Nav() {
       <nav className="relative max-w-3xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
         <Link
           href="/"
-          className="text-[15px] font-medium text-ink flex-shrink-0"
+          className="flex items-center gap-2 text-[15px] font-medium text-ink flex-shrink-0"
         >
-          Bright Jasper
+          <Image
+            src="/bj-header-icon-40.png"
+            alt="Bright Jasper logo"
+            width={28}
+            height={28}
+            className="rounded-md"
+            priority
+          />
+          <span>Bright Jasper</span>
         </Link>
 
         <div className="hidden sm:flex flex-1 justify-end gap-x-6 gap-y-1">
