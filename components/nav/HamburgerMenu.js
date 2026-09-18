@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -17,9 +17,27 @@ const NAV_LINKS = [
 export default function HamburgerMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("touchstart", handleClickOutside, { passive: true });
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [open]);
 
   return (
-    <div className="relative ml-auto sm:hidden">
+    <div className="relative ml-auto sm:hidden" ref={menuRef}>
       <button
         type="button"
         className="flex items-center justify-center p-2 text-ink hover:text-accent rounded-full transition-colors"
