@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 export default function SubscribePage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState("idle"); // idle, loading, success, error
@@ -17,21 +18,28 @@ export default function SubscribePage() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, honeypot }),
+        body: JSON.stringify({ email, firstName: name, honeypot }),
       });
       const data = await res.json();
-      
+
       if (res.ok && data.success) {
         setStatus("success");
-        if (data.status === 'already_subscribed') {
-          setMessage("You're already on the list 🎉 — you'll get the next issue Tuesday 2pm WAT");
+        if (data.status === "already_subscribed") {
+          setMessage(
+            "You're already on the list 🎉 — you'll get the next issue Tuesday 2pm WAT",
+          );
         } else {
-          setMessage("You're in — welcome email is on its way! (Note: It may land in spam. Please click 'Not Spam' so future emails go straight to your inbox).");
+          setMessage(
+            "You're in — welcome email is on its way! (Note: It may land in spam. Please click 'Not Spam' so future emails go straight to your inbox).",
+          );
         }
+        setName("");
         setEmail("");
       } else {
         setStatus("error");
-        setErrorMessage(data.error || "Something went wrong. Please try again.");
+        setErrorMessage(
+          data.error || "Something went wrong. Please try again.",
+        );
       }
     } catch {
       setStatus("error");
@@ -69,15 +77,10 @@ export default function SubscribePage() {
             <h2 className="text-[18px] font-medium text-ink mb-2">
               Welcome to the chaotic side of life.
             </h2>
-            <p className="text-[15px] text-ink/80">
-              {message}
-            </p>
+            <p className="text-[15px] text-ink/80">{message}</p>
           </div>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-3"
-          >
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <input
               type="text"
               name="_gotcha"
@@ -89,28 +92,35 @@ export default function SubscribePage() {
             />
             <div className="flex flex-col sm:flex-row gap-3">
               <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@email.com"
-              className="flex-1 px-4 py-3 border border-ink/20 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent text-ink placeholder-ink/40 transition-colors"
-            />
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:opacity-90 disabled:opacity-50 transition-opacity whitespace-nowrap"
-            >
-              {status === "loading" ? "Subscribing..." : "Subscribe"}
-            </button>
+                type="text"
+                name="name"
+                placeholder="First name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="flex-1 px-4 py-3 border border-ink/20 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent text-ink placeholder-ink/40 transition-colors"
+                required
+              />
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@email.com"
+                className="flex-1 px-4 py-3 border border-ink/20 rounded-lg focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent text-ink placeholder-ink/40 transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="px-6 py-3 bg-accent text-white rounded-lg font-medium hover:opacity-90 disabled:opacity-50 transition-opacity whitespace-nowrap"
+              >
+                {status === "loading" ? "Subscribing..." : "Subscribe"}
+              </button>
             </div>
           </form>
         )}
 
         {status === "error" && (
-          <p className="text-red-500 text-[14px] mt-3">
-            {errorMessage}
-          </p>
+          <p className="text-red-500 text-[14px] mt-3">{errorMessage}</p>
         )}
       </div>
     </section>
