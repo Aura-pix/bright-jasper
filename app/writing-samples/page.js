@@ -24,7 +24,7 @@ export default function WritingSamplesPage() {
       },
       {
         "@type": "CollectionPage",
-        name: "Persuasive writing samples",
+        name: "SEO writing & process",
         url: "https://brightjasper.com/writing-samples/persuasive",
       },
     ],
@@ -66,12 +66,11 @@ export default function WritingSamplesPage() {
             className="block p-6 rounded-lg border border-ink/10 hover:border-accent transition-colors"
           >
             <h2 className="text-[18px] font-medium text-ink mb-2">
-              Persuasive Writing
+              SEO Writing
             </h2>
             <p className="text-[14px] text-muted leading-relaxed">
-              Landing pages, product messaging, SEO articles, and
-              conversion-focused copy that explains value and moves people to
-              action.
+              SEO articles, audits broken down, and practical how-tos on fixing
+              what is actually wrong with a site.
             </p>
           </Link>
         </div>

@@ -21,8 +21,8 @@ export default function AboutPage() {
         </p>
 
         <p>
-          I help brands get found — by search engines and by AI. That means
-          fixing the technical groundwork most sites get wrong, then writing the
+          I help brands get found by search engines and AI. That means fixing
+          the technical groundwork most sites get wrong, then writing the
           content that earns visibility once it&apos;s fixable: SEO audits and
           fixes, developer docs, protocol explainers, product messaging, and
           everything in between, for technical and non-technical audiences
@@ -58,8 +58,7 @@ export default function AboutPage() {
           I audit sites end to end — metadata, canonicals, redirects, structured
           data, and backlinks — then fix what&apos;s broken before I touch a
           word of content. Once the technical layer is solid, the writing is
-          built around search intent and how AI models actually surface answers,
-          not just how Google ranks pages.
+          built around search intent and how AI models actually surface answers.
         </p>
 
         <p>
@@ -102,9 +101,8 @@ export default function AboutPage() {
 
         <h2>Right now</h2>
         <p>
-          Studying Computer Science, writing and doing SEO work for web2 and
-          web3 clients, building my own projects, and writing articles on my
-          blog.
+          Writing and doing SEO work for web2 and web3 clients, building my own
+          projects, and writing articles on my blog.
         </p>
       </div>
 

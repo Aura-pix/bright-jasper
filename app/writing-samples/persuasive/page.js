@@ -5,73 +5,94 @@ import { getAllProjects } from "@/lib/projects";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Persuasive writing samples | Bright Jasper",
+  title: "SEO writing & process | Bright Jasper",
   description:
-    "Landing pages, SEO articles, and product copy written to explain value and convert readers into action.",
+    "SEO articles, technical SEO audits broken down, and practical how-tos on fixing what is actually wrong with a site.",
   path: "/writing-samples/persuasive",
 });
 
-export default function PersuasiveWritingSamplesPage() {
+export default function SeoWritingPage() {
   const samples = getAllSamples().filter((s) => s.track === "persuasive");
   const productProjects = getAllProjects().filter((project) =>
     project.tracks.includes("persuasive"),
+  );
+  const seoProjects = getAllProjects().filter(
+    (project) => project.slug === "seo-geo-case-study",
   );
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-3">
-        Persuasive writing samples
+        SEO writing &amp; process
       </h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        Landing pages, product copy, blog posts, SEO articles, and
-        developer-facing marketing written to explain value clearly and move
-        readers toward action.
+        SEO articles, audits broken down, and how-tos on fixing what&apos;s
+        actually wrong with a site&apos;s discoverability.
       </p>
 
-      {samples.length === 0 ? (
-        <div className="border border-ink/10 rounded-lg p-8 text-center">
-          <p className="text-[15px] text-ink/90 mb-4">
-            This track is being built. No samples to show yet.
-          </p>
-          <p className="text-[14px] text-muted mb-6">
-            Real posts will appear here as they&apos;re finished, same pattern
-            as the technical track.
-          </p>
-          <Link
-            href="/writing-samples/technical"
-            className="inline-flex w-full max-w-[18rem] items-center justify-center rounded-full border border-ink/15 px-5 py-2.5 text-center text-[14px] leading-snug text-ink transition-colors hover:border-accent hover:text-accent sm:max-w-none"
-          >
-            View technical writing samples instead
-          </Link>
-        </div>
-      ) : (
+      <section aria-labelledby="new-work-heading">
+        <h2
+          id="new-work-heading"
+          className="text-[20px] font-medium text-ink mb-4"
+        >
+          Recent work
+        </h2>
+        <p className="text-[15px] text-muted mb-6 max-w-2xl">
+          This is where SEO articles, &quot;how I fixed X&quot; breakdowns, and
+          practical how-tos will live going forward.
+        </p>
         <div className="grid sm:grid-cols-2 gap-4">
-          {samples.map((sample) => (
+          {seoProjects.map((project) => (
             <Link
-              key={sample.slug}
-              href={`/blog/${sample.slug}`}
+              key={project.slug}
+              href={`/projects/${project.slug}`}
               className="block p-4 rounded-lg border border-ink/10 hover:border-accent"
             >
               <p className="text-[15px] font-medium text-ink mb-1">
-                {sample.title}
+                {project.title}
               </p>
-              {sample.excerpt && (
-                <p className="text-[13px] text-muted leading-relaxed">
-                  {sample.excerpt}
-                </p>
-              )}
+              <p className="text-[13px] text-muted leading-relaxed">
+                {project.excerpt}
+              </p>
+              <p className="text-[12px] text-accent mt-3">
+                Read the case study
+              </p>
             </Link>
           ))}
         </div>
-      )}
+      </section>
 
-      <section className="mt-12" aria-labelledby="product-copy-heading">
+      <section className="mt-12" aria-labelledby="earlier-work-heading">
         <h2
-          id="product-copy-heading"
+          id="earlier-work-heading"
           className="text-[18px] font-medium text-ink mb-4"
         >
-          Product copy in practice
+          Earlier work
         </h2>
+        <p className="text-[15px] text-muted mb-6">
+          Landing page and product copy work from earlier projects — kept here
+          for reference.
+        </p>
+        {samples.length > 0 && (
+          <div className="grid sm:grid-cols-2 gap-4 mb-6">
+            {samples.map((sample) => (
+              <Link
+                key={sample.slug}
+                href={`/blog/${sample.slug}`}
+                className="block p-4 rounded-lg border border-ink/10 hover:border-accent"
+              >
+                <p className="text-[15px] font-medium text-ink mb-1">
+                  {sample.title}
+                </p>
+                {sample.excerpt && (
+                  <p className="text-[13px] text-muted leading-relaxed">
+                    {sample.excerpt}
+                  </p>
+                )}
+              </Link>
+            ))}
+          </div>
+        )}
         <div className="grid sm:grid-cols-2 gap-4">
           {productProjects.map((project) => (
             <Link
@@ -95,8 +116,8 @@ export default function PersuasiveWritingSamplesPage() {
 
       <div className="mt-14 text-center">
         <p className="mb-4 text-[15px] text-ink/90">
-          Need landing pages, product messaging, or conversion-focused copy that
-          turns interest into action? Let&apos;s talk.
+          Need SEO writing and optimization that helps the right people find
+          your site? Let&apos;s talk.
         </p>
         <HireMeButton />
       </div>

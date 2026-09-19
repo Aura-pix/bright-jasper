@@ -71,9 +71,9 @@ export default function HomePage() {
       >
         <div className="max-w-2xl mx-auto">
           <p className="text-[15px] text-muted mb-2">
-            SEO/GEO/AEO specialist • content writer • technical writer
+            SEO/GEO/AEO specialist • Content Writer • Technical Writer
             <span className="mx-2">•</span>
-            web2 and web3
+            Web2 and Web3
           </p>
           <h1 className="text-[28px] sm:text-[32px] font-medium text-ink mb-6 leading-tight">
             I help brands get found by search engines, and AI.
@@ -167,24 +167,7 @@ export default function HomePage() {
           style={{
             background: "linear-gradient(180deg, #ffffff 0%, #F7FAFD 100%)",
           }}
-        >
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-[20px] font-medium text-ink mb-6">
-              Recent writing
-            </h2>
-            <div>
-              {recentPosts.map((post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
-            <Link
-              href="/blog"
-              className="inline-block mt-6 text-[14px] text-accent hover:underline"
-            >
-              See all writing
-            </Link>
-          </div>
-        </section>
+        ></section>
       )}
 
       {/* Proof of work */}
