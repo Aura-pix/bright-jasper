@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
   { href: "/writing-samples/technical", label: "Technical Writing" },
-  { href: "/writing-samples/persuasive", label: "Persuasive Writing" },
+  { href: "/writing-samples/persuasive", label: "SEO Writing" },
   { href: "/projects", label: "Projects" },
   { href: "/threads", label: "Threads" },
   { href: "/about", label: "About" },
