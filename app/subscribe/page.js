@@ -64,9 +64,13 @@ export default function SubscribePage() {
 
         <div className="space-y-4 text-[16px] text-ink/90 leading-relaxed mb-8">
           <p>
-            I shared a piece early when I started writing and someone told me I
-            should add a subscribe button so he wouldn&apos;t have to keep
-            searching for my website.
+            I shared{" "}
+            <a href="https://brightjasper.com/blog/dangote-from-trading-to-infrastructure">
+              a piece
+            </a>{" "}
+            early when I started writing and someone told me I should add a
+            subscribe button so he wouldn&apos;t have to keep searching for my
+            website.
           </p>
           <p>So I thought, why not?</p>
           <p>So here we are.</p>
@@ -112,8 +116,8 @@ export default function SubscribePage() {
         {status === "success" ? (
           <div className="bg-[#F7FAFD] border border-accent/20 p-6 rounded-lg text-center">
             <h2 className="text-[18px] font-medium text-ink mb-2">
-              You&apos;re on the list. Let&apos;s see where the rabbit hole
-              leads.
+              You&apos;re on the list! Keep an eye on your inbox/spam folder for
+              the welcome email.
             </h2>
           </div>
         ) : (

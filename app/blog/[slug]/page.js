@@ -7,6 +7,7 @@ import {
 } from "@/lib/posts";
 import ResponsiveTable from "@/components/ResponsiveTable";
 import AdjacentLinks from "@/components/AdjacentLinks";
+import ShareButton from "@/components/ShareButton";
 import { getLinkProps } from "@/lib/linkProps";
 import { createPageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
@@ -155,6 +156,8 @@ export default function BlogPostPage({ params }) {
         <h1 className="text-[26px] sm:text-[30px] font-medium text-ink mb-8 leading-tight">
           {post.title}
         </h1>
+
+        <ShareButton title={post.title} />
 
         <div className="prose-content">
           <MDXRemote
