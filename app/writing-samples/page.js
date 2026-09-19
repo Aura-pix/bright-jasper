@@ -1,13 +1,12 @@
 import Link from "next/link";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Writing samples | Bright Jasper",
   description:
     "Technical writing, product copy, and SEO content samples from Bright Jasper — examples of clear writing for complex products and audiences.",
-  alternates: {
-    canonical: "https://brightjasper.com/writing-samples",
-  },
-};
+  path: "/writing-samples",
+});
 
 export default function WritingSamplesPage() {
   const collectionSchema = {

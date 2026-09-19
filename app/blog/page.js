@@ -1,14 +1,13 @@
 import TagFilter from "@/components/TagFilter";
 import { getAllBlogPosts } from "@/lib/posts";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Blog | Bright Jasper",
   description:
     "Deep dives, developer guides, and web3 explainers on technical systems, product narratives, and research-backed writing.",
-  alternates: {
-    canonical: "https://brightjasper.com/blog",
-  },
-};
+  path: "/blog",
+});
 
 export default function BlogIndexPage() {
   const posts = getAllBlogPosts();

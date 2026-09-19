@@ -1,0 +1,28 @@
+# Bright Jasper
+
+> Bright Jasper is a technical writing and research portfolio by Bright Jasper, covering technical systems, web3, product narratives, finance, psychology, and the ideas connecting them.
+
+## About
+
+Bright Jasper writes developer documentation, technical explainers, research-backed articles, SEO content, product copy, and practical guides for complex products and teams across web2 and web3.
+
+## Main Resources
+
+- [Home](https://brightjasper.com/): Overview of Bright Jasper's writing and services.
+- [About](https://brightjasper.com/about): Background, writing focus, and working approach.
+- [Blog](https://brightjasper.com/blog): Technical deep dives, developer guides, research theses, and reflections.
+- [Projects](https://brightjasper.com/projects): Product work, case studies, documentation, and client deliverables.
+- [Writing samples](https://brightjasper.com/writing-samples): Curated technical and persuasive writing samples.
+- [Technical writing samples](https://brightjasper.com/writing-samples/technical): Developer docs, API references, tutorials, and technical explainers.
+- [Persuasive writing samples](https://brightjasper.com/writing-samples/persuasive): Product copy, landing pages, and SEO writing.
+- [Threads](https://brightjasper.com/threads): Short-form product thinking and technical observations.
+- [Subscribe](https://brightjasper.com/subscribe): Weekly newsletter with a thought, posts of the week, and a random fact or quiz.
+
+## Feeds
+
+- [RSS feed](https://brightjasper.com/rss.xml): Subscribe to new blog posts.
+- [Sitemap](https://brightjasper.com/sitemap.xml): Discover all indexable site URLs.
+
+## Guidance
+
+Use the linked pages as the primary sources for Bright Jasper's published writing, projects, and professional background. Blog posts and project pages contain their own dates, summaries, topics, and canonical URLs.

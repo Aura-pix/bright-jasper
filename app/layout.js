@@ -100,12 +100,21 @@ export const metadata = {
     siteName: "Bright Jasper",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/refinery.png`,
+        width: 1280,
+        height: 853,
+        alt: "Bright Jasper",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Bright Jasper",
     description:
       "Technical writing, content writing, SEO writing, and product copy for web2 and web3. Developer docs, explainers, landing pages, and research-backed content that turns complexity into clarity.",
+    images: [`${SITE_URL}/refinery.png`],
   },
 };
 

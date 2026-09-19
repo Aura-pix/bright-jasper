@@ -2,15 +2,14 @@ import Link from "next/link";
 import HireMeButton from "@/components/HireMeButton";
 import { getAllSamples } from "@/lib/posts";
 import { getAllProjects } from "@/lib/projects";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Persuasive writing samples | Bright Jasper",
   description:
     "Landing pages, SEO articles, and product copy written to explain value and convert readers into action.",
-  alternates: {
-    canonical: "https://brightjasper.com/writing-samples/persuasive",
-  },
-};
+  path: "/writing-samples/persuasive",
+});
 
 export default function PersuasiveWritingSamplesPage() {
   const samples = getAllSamples().filter((s) => s.track === "persuasive");

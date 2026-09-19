@@ -8,6 +8,7 @@ import {
 import ResponsiveTable from "@/components/ResponsiveTable";
 import AdjacentLinks from "@/components/AdjacentLinks";
 import { getLinkProps } from "@/lib/linkProps";
+import { createPageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/blog at build time.
@@ -20,40 +21,31 @@ export function generateMetadata({ params }) {
   const post = getBlogPostBySlug(params.slug);
   if (!post) return {};
 
-  return {
+  const canonicalUrl =
+    post.canonical && !post.canonical.includes("URL_PLACEHOLDER")
+      ? post.canonical
+      : `https://brightjasper.com/blog/${post.slug}`;
+  const metadata = createPageMetadata({
     title: post.title,
     description: post.excerpt,
-    ...(post.slug === "dangote-refinery-stock-10000"
-      ? {
-          openGraph: {
-            type: "article",
-            title: post.title,
-            description: post.excerpt,
-            url: `https://brightjasper.com/blog/${post.slug}`,
-            images: [
-              {
-                url: "https://brightjasper.com/refinery.png",
-                width: 1280,
-                height: 853,
-                alt: "Dangote refinery at sunset with the Nigerian flag",
-              },
-            ],
-          },
-          twitter: {
-            card: "summary_large_image",
-            title: post.title,
-            description: post.excerpt,
-            images: ["https://brightjasper.com/refinery.png"],
-          },
-        }
-      : {}),
-    alternates: {
-      canonical:
-        post.canonical && !post.canonical.includes("URL_PLACEHOLDER")
-          ? post.canonical
-          : `https://brightjasper.com/blog/${post.slug}`,
-    },
-  };
+    keywords: post.keywords,
+    url: canonicalUrl,
+    type: "article",
+  });
+
+  if (post.slug === "dangote-refinery-stock-10000") {
+    metadata.openGraph.images = [
+      {
+        url: "https://brightjasper.com/refinery.png",
+        width: 1280,
+        height: 853,
+        alt: "Dangote refinery at sunset with the Nigerian flag",
+      },
+    ];
+    metadata.twitter.images = ["https://brightjasper.com/refinery.png"];
+  }
+
+  return metadata;
 }
 
 function formatDate(dateString) {

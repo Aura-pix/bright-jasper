@@ -8,6 +8,7 @@ import {
 import ResponsiveTable from "@/components/ResponsiveTable";
 import AdjacentLinks from "@/components/AdjacentLinks";
 import { getLinkProps } from "@/lib/linkProps";
+import { createPageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/projects at build time.
@@ -20,14 +21,12 @@ export function generateMetadata({ params }) {
   const project = getProjectBySlug(params.slug);
   if (!project) return {};
 
-  return {
+  return createPageMetadata({
     title: `${project.title} — Bright Jasper`,
     description: project.excerpt,
     keywords: project.keywords,
-    alternates: {
-      canonical: `https://brightjasper.com/projects/${project.slug}`,
-    },
-  };
+    path: `/projects/${project.slug}`,
+  });
 }
 
 const STATUS_LABELS = {

@@ -1,15 +1,14 @@
 import Link from "next/link";
 import { getAllProjects } from "@/lib/projects";
 import HireMeButton from "@/components/HireMeButton";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Projects | Bright Jasper",
   description:
     "Selected product work, client deliverables, and case studies showing how Bright Jasper ships clear technical and brand messaging.",
-  alternates: {
-    canonical: "https://brightjasper.com/projects",
-  },
-};
+  path: "/projects",
+});
 
 const STATUS_LABELS = {
   "in-progress": "In progress",

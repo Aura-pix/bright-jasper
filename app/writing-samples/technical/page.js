@@ -1,15 +1,14 @@
 import Link from "next/link";
 import HireMeButton from "@/components/HireMeButton";
 import { getAllSamples } from "@/lib/posts";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Technical writing samples | Bright Jasper",
   description:
     "Developer docs, API references, protocol explainers, and technical writing samples for product teams.",
-  alternates: {
-    canonical: "https://brightjasper.com/writing-samples/technical",
-  },
-};
+  path: "/writing-samples/technical",
+});
 
 const CATEGORIES = [
   "Technical Documentations",

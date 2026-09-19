@@ -1,15 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import ResumeButton from "@/components/ResumeButton";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "About | Bright Jasper",
   description:
     "Technical writer and content strategist for web2 and web3 teams that need clear docs, explainers, and product messaging.",
-  alternates: {
-    canonical: "https://brightjasper.com/about",
-  },
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

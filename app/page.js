@@ -3,15 +3,14 @@ import Image from "next/image";
 import PostCard from "@/components/PostCard";
 import HireMeButton from "@/components/HireMeButton";
 import { getAllBlogPosts } from "@/lib/posts";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Bright Jasper | Technical writer and SEO content specialist",
   description:
     "Technical writing, developer documentation, and product copy for web2 and web3 teams that need complex ideas explained clearly.",
-  alternates: {
-    canonical: "https://brightjasper.com",
-  },
-};
+  path: "",
+});
 
 export default function HomePage() {
   const recentPosts = getAllBlogPosts().slice(0, 3);

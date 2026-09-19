@@ -1,13 +1,12 @@
 import { getAllThreads } from "@/lib/threads";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: "Threads | Bright Jasper",
   description:
     "Short-form product thinking, technical observations, and web3 takes from Bright Jasper — written for quick, sharp reading.",
-  alternates: {
-    canonical: "https://brightjasper.com/threads",
-  },
-};
+  path: "/threads",
+});
 
 function formatDate(dateString) {
   if (!dateString) return null;
