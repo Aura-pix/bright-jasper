@@ -29,7 +29,7 @@ export default function ShareButton({ title }) {
   }
 
   return (
-    <div className="flex items-center gap-3 mb-8">
+    <div className="flex items-center gap-3">
       <button
         type="button"
         onClick={handleShare}
