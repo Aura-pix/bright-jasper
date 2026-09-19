@@ -12,7 +12,14 @@ export const metadata = createPageMetadata({
 });
 
 export default function SeoWritingPage() {
-  const samples = getAllSamples().filter((s) => s.track === "persuasive");
+  const seoSamples = getAllSamples().filter(
+    (sample) =>
+      sample.track === "persuasive" && sample.sampleCategory === "SEO Writing",
+  );
+  const samples = getAllSamples().filter(
+    (sample) =>
+      sample.track === "persuasive" && sample.sampleCategory !== "SEO Writing",
+  );
   const productProjects = getAllProjects().filter((project) =>
     project.tracks.includes("persuasive"),
   );
@@ -35,13 +42,30 @@ export default function SeoWritingPage() {
           id="new-work-heading"
           className="text-[20px] font-medium text-ink mb-4"
         >
-          Recent work
+          New work
         </h2>
         <p className="text-[15px] text-muted mb-6 max-w-2xl">
           This is where SEO articles, &quot;how I fixed X&quot; breakdowns, and
           practical how-tos will live going forward.
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
+          {seoSamples.map((sample) => (
+            <Link
+              key={sample.slug}
+              href={`/blog/${sample.slug}`}
+              className="block p-4 rounded-lg border border-ink/10 hover:border-accent"
+            >
+              <p className="text-[15px] font-medium text-ink mb-1">
+                {sample.title}
+              </p>
+              {sample.excerpt && (
+                <p className="text-[13px] text-muted leading-relaxed">
+                  {sample.excerpt}
+                </p>
+              )}
+              <p className="text-[12px] text-accent mt-3">Read the article</p>
+            </Link>
+          ))}
           {seoProjects.map((project) => (
             <Link
               key={project.slug}
