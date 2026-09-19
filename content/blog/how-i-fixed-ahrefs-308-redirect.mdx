@@ -1,17 +1,19 @@
 ---
-title: "How I Fixed Ahrefs 308 Redirect + URL Out of Scope (www vs non-www on Cloudflare DNS + Vercel)"
+title: "How I Fixed Ahrefs 3xx redirects in sitemap (www vs non-www on Cloudflare DNS + Vercel)"
 date: "2026-09-19"
 tag: "Technical SEO"
 track: "persuasive"
-excerpt: "Ahrefs stuck at 33% health with 308 redirects? I fixed the www vs non-www canonical loop with Cloudflare on DNS-only and Vercel handling HTTPS. Here's the exact walkthrough."
+excerpt: "Ahrefs stuck at 33% health with 308 redirects errors? I fixed the www vs non-www canonical loop with Cloudflare on DNS-only and Vercel handling HTTPS. Here's the exact walkthrough."
 readTime: "8 min read"
 sample: true
 sampleCategory: "SEO Writing"
 keywords:
   - "Ahrefs 308 redirect"
   - "Ahrefs URL out of scope"
+  -"Ahrefs 3xx in sitemap redirects"
   - "Cloudflare DNS-only Vercel redirect"
   - "www vs non-www canonical"
+  - "http vs https" 
   - "technical SEO audit"
   - "Next.js canonical URL"
   - "Vercel 308 redirect"
@@ -19,7 +21,7 @@ keywords:
 
 I bought brightjasper.com on September 16 and ran an Ahrefs audit the next day.
 
-The health score was 33%. There were 55 errors. Almost everything was a 308 redirect.
+The health score was 33%. There were 55 errors. Almost half of it were 308 redirects.
 
 And Ahrefs kept reporting "3xx redirect in sitemap"
 
@@ -42,7 +44,7 @@ The sitemap used one version, the canonical used another, and Ahrefs was set to 
 
 ## My setup
 
-Cloudflare was set to DNS-only: the grey cloud, not the orange one. That meant Cloudflare was not proxying traffic.
+Cloudflare was set to DNS-only: the grey cloud, not the orange one. That meant Cloudflare was not proxying traffic. If you have cloudflare set to proxy, scroll to the [last section](##If you use cloudflare proxi instead) for your version of the fix.
 
 Vercel handles HTTP-to-HTTPS redirects by default, so I did not need to add an HTTPS rule in Cloudflare.
 
@@ -133,7 +135,7 @@ Make sure the sitemap, canonical URLs, and Ahrefs crawl target all use the same 
 
 ### 4. Fix the Ahrefs audit scope
 
-This is what caused the "URL out of scope" message.
+This is something else that could cause the "3xx redirect in sitemap" error message.
 
 In **Ahrefs > Site Audit > Settings**, set the project URL to:
 
@@ -173,4 +175,4 @@ Choose one canonical domain, let one system handle redirects, and make every SEO
 
 ---
 
-**Stack:** Truehost (domain), Cloudflare DNS-only, Vercel, Next.js 14, and Ahrefs.
+**Stack:** Cloudflare DNS-only, Vercel, Next.js 14, and Ahrefs.
