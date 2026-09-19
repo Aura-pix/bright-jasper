@@ -25,9 +25,10 @@ export default function ProjectsPage() {
       <h1 className="text-[26px] font-medium text-ink mb-4">Projects</h1>
 
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        This is where I keep the strongest proof of work: products I have built,
-        product copy I have shipped, client work, and documentation that shows
-        how the work holds together in practice.
+        This is where I keep a reference and description of products I have
+        built, product copy I have shipped, and case studies of client work I
+        have done. It is a work in progress, and I will be adding more projects
+        as they are ready to share.
       </p>
 
       {projects.length === 0 ? (

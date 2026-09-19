@@ -23,9 +23,8 @@ export default function ThreadsPage() {
     <div className="max-w-2xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-3">Threads</h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        I use X as a lighter publishing layer: quick takes, product thinking,
-        and technical observations that deserve a public record without needing
-        a full article.
+        Anything i post on my socials that I think is worth keeping around for
+        reference, or that I want to be able to link back to later.
       </p>
 
       {threads.length === 0 ? (
@@ -35,7 +34,7 @@ export default function ThreadsPage() {
           </p>
           <p className="text-[14px] text-muted">
             This section will fill up with short-form ideas, product notes, and
-            technical takes as I publish them.
+            takes as I publish them.
           </p>
         </div>
       ) : (

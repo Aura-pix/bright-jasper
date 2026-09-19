@@ -65,10 +65,13 @@ export default function SubscribePage() {
         <div className="space-y-4 text-[16px] text-ink/90 leading-relaxed mb-8">
           <p>
             I shared{" "}
-            <a href="https://brightjasper.com/blog/dangote-from-trading-to-infrastructure">
+            <a
+              className="text-accent hover:underline"
+              href="https://brightjasper.com/blog/dangote-from-trading-to-infrastructure"
+            >
               a piece
             </a>{" "}
-            early when I started writing and someone told me I should add a
+            early when I started writing and someone wanted me to add a
             subscribe button so he wouldn&apos;t have to keep searching for my
             website.
           </p>

@@ -41,7 +41,9 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="text-[12px] text-muted">© {year} Bright Jasper</p>
+        <p className="text-[12px] text-muted">
+          © {year} Bright Jasper | SEO/GEO specialist and content writer
+        </p>
       </div>
     </footer>
   );

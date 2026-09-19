@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Blog | Bright Jasper",
   description:
-    "Deep dives, developer guides, and web3 explainers on technical systems, product narratives, and research-backed writing.",
+    "SEO content, articles, explainers, research, product writing, and web3 perspectives from Bright Jasper across tech, finance, and beyond.",
   path: "/blog",
 });
 
@@ -31,7 +31,7 @@ export default function BlogIndexPage() {
     "@type": "CollectionPage",
     name: "Blog",
     description:
-      "Deep dives, developer guides, and research-driven writing from Bright Jasper.",
+      "SEO content, articles, explainers, research, product writing, and web3 perspectives from Bright Jasper.",
     url: "https://brightjasper.com/blog",
     hasPart: posts.slice(0, 10).map((post) => ({
       "@type": "TechArticle",
@@ -49,10 +49,9 @@ export default function BlogIndexPage() {
       <div className="max-w-3xl mx-auto px-6 py-16">
         <h1 className="text-[26px] font-medium text-ink mb-3">Blog</h1>
         <p className="text-[15px] text-muted mb-8 max-w-lg">
-          I write about technical systems, product narratives, and the ideas
-          people need explained clearly. This blog includes developer docs,
-          protocol explainers, research-backed writing, SEO content, and
-          product-facing material for web2 and web3 teams.
+          I write about the ideas, products, and systems people need explained
+          clearly. This blog includes SEO content, articles, research-backed
+          explainers, product writing, finance, tech, and web3 perspectives.
         </p>
 
         <TagFilter posts={posts} tags={tagsPresent} />

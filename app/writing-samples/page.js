@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Writing samples | Bright Jasper",
   description:
-    "Technical writing, product copy, and SEO content samples from Bright Jasper — examples of clear writing for complex products and audiences.",
+    "SEO content, articles, product copy, research, and technical writing samples from Bright Jasper for clear communication across audiences.",
   path: "/writing-samples",
 });
 
@@ -14,7 +14,7 @@ export default function WritingSamplesPage() {
     "@type": "CollectionPage",
     name: "Writing samples",
     description:
-      "Technical writing and persuasive writing samples from Bright Jasper.",
+      "SEO content, product copy, research, and technical writing samples from Bright Jasper.",
     url: "https://brightjasper.com/writing-samples",
     hasPart: [
       {
@@ -41,9 +41,9 @@ export default function WritingSamplesPage() {
           Writing samples
         </h1>
         <p className="text-[15px] text-muted mb-10 max-w-lg">
-          I write for technical audiences and non-technical audiences. The work
-          changes with the goal, but the standard stays the same: clear,
-          accurate, useful writing.
+          SEO content, product copy, research, and technical writing for
+          technical and non-technical audiences. Here are some examples of my
+          work, organized by type of writing.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-6">

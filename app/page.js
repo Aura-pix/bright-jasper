@@ -6,9 +6,9 @@ import { getAllBlogPosts } from "@/lib/posts";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Bright Jasper | Technical writer and SEO content specialist",
+  title: "Bright Jasper | SEO, GEO, AEO, content and technical writing",
   description:
-    "Technical writing, developer documentation, and product copy for web2 and web3 teams that need complex ideas explained clearly.",
+    "SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
   path: "",
 });
 
@@ -16,25 +16,30 @@ export default function HomePage() {
   const recentPosts = getAllBlogPosts().slice(0, 3);
   const faqItems = [
     {
-      question: "What kind of writing does Bright Jasper do?",
+      question: "What does Bright Jasper actually do?",
       answer:
-        "Bright Jasper provides technical writing, content writing, SEO writing, and product copy for web2 and web3 teams. Typical work includes developer documentation, explainers, research-backed articles, landing pages, and product messaging.",
+        "SEO, AEO, and GEO optimization and content writing for brands, plus technical writing for web2 and web3 teams. Work spans keyword research, on-page and technical SEO fixes, developer documentation, research-backed articles, and editorial content.",
+    },
+    {
+      question: "Does the SEO work include technical fixes, or just content?",
+      answer:
+        "Both. That includes metadata, schema markup, canonical and redirect issues, Open Graph setup, and backlink strategy, tracked through Ahrefs, Google Search Console, and Google Analytics - not just keyword-targeted writing.",
     },
     {
       question:
         "Can Bright Jasper write about technical or blockchain products?",
       answer:
-        "Yes. Bright Jasper writes about software, developer tools, infrastructure, blockchain, and web3 products. A software engineering background and Computer Science study support a research-first process for understanding technical systems before explaining them.",
+        "Yes. Work covers software, developer tools, infrastructure, blockchain, and web3 products, backed by a software engineering background and ongoing Computer Science study.",
     },
     {
       question: "Who is the writing for?",
       answer:
-        "The writing is adapted for developers, technical decision-makers, product users, and broader audiences. The goal is to make complex products accurate, useful, and understandable without flattening the important details.",
+        "Developers, technical decision-makers, product users, and broader audiences, depending on the piece. The goal is accuracy without losing the reader.",
     },
     {
       question: "What makes Bright Jasper's process technical?",
       answer:
-        "The process uses source verification, documentation frameworks, version-controlled docs-as-code workflows, and familiarity with software development concepts. Claims are checked against primary sources before publication.",
+        "Source verification, version-controlled docs-as-code workflows, and familiarity with the systems being written about. Claims are checked against primary sources before publication.",
     },
   ];
 
@@ -57,7 +62,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      {/* Hero - soft gradient background, restrained illustration */}
+      {/* Hero */}
       <section
         className="px-6 pt-16 pb-14 text-center"
         style={{
@@ -66,13 +71,12 @@ export default function HomePage() {
       >
         <div className="max-w-2xl mx-auto">
           <p className="text-[15px] text-muted mb-2">
-            Technical writer • content writer • SEO writer • product copywriter
+            SEO/GEO/AEO specialist • content writer • technical writer
             <span className="mx-2">•</span>
             web2 and web3
           </p>
           <h1 className="text-[28px] sm:text-[32px] font-medium text-ink mb-6 leading-tight">
-            I turn complex products into clear language for users, developers,
-            and search.
+            I help brands get found by search engines, and AI.
           </h1>
 
           <Image
@@ -85,19 +89,19 @@ export default function HomePage() {
           />
 
           <p className="text-[16px] text-ink/90 leading-relaxed mb-8 max-w-lg mx-auto">
-            I write technical docs, explainers, content, SEO articles, and
-            product copy for teams building in web2 and web3. From developer
-            documentation and protocol explainers to landing pages and
-            conversion copy, I turn complexity into clarity without losing
-            accuracy.
+            I fix the technical groundwork most sites get wrong, then write the
+            content that earns visibility once it&apos;s fixable. That means SEO
+            audits and on-page fixes, developer docs and protocol explainers,
+            research-backed articles, and everything in between - for teams
+            building in web2 and web3.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/blog"
+              href="/projects/seo-geo-case-study"
               className="text-[14px] px-5 py-2.5 rounded-full bg-accent text-white hover:opacity-90"
             >
-              Read the latest
+              See the case study
             </Link>
             <Link
               href="/writing-samples"
@@ -109,52 +113,51 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* What I write */}
+      {/* What to expect */}
       <section className="max-w-3xl mx-auto px-6 py-14">
-        <h2 className="text-[20px] font-medium text-ink mb-6">What I do</h2>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-lg border border-ink/10 p-5">
-            <h3 className="text-[16px] font-medium text-ink mb-2">
-              Technical writing
-            </h3>
+        <h2 className="text-[20px] font-medium text-ink mb-6">
+          What to expect
+        </h2>
+        <ul className="grid gap-3 text-[15px] text-ink/90 leading-relaxed sm:grid-cols-2">
+          {[
+            "Keyword research and content strategy across search, AEO, and GEO",
+            "On-page SEO: metadata, headers, internal linking, and content structure",
+            "Technical SEO: schema markup, structured data, canonical fixes, redirect audits, and Open Graph setup",
+            "Off-page SEO: backlink strategy, outreach, and domain authority building",
+            "Analytics and reporting via Google Analytics, Search Console, and Tag Manager",
+            "Blog posts, long-form articles, SaaS content, and financial and web3 content",
+            "Technical documentation and product copy",
+            "Content built for how AI models and answer engines surface information, not just how Google ranks it",
+            "Managed in Sanity CMS and built on Git-based workflows",
+            "Collaboration with dev and content teams to ship fixes, not just flag them",
+          ].map((item) => (
+            <li key={item} className="border-l-2 border-accent/40 pl-4">
+              {item}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-12 grid gap-8 sm:grid-cols-2">
+          <div>
+            <h2 className="text-[20px] font-medium text-ink mb-4">Skills</h2>
             <p className="text-[15px] text-ink/90 leading-relaxed">
-              Developer docs, API references, onboarding guides, how-to guides,
-              protocol explainers, and deep dives for technical audiences.
+              SEO · GEO · AEO · Keyword Research · On-Page SEO · Off-Page SEO ·
+              SEO Content Writing · Content Optimization · Technical Writing
             </p>
           </div>
-
-          <div className="rounded-lg border border-ink/10 p-5">
-            <h3 className="text-[16px] font-medium text-ink mb-2">
-              Content writing
-            </h3>
+          <div>
+            <h2 className="text-[20px] font-medium text-ink mb-4">Stack</h2>
             <p className="text-[15px] text-ink/90 leading-relaxed">
-              Research-backed articles, explainers, editorial content, and
-              analysis for teams that need clarity without fluff.
-            </p>
-          </div>
-
-          <div className="rounded-lg border border-ink/10 p-5">
-            <h3 className="text-[16px] font-medium text-ink mb-2">
-              SEO writing
-            </h3>
-            <p className="text-[15px] text-ink/90 leading-relaxed">
-              Search-focused articles and content built around intent,
-              structure, readability, and ranking potential for web2 and web3
-              topics.
-            </p>
-          </div>
-
-          <div className="rounded-lg border border-ink/10 p-5">
-            <h3 className="text-[16px] font-medium text-ink mb-2">
-              Product copy
-            </h3>
-            <p className="text-[15px] text-ink/90 leading-relaxed">
-              Landing pages, product messaging, user onboarding, feature copy,
-              and conversion-focused writing that helps people understand the
-              value.
+              Ahrefs · Ubersuggest · SEMrush · Google Analytics · Google Search
+              Console · Google Tag Manager · Sanity CMS · Google Docs · Markdown
+              · HTML/CSS/JS
             </p>
           </div>
         </div>
+
+        <p className="mt-8 text-[14px] text-muted">
+          Based in UTC+1, open to remote and contract roles.
+        </p>
       </section>
 
       {/* Recent writing */}
@@ -184,15 +187,32 @@ export default function HomePage() {
         </section>
       )}
 
+      {/* Proof of work */}
+      <section className="max-w-3xl mx-auto px-6 py-14">
+        <p className="text-[13px] uppercase tracking-[0.12em] text-muted mb-3">
+          Recent proof of work
+        </p>
+        <p className="text-[18px] text-ink leading-relaxed max-w-2xl">
+          I took brightjasper.com from unindexed to a 100% Ahrefs health score,
+          then to a Google AI Overview citation - in 72 hours.
+        </p>
+        <Link
+          href="/projects/seo-geo-case-study"
+          className="inline-block mt-4 text-[14px] text-accent hover:underline"
+        >
+          Read the case study →
+        </Link>
+      </section>
+
       {/* If you're building something */}
       <section className="max-w-3xl mx-auto px-6 py-14 text-center">
         <h2 className="text-[20px] font-medium text-ink mb-4">
-          Need clear writing for a web2 or web3 product?
+          Need a site that&apos;s actually found, and writing that makes sense
+          once people get there?
         </h2>
         <p className="text-[15px] text-ink/90 leading-relaxed max-w-md mx-auto mb-6">
-          I can help with technical docs, product messaging, SEO content, and
-          editorial writing that makes complex ideas readable and useful for the
-          people who need them most.
+          I can help with SEO audits and fixes, technical docs, and editorial or
+          product writing for web2 and web3 products.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
           <HireMeButton />

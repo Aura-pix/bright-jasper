@@ -28,8 +28,8 @@ export default function TechnicalWritingSamplesPage() {
         Technical writing samples
       </h1>
       <p className="text-[15px] text-muted mb-10 max-w-lg">
-        Documentation, developer guides, API references, protocol explainers,
-        and research pieces written for engineers who need accuracy.
+        Documentations, developer and user guides, API references, tutotials,
+        protocol explainers, and research pieces.
       </p>
 
       {samples.length === 0 ? (

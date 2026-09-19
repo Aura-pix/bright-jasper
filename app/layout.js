@@ -14,7 +14,7 @@ const siteSchema = {
   url: SITE_URL,
   inLanguage: "en",
   description:
-    "Technical writing, content writing, SEO writing, product copy, and research-backed developer content for web2 and web3 teams.",
+    "SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
   publisher: {
     "@type": "Person",
     name: "Bright Jasper",
@@ -57,8 +57,7 @@ const personSchema = {
     "https://www.youtube.com/@brightjasp",
     "https://github.com/Aura-pix/bright-jasper",
   ],
-  jobTitle:
-    "Technical Writer, Content Writer, SEO Writer, and Product Copywriter",
+  jobTitle: "SEO/GEO/AEO Specialist, Content Writer, and Technical Writer",
   knowsAbout: [
     "Technical writing",
     "Content writing",
@@ -76,9 +75,9 @@ const personSchema = {
 
 export const metadata = {
   metadataBase: new URL(CANONICAL_HOST),
-  title: "Bright Jasper | Technical writer, content writer, and SEO copywriter",
+  title: "Bright Jasper | SEO, GEO, AEO, content, and technical writer",
   description:
-    "Technical writing, SEO content, and product copy for web2 and web3 teams. Developer docs, explainers, and research-backed writing that make complex products understandable.",
+    "SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
   icons: {
     icon: "/logo.png",
   },
@@ -96,7 +95,7 @@ export const metadata = {
   openGraph: {
     title: "Bright Jasper",
     description:
-      "Technical writing, content writing, SEO writing, and product copy for web2 and web3 teams.",
+      "SEO, GEO, AEO, and content writing for brands, plus technical writing for web2 and web3 teams.",
     url: SITE_URL,
     siteName: "Bright Jasper",
     locale: "en_US",
@@ -114,7 +113,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Bright Jasper",
     description:
-      "Technical writing, content writing, SEO writing, and product copy for web2 and web3. Developer docs, explainers, landing pages, and research-backed content that turns complexity into clarity.",
+      "SEO audits, content writing, technical fixes, developer docs, and protocol explainers for brands and web2/web3 teams.",
     images: [`${SITE_URL}/refinery.png`],
   },
 };

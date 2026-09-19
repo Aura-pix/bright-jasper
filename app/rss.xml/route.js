@@ -30,7 +30,7 @@ export async function GET() {
   <channel>
     <title>Bright Jasper</title>
     <link>${SITE_URL}</link>
-    <description>Technical writing and research for web2 and web3.</description>
+    <description>SEO content, articles, explainers, research, product writing, and web3 perspectives from Bright Jasper.</description>
     ${items}
   </channel>
 </rss>`;
