@@ -19,7 +19,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="border-b border-ink/10">
+    <header className="border-b border-ink/10 md:sticky md:top-0 md:z-50 md:bg-white">
       <nav className="relative max-w-3xl mx-auto px-6 py-5 flex items-center justify-between gap-4">
         <Link
           href="/"
