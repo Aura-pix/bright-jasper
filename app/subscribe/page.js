@@ -67,7 +67,7 @@ export default function SubscribePage() {
             I shared{" "}
             <a
               className="text-accent hover:underline"
-              href="https://brightjasper.com/blog/dangote-from-trading-to-infrastructure"
+              href="https://brightjasper.com/blog/dangote-refinery-stock-10000"
             >
               a piece
             </a>{" "}
