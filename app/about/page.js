@@ -8,7 +8,7 @@ export const metadata = createPageMetadata({
   description:
     "SEO/GEO/AEO specialist and content writer helping brands get found by search engines and AI, with technical writing for web2 and web3 teams.",
   path: "/about",
-  alternates { cannonical: "https://brightjasper.com/about" }
+  
 });
 
 export default function AboutPage() {
