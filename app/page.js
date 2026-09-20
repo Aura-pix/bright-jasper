@@ -148,8 +148,8 @@ export default function HomePage() {
           <div>
             <h2 className="text-[20px] font-medium text-ink mb-4">Stack</h2>
             <p className="text-[15px] text-ink/90 leading-relaxed">
-              Ahrefs · Ubersuggest · SEMrush · Google Analytics · Google Search
-              Console · Google Tag Manager · Sanity CMS · Google Docs · Markdown
+              Ahrefs · Screamingfrog · SEMrush · Google Analytics · Google Search
+              Console · Google Tag Manager · Microsoft Clarity · Sanity CMS · Google Docs · Markdown
               · HTML/CSS/JS
             </p>
           </div>
@@ -176,7 +176,7 @@ export default function HomePage() {
           Recent proof of work
         </p>
         <p className="text-[18px] text-ink leading-relaxed max-w-2xl">
-          I took brightjasper.com from unindexed to a 100% Ahrefs health score,
+          I took brightjasper.com from unindexed and 33% Ahrefs health score to a 100% Ahrefs health score,
           then to a Google AI Overview citation - in 72 hours.
         </p>
         <Link
