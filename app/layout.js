@@ -24,6 +24,7 @@ const siteSchema = {
       "https://medium.com/@brghtjasper",
       "https://www.facebook.com/brightjasp",
       "https://www.youtube.com/@brightjasp",
+      "https://www.upwork.com/freelancers/~018d2a2818ff617a2b",
     ],
   },
 };
@@ -41,6 +42,7 @@ const organizationSchema = {
     "https://www.facebook.com/brightjasp",
     "https://www.youtube.com/@brightjasp",
     "https://github.com/Aura-pix/bright-jasper",
+  
   ],
 };
 
@@ -62,6 +64,8 @@ const personSchema = {
     "Technical writing",
     "Content writing",
     "SEO writing",
+    "SEO optimization",
+    "SEO,AEO,GEO",
     "Product copy",
     "Developer documentation",
     "Web3 content writing",
@@ -70,6 +74,7 @@ const personSchema = {
     "Software engineering",
     "Agile software development",
     "Documentation systems",
+    
   ],
 };
 
