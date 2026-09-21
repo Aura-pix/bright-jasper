@@ -11,7 +11,7 @@ const CONTACT_LINKS = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
   },
-  { label: "Facebook", href: "https://www.facebook.com/brightjasp" },
+
 ];
 
 /**
