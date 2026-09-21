@@ -42,7 +42,6 @@ const organizationSchema = {
     "https://www.facebook.com/brightjasp",
     "https://www.youtube.com/@brightjasp",
     "https://github.com/Aura-pix/bright-jasper",
-  
   ],
 };
 
@@ -74,7 +73,6 @@ const personSchema = {
     "Software engineering",
     "Agile software development",
     "Documentation systems",
-    
   ],
 };
 
@@ -150,6 +148,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-NQ2P6Y51RT');`}
+        </Script>
+        <Script id="clarity">
+          {`(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "ylidgcoi1g");`}
         </Script>
       </head>
       <body className="min-h-screen flex flex-col">
