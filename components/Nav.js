@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { href: "/writing-samples/technical", label: "Technical Writing" },
   { href: "/writing-samples/persuasive", label: "SEO Writing" },
   { href: "/projects", label: "Projects" },
-  { href: "/threads", label: "Threads" },
+  { href: "/contact", label: "Contact me" },
   { href: "/about", label: "About" },
 ];
 
