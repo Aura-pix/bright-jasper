@@ -15,7 +15,7 @@ export const metadata = createPageMetadata({
   ],
 });
 
-// TODO: confirm real Telegram handle/link before shipping — placeholder below.
+
 const socials = [
   {
     label: "Email",
