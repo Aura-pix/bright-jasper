@@ -8,6 +8,14 @@ export const metadata = createPageMetadata({
   description:
     "Developer docs, API references, protocol explainers, and technical writing samples for product teams.",
   path: "/writing-samples/technical",
+  keywords: [
+    "technical writing samples",
+    "developer documentation writer",
+    "API documentation",
+    "technical documentation",
+    "protocol explainers",
+    "web3 technical writer",
+  ],
 });
 
 const CATEGORIES = [

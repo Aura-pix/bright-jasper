@@ -6,6 +6,13 @@ export const metadata = createPageMetadata({
   description:
     "Short-form product thinking, technical observations, and web3 takes from Bright Jasper — written for quick, sharp reading.",
   path: "/threads",
+  keywords: [
+    "technical writing insights",
+    "web3 writing",
+    "product writing",
+    "SEO and content insights",
+    "technical observations",
+  ],
 });
 
 function formatDate(dateString) {

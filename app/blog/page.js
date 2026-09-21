@@ -7,6 +7,16 @@ export const metadata = createPageMetadata({
   description:
     "SEO content, articles, explainers, research, product writing, and web3 perspectives from Bright Jasper across tech, finance, and beyond.",
   path: "/blog",
+  keywords: [
+    "SEO blog",
+    "GEO and AEO",
+    "technical writing blog",
+    "technical explainers",
+    "developer documentation",
+    "web3 writing",
+    "research-backed content",
+    "product writing",
+  ],
 });
 
 export default function BlogIndexPage() {

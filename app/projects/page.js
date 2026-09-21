@@ -8,6 +8,14 @@ export const metadata = createPageMetadata({
   description:
     "Selected product work, client deliverables, and case studies showing how Bright Jasper ships clear technical and brand messaging.",
   path: "/projects",
+  keywords: [
+    "SEO case studies",
+    "GEO case study",
+    "technical writing portfolio",
+    "content writing portfolio",
+    "product copywriting",
+    "developer documentation projects",
+  ],
 });
 
 const STATUS_LABELS = {

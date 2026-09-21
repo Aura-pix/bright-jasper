@@ -6,6 +6,14 @@ export const metadata = createPageMetadata({
   description:
     "SEO content, articles, product copy, research, and technical writing samples from Bright Jasper for clear communication across audiences.",
   path: "/writing-samples",
+  keywords: [
+    "SEO writing samples",
+    "technical writing samples",
+    "content writing portfolio",
+    "product copywriting samples",
+    "developer documentation samples",
+    "web3 writing samples",
+  ],
 });
 
 export default function WritingSamplesPage() {

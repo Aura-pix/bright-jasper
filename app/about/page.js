@@ -8,7 +8,16 @@ export const metadata = createPageMetadata({
   description:
     "SEO/GEO/AEO specialist and content writer helping brands get found by search engines and AI, with technical writing for web2 and web3 teams.",
   path: "/about",
-  
+  keywords: [
+    "SEO GEO AEO specialist",
+    "content writer",
+    "technical writer",
+    "technical SEO consultant",
+    "developer documentation writer",
+    "web3 content writer",
+    "research-backed content writer",
+    "Blockchain technical writer",
+  ],
 });
 
 export default function AboutPage() {

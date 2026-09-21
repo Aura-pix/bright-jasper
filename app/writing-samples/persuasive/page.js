@@ -9,6 +9,14 @@ export const metadata = createPageMetadata({
   description:
     "SEO articles, technical SEO audits broken down, and practical how-tos on fixing what is actually wrong with a site.",
   path: "/writing-samples/persuasive",
+  keywords: [
+    "SEO writing samples",
+    "SEO content writer",
+    "technical SEO audits",
+    "GEO content writing",
+    "AEO content writing",
+    "SEO how-to articles",
+  ],
 });
 
 export default function SeoWritingPage() {
