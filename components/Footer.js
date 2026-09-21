@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const links = [
   { label: "X", href: "https://x.com/brightjasp" },
   {
@@ -15,17 +13,6 @@ const links = [
   { label: "Telegram", href: "https://t.me/Jasper074" },
   { label: "Facebook", href: "https://www.facebook.com/brightjasp" },
   { label: "Email", href: "mailto:brghtjasper@gmail.com" },
-];
-
-const sitemapLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Projects", href: "/projects" },
-  { label: "Threads", href: "/threads" },
-  { label: "Writing samples", href: "/writing-samples" },
-  { label: "Technical writing", href: "/writing-samples/technical" },
-  { label: "SEO writing", href: "/writing-samples/persuasive" },
 ];
 
 export default function Footer() {
@@ -54,20 +41,12 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <nav aria-label="Sitemap" className="mb-6">
-          <p className="text-[12px] text-muted mb-2">Sitemap</p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-muted">
-            {sitemapLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-accent"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
+        <a
+          href="https://brightjasper.com/sitemap.xml"
+          className="inline-block text-[13px] text-muted hover:text-accent mb-6"
+        >
+          Sitemap
+        </a>
         <p className="text-[12px] text-muted">
           © {year} Bright Jasper | SEO/GEO specialist and content writer
         </p>
