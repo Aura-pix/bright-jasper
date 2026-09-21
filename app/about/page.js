@@ -118,10 +118,10 @@ export default function AboutPage() {
 
       <div className="mt-10 flex flex-wrap gap-4">
         <Link
-          href="/writing-samples"
+          href="/contact"
           className="text-[14px] px-5 py-2.5 rounded-full bg-accent text-white hover:opacity-90"
         >
-          See what I've written
+          Get in touch 
         </Link>
 
         <ResumeButton />
