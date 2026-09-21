@@ -93,7 +93,7 @@ export default function ContactPage() {
 
       <p className="text-[15px] text-muted mb-10 max-w-lg leading-relaxed">
         I&apos;m open to freelance, contract, and part-time remote work.
-        Based in UTC+1 \u2014 happy to schedule calls that work for your time
+        Based in UTC+1, happy to schedule calls that work for your time
         zone.
       </p>
 
