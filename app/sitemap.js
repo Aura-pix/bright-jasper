@@ -9,7 +9,7 @@ export default function sitemap() {
     "/about",
     "/blog",
     "/projects",
-    "/threads",
+    "/contact",
     "/writing-samples",
     "/writing-samples/technical",
     "/writing-samples/persuasive",
