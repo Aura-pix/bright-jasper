@@ -16,9 +16,12 @@ export const metadata = createPageMetadata({
     "AEO specialist",
     "content writer",
     "technical writer",
-    "technical SEO",
+    "freelance SEO specialist",
+    "technical SEO audit",
     "SEO content writing",
     "web3 technical writing",
+    "Bright Jasper blog",
+    "Bright Jasper SEO",
   ],
 });
 
@@ -108,10 +111,10 @@ export default function HomePage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/projects/seo-geo-case-study"
+              href="/blog"
               className="text-[14px] px-5 py-2.5 rounded-full bg-accent text-white hover:opacity-90"
             >
-              See the case study
+              Bright Jasper blog
             </Link>
             <Link
               href="/writing-samples"
@@ -134,11 +137,11 @@ export default function HomePage() {
             "On-page SEO: metadata, headers, internal linking, and content structure",
             "Technical SEO: schema markup, structured data, canonical fixes, redirect audits, and Open Graph setup",
             "Off-page SEO: backlink strategy, outreach, and domain authority building",
-            "Analytics and reporting via Google Analytics, Search Console, and Tag Manager",
+            "Analytics and reporting via Google Analytics, Search Console, Tag Manager and Microsoft clarity",
             "Blog posts, long-form articles, SaaS content, and financial and web3 content",
             "Technical documentation and product copy",
             "Content built for how AI models and answer engines surface information, not just how Google ranks it",
-            "Managed in Sanity CMS and built on Git-based workflows",
+            "Management via Sanity CMS and Git-based workflows",
             "Collaboration with dev and content teams to ship fixes, not just flag them",
           ].map((item) => (
             <li key={item} className="border-l-2 border-accent/40 pl-4">
@@ -214,7 +217,7 @@ export default function HomePage() {
             href="/about"
             className="text-[14px] px-5 py-2.5 rounded-full border border-ink/15 text-ink hover:border-accent hover:text-accent"
           >
-            See how I work
+            About Bright Jasper
           </Link>
         </div>
       </section>
