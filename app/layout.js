@@ -14,7 +14,7 @@ const siteSchema = {
   url: SITE_URL,
   inLanguage: "en",
   description:
-    "SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
+    "Bright Jasper does SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
   publisher: {
     "@type": "Person",
     name: "Bright Jasper",
@@ -80,7 +80,7 @@ export const metadata = {
   metadataBase: new URL(CANONICAL_HOST),
   title: "Bright Jasper | SEO, GEO, AEO, content, and technical writer",
   description:
-    "SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
+    "Bright Jasper does SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
   icons: {
     icon: "/logo.png",
   },
@@ -98,7 +98,7 @@ export const metadata = {
   openGraph: {
     title: "Bright Jasper",
     description:
-      "SEO, GEO, AEO, and content writing for brands, plus technical writing for web2 and web3 teams.",
+      "Bright Jasper does SEO, GEO, AEO, and content writing for brands, plus technical writing for web2 and web3 teams.",
     url: SITE_URL,
     siteName: "Bright Jasper",
     locale: "en_US",
@@ -116,7 +116,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Bright Jasper",
     description:
-      "SEO audits, content writing, technical fixes, developer docs, and protocol explainers for brands and web2/web3 teams.",
+      "Bright Jasper does SEO audits, content writing, technical fixes, developer docs, and protocol explainers for brands and web2/web3 teams.",
     images: [`${SITE_URL}/refinery.png`],
   },
 };

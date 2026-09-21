@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "About | Bright Jasper",
   description:
-    "SEO/GEO/AEO specialist and content writer helping brands get found by search engines and AI, with technical writing for web2 and web3 teams.",
+    "Bright Jasper is an SEO/GEO/AEO specialist and content writer helping brands get found by search engines and AI, with technical writing for web2 and web3 teams.",
   path: "/about",
   keywords: [
     "SEO GEO AEO specialist",

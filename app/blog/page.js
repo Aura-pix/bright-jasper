@@ -10,10 +10,12 @@ export const metadata = createPageMetadata({
   keywords: [
     "SEO blog",
     "GEO and AEO",
+    "Bright Jasper blog",
+    "SEO, GEO, AEO content",
     "technical writing blog",
     "technical explainers",
     "developer documentation",
-    "web3 writing",
+    "web3 content writing",
     "research-backed content",
     "product writing",
   ],

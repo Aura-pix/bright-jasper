@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
+import Link from "next/link";
 import remarkGfm from "remark-gfm";
 import {
   getBlogPostBySlug,
@@ -75,7 +76,7 @@ export default function BlogPostPage({ params }) {
     dateModified: post.date || undefined,
     author: {
       "@type": "Person",
-      name: "Bright Jasper",
+      name: post.author || "Bright Jasper",
       url: "https://brightjasper.com/about",
     },
     publisher: {
@@ -172,7 +173,12 @@ export default function BlogPostPage({ params }) {
               className="h-9 w-9 rounded-full border border-ink/10 object-cover"
             />
             <div>
-              <p className="text-[13px] font-medium text-ink">Bright Jasper</p>
+              <Link
+                href="/about"
+                className="text-[13px] font-medium text-ink hover:text-accent"
+              >
+                {post.author || "Bright Jasper"}
+              </Link>
               <p className="text-[12px] text-muted">Author</p>
             </div>
           </div>
