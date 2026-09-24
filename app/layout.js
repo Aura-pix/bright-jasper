@@ -80,7 +80,7 @@ export const metadata = {
   metadataBase: new URL(CANONICAL_HOST),
   title: "Bright Jasper | SEO, GEO, AEO, content, and technical writer",
   description:
-    "Bright Jasper does SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
+    "I'm Bright Jasper — an SEO/GEO/AEO specialist, content writer, and technical writer. I help brands get found by search engines and AI through technical SEO fixes, developer docs, and content built for how AI models surface answers.",
   icons: {
     icon: [
       { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
