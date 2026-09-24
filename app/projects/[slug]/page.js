@@ -11,6 +11,8 @@ import { getLinkProps } from "@/lib/linkProps";
 import { createPageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
+const SITE_URL = "https://brightjasper.com";
+
 // Pre-builds a static page for every .mdx file found in content/projects at build time.
 // Add a new file there -> a new slug appears here automatically, no code change needed.
 export function generateStaticParams() {
@@ -26,6 +28,7 @@ export function generateMetadata({ params }) {
     description: project.excerpt,
     keywords: project.keywords,
     path: `/projects/${project.slug}`,
+    type: "article",
   });
 }
 
@@ -51,8 +54,86 @@ export default function ProjectDetailPage({ params }) {
   if (!project) notFound();
   const adjacentProjects = getAdjacentProjects(params.slug);
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${SITE_URL}/projects/${project.slug}#article`,
+    headline: project.title,
+    description: project.excerpt || undefined,
+    datePublished: project.date || undefined,
+    dateModified: project.date || undefined,
+    author: {
+      "@type": "Person",
+      "@id": `${SITE_URL}/#person`,
+      name: "Bright Jasper",
+      url: `${SITE_URL}/about`,
+      sameAs: [
+        "https://x.com/brightjasp",
+        "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
+        "https://medium.com/@brghtjasper",
+        "https://github.com/Aura-pix/bright-jasper",
+      ],
+    },
+    publisher: {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "Bright Jasper",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/favicon-512x512.png`,
+        width: 512,
+        height: 512,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/projects/${project.slug}`,
+    },
+    image: `${SITE_URL}/refinery.png`,
+    keywords: project.keywords?.length
+      ? project.keywords
+      : ["case study", "technical writing", "SEO", "GEO"].filter(Boolean),
+    articleSection: "Case Study",
+    inLanguage: "en",
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: `${SITE_URL}/projects`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: project.title,
+        item: `${SITE_URL}/projects/${project.slug}`,
+      },
+    ],
+  };
+
   return (
-    <article className="max-w-2xl mx-auto px-6 py-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <article className="max-w-2xl mx-auto px-6 py-16">
       <h1 className="text-[26px] sm:text-[30px] font-medium text-ink mb-1 leading-tight">
         {project.title}
       </h1>
@@ -98,5 +179,6 @@ export default function ProjectDetailPage({ params }) {
         type="project"
       />
     </article>
+    </>
   );
 }

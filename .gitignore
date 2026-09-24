@@ -4,7 +4,9 @@ node_modules
 .env
 .DS_Store
 
+# Ignore AI/SEO files - these are local working files and NOT part of the site
 todo.md
 SEO-GEO-AEO-AUDIT.md
 WRITING-GUIDE.md
 SEO-TIPS.md
+links.md
