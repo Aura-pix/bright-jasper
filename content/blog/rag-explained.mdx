@@ -23,13 +23,17 @@ RAG is an architecture that connects a language model to an external knowledge b
 
 Here's what's actually happening under the hood.
 
-## The problem RAG solves
+## What problem does RAG solve?
+
+RAG solves the frozen-knowledge problem: LLMs only know their training data. RAG retrieves relevant external documents at query time and feeds them as context, so the model answers from your data — not its memory.
 
 A language model's knowledge is frozen at training time. It doesn't know about your product changes from last week, your internal wiki, or the incident report your team filed yesterday. Fine-tuning can adjust a model's tone or format, but it doesn't solve this — the model still doesn't know your data, and retraining every time something changes isn't practical.
 
 RAG sidesteps this by not asking the model to _know_ the answer. Instead, it retrieves the relevant information at query time and hands it to the model as context, alongside the question. The model's job shifts from "recall this from memory" to "read this and answer."
 
-## Two pipelines, not one
+## How does RAG work? (Two pipelines)
+
+RAG uses an offline ingestion pipeline (chunk → embed → store in vector DB) and a real-time query pipeline (embed query → search vector DB → retrieve chunks → augment prompt → generate answer).
 
 Most RAG systems are really two separate pipelines working together: an offline ingestion pipeline that runs ahead of time, and a real-time query pipeline that runs when a user asks something.
 
@@ -39,19 +43,23 @@ Most RAG systems are really two separate pipelines working together: an offline 
 
 The model then generates its answer using both the original question and the retrieved chunks as context — which is the "augmented" part of retrieval-augmented generation.
 
-## Where naive RAG breaks: chunking
+## Why does naive RAG fail? (Chunking issues)
+
+Fixed-size chunking cuts sentences in half, giving the model incomplete context. Semantic, parent-child, or sliding-window chunking preserve meaning boundaries for better retrieval.
 
 The single biggest source of retrieval errors in a basic RAG setup isn't the language model — it's how the source documents were chunked in the first place. Splitting documents into fixed-size blocks (say, every 500 tokens) is simple to implement, but it routinely cuts sentences and ideas in half, so the retriever ends up handing the model incomplete context.
 
 A few more deliberate strategies exist:
 
-- **Semantic chunking** splits documents at natural boundaries — paragraph breaks, topic shifts, section headers — instead of at a fixed token count.
-- **Parent-child chunking** stores small chunks for precise retrieval, but expands to the surrounding parent section once a chunk is actually retrieved, so the model gets enough context to form a coherent answer.
-- **Sliding window chunking** overlaps consecutive chunks by roughly 10–20%, so information sitting at a chunk boundary doesn't get lost entirely.
+1. **Semantic chunking** — Split at natural boundaries (paragraphs, headers). Best for structured docs.
+2. **Parent-child chunking** — Small chunks for retrieval, expand to parent section for context. Best for dense manuals.
+3. **Sliding window chunking** — Overlap chunks 10–20%. Best for conversational data.
 
 Which strategy fits depends on the source material: structured documentation tends to do well with semantic chunking, dense technical manuals often need parent-child chunking, and conversational data like support tickets works reasonably well with sliding windows.
 
-## What "augmented" actually looks like in practice
+## What does an augmented prompt look like?
+
+An augmented prompt injects retrieved chunks as context: `Context: [chunks] Question: [query] Instruction: Answer using only the context above.` The model then generates from that context.
 
 Once relevant chunks are retrieved, they're not just appended randomly. A typical augmented prompt looks something like:
 
@@ -63,13 +71,17 @@ Instruction: Answer using only the context above.
 
 The language model then generates a response grounded in that context rather than its training data alone. Some systems add a ranking step before this — scoring retrieved chunks by relevance and discarding the weaker ones — since handing the model too much irrelevant context can dilute the quality of its answer as easily as handing it too little.
 
-## Where RAG still fails
+## Where does RAG still fail?
+
+Failures are usually retrieval errors, not generation. Wrong chunks = confident wrong answers. RAG reduces hallucination only if retrieval quality is high; poor chunking or mismatched embeddings still hallucinate.
 
 RAG reduces hallucination, but it doesn't eliminate it, and the failure mode is usually retrieval, not generation. If the retriever pulls the wrong chunks — because the embedding model didn't capture the query's actual intent, or the chunking split apart the information that mattered — the language model will still generate a confident, fluent answer. It'll just be confidently wrong about the wrong context, not the absence of context.
 
 This is worth being precise about: RAG's reputation for "reducing hallucination" is really a claim about _retrieval quality_, not about the language model becoming more honest. A RAG system with poor chunking or a mismatched embedding model can still hallucinate freely — it's just hallucinating on top of bad context instead of no context.
 
-## When RAG is the wrong tool
+## When should you not use RAG?
+
+Avoid RAG for small, stable knowledge bases that fit in a prompt. It adds latency, vector DB infrastructure, and retrieval failure surface. Use RAG when data is large, frequently changing, or exceeds context windows.
 
 RAG is not a universal fix. It adds latency (a retrieval step before generation), infrastructure (a vector database, an embedding pipeline), and a new failure surface (retrieval quality) to a system that didn't have one before. If the knowledge you need the model to use is small, stable, and could reasonably fit in a prompt directly, you may not need RAG's ceremony to solve the problem — a well-designed prompt might be enough.
 

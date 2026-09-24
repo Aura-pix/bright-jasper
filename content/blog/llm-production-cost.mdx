@@ -4,7 +4,7 @@ author: "Bright Jasper"
 date: "2026-09-12"
 tag: "Technical Explainers"
 track: "technical"
-excerpt: "There isn’t one honest number for LLM cost. It depends on traffic, latency, model choice, and how much infrastructure you want to own."
+excerpt: "There isn't one honest number for LLM cost. It depends on traffic, latency, model choice, and how much infrastructure you want to own."
 readTime: "8 min read"
 sample: true
 sampleCategory: "Technical Explainers"
@@ -17,37 +17,41 @@ keywords:
   - "LLM serving cost breakdown"
 ---
 
-Ask "what does it cost to run an LLM in production," and the honest first answer is: it depends which of two completely different cost structures you're in. Pay a provider per token through a managed API, or rent the GPU underneath the model yourself. Those aren't two prices for the same thing — they're two different businesses, with different break-even points, and most teams pick between them without ever running the actual math.
+Ask "what does it cost to run an LLM in production," and the honest first answer is: **it depends which of two completely different cost structures you're in.** Pay a provider per token through a managed API, or rent the GPU underneath the model yourself. Those aren't two prices for the same thing — they're two different businesses, with different break-even points, and most teams pick between them without ever running the actual math.
 
 Here's what that math looks like, using current, directly-verified numbers rather than the recycled estimates that circulate around this topic.
 
-## Why input and output aren't priced the same
+## Why do input and output tokens cost differently?
 
-Every major provider charges more for tokens the model generates than tokens you send it, and the gap isn't small. Across Anthropic's current lineup, output tokens cost 5x the input rate on every tier — Claude Sonnet 5, for instance, is $2 per million input tokens against $10 per million output tokens, and that same 1:5 ratio holds from Haiku up through the flagship tier. OpenAI's newest model family runs a similar structure, with output priced at roughly 5–6x input across its tiers.
+Every major provider charges more for tokens the model generates than tokens you send it, and the gap isn't small. Across Anthropic's current lineup, **output tokens cost 5x the input rate on every tier** — Claude Sonnet 5, for instance, is $2 per million input tokens against $10 per million output tokens, and that same 1:5 ratio holds from Haiku up through the flagship tier. OpenAI's newest model family runs a similar structure, with output priced at roughly 5–6x input across its tiers.
 
-The practical consequence: a chatty, verbose model output is a bigger line item than a long prompt. If you're trying to control cost, trimming your system prompt matters less than you'd think — the real lever is constraining how much the model writes back.
+The practical consequence: **a chatty, verbose model output is a bigger line item than a long prompt.** If you're trying to control cost, trimming your system prompt matters less than you'd think — the real lever is constraining how much the model writes back.
 
-## Managed API pricing, verified directly
+## What are the current managed API prices? (Verified directly)
 
-Rather than repeat the many blog posts that quote pricing from months-old snapshots, here's what both companies' own current documentation states, checked directly against their official pricing pages:
+Rather than repeat blog posts that quote pricing from months-old snapshots, here's what both companies' own current documentation states, checked directly against their official pricing pages:
 
 **Anthropic (per million tokens, input / output):**
-
 - Claude Haiku 4.5: $1 / $5
 - Claude Sonnet 5: $2 / $10
 - Claude Opus 5: $5 / $25
 - Claude Fable 5.1 (top tier): $10 / $50
 
 **OpenAI (per million tokens, standard short-context, input / output):**
-
 - GPT-5.6 Luna: $0.20 / $1.20
 - GPT-5.6 Terra: $2 / $12
 - GPT-5.6 Sol: $4 / $20
 - GPT-6 Astra (flagship): $10 / $50
 
-What's notable here isn't which provider is "cheaper" — the two companies have converged on nearly identical price points at the top and bottom of their respective lineups ($10/$50 flagship, sub-$1 budget tier). What actually moves your bill is model _selection_ within a lineup, not which company you pick. Both companies also publish substantial discounts on top of these base rates: batch processing (asynchronous, non-real-time work) cuts both providers' rates by 50%, and prompt caching — reusing previously-processed context instead of resending it — drops repeated-input costs to roughly 10% of the standard rate. Stacked together, an application with a stable system prompt and predictable, batchable workloads can pay a small fraction of the sticker price.
+What's notable isn't which provider is "cheaper" — the two companies have converged on nearly identical price points at the top and bottom of their respective lineups ($10/$50 flagship, sub-$1 budget tier). **What actually moves your bill is model *selection* within a lineup, not which company you pick.**
 
-## Self-hosting: the formula, and where it gets murky
+Both companies also publish substantial discounts:
+- **Batch processing** (asynchronous, non-real-time work) cuts both providers' rates by **50%**
+- **Prompt caching** — reusing previously-processed context instead of resending it — drops repeated-input costs to roughly **10% of the standard rate**
+
+Stacked together, an application with a stable system prompt and predictable, batchable workloads can pay a small fraction of the sticker price.
+
+## How does self-hosting cost work? (The formula)
 
 If you run your own model on rented GPUs instead of paying per token, the underlying formula is simple:
 
@@ -55,36 +59,36 @@ If you run your own model on rented GPUs instead of paying per token, the underl
 cost per million tokens = (GPU hourly rate ÷ (tokens/sec × 3,600)) × 1,000,000
 ```
 
-The formula is clean. The GPU hourly rate feeding into it is not. This is the point in the research where I have to be honest about what I found: on-demand H100 pricing quoted across providers and trackers in 2026 ranges from roughly $2.50 to over $12 per GPU-hour, depending on the provider, whether it's a single GPU or an 8-GPU node, on-demand versus reserved commitment, and which specific SKU (PCIe versus SXM) is being quoted. Even sources specifically tracking one provider's public pricing page disagree with each other by nearly 2x depending on when they last checked.
+The formula is clean. The GPU hourly rate feeding into it is not. On-demand H100 pricing quoted across providers and trackers in 2026 ranges from roughly **$2.50 to over $12 per GPU-hour**, depending on the provider, whether it's a single GPU or an 8-GPU node, on-demand versus reserved commitment, and which specific SKU (PCIe versus SXM) is being quoted. Even sources specifically tracking one provider's public pricing page disagree with each other by nearly 2x depending on when they last checked.
 
-That spread isn't a rounding error — it's a real signal that GPU pricing in this space moves fast and varies by configuration in ways a single quoted number can't capture. If you're actually budgeting a self-hosted deployment, the only reliable move is pulling the live rate from the provider's own current pricing page on the day you're costing it out, not from any figure — including the ones in this piece — that was accurate on a different date.
+That spread isn't a rounding error — it's a real signal that **GPU pricing in this space moves fast and varies by configuration in ways a single quoted number can't capture.** If you're actually budgeting a self-hosted deployment, the only reliable move is pulling the live rate from the provider's own current pricing page on the day you're costing it out, not from any figure that was accurate on a different date.
 
-## The break-even question
+## Where is the break-even point?
 
-Despite that uncertainty, the shape of the trade-off is stable even when the exact numbers move:
+Despite that uncertainty, the shape of the trade-off is stable:
 
 - **Low, unpredictable volume** favors the managed API. You're not paying for idle GPU time between requests, and you get the discounts (batching, caching) without operating anything.
 - **High, sustained volume** starts favoring self-hosting, because a rented GPU running near-continuously amortizes its hourly cost across far more tokens than the same GPU sitting half-idle.
 - **Where the crossover actually sits** depends entirely on your specific throughput, model size, and the GPU rate you can actually secure — which is precisely the number that's hardest to pin down reliably right now.
 
-This is a case where I'd resist giving you a specific token-per-day threshold as if it were settled fact. Every version of that number I found during this research traced back to one provider's own example calculation, not an independent benchmark — exactly the kind of single-sourced claim worth flagging rather than repeating as general truth.
+I'd resist giving you a specific token-per-day threshold as if it were settled fact. Every version of that number I found traced back to one provider's own example calculation, not an independent benchmark — exactly the kind of single-sourced claim worth flagging rather than repeating as general truth.
 
 ## A worked example
 
-Take a support-chat application processing 10 million tokens a day on a mid-tier model.
+Take a support-chat application processing **10 million tokens a day** on a mid-tier model.
 
-Using Anthropic's own published customer-support example as a reference point: their documentation estimates roughly $37 to process 10,000 typical support conversations (averaging about 3,700 tokens each) on Haiku 4.5 — call it a real, first-party data point rather than a hypothetical. Scale that shape up, and a steady 10M-token/day workload on a comparable budget-tier model lands in a cost range you can actually calculate from the published per-token rates directly, especially once caching is layered on top of a system prompt that repeats across conversations.
+Using Anthropic's own published customer-support example: their documentation estimates roughly **$37 to process 10,000 typical support conversations** (averaging about 3,700 tokens each) on Haiku 4.5 — a real, first-party data point. Scale that shape up, and a steady 10M-token/day workload on a comparable budget-tier model lands in a cost range you can actually calculate from the published per-token rates directly, especially once caching is layered on top of a system prompt that repeats across conversations.
 
 Running the same workload self-hosted requires knowing your actual achievable throughput on your actual GPU at your actual negotiated rate — none of which is a constant, which is exactly why "self-hosting is cheaper at scale" is a direction, not a number, until you've run it against your own deployment.
 
-## The framework, not the verdict
+## What's the right decision framework?
 
-Cost per million tokens is the wrong first question. The better sequence is:
+**Cost per million tokens is the wrong first question.** The better sequence is:
 
-1. What's your actual token volume, and how predictable is it?
-2. Can your workload tolerate batching (non-real-time) to unlock the 50% discount?
-3. Does your traffic have a repeated context (system prompts, retrieved documents) that prompt caching would meaningfully discount?
-4. Only after answering those — pull current GPU rates directly from a provider's live page, not a cached blog figure, before comparing against a managed API's published price.
+1. **What's your actual token volume, and how predictable is it?**
+2. **Can your workload tolerate batching (non-real-time) to unlock the 50% discount?**
+3. **Does your traffic have a repeated context (system prompts, retrieved documents) that prompt caching would meaningfully discount?**
+4. **Only after answering those** — pull current GPU rates directly from a provider's live page, not a cached blog figure, before comparing against a managed API's published price.
 
 Managed APIs win on flexibility and near-zero operational overhead. Self-hosting wins on cost at genuinely high, sustained volume — but only once you've verified the GPU rate you'd actually pay, not the range this piece (or any other) quoted on the day it was written.
 

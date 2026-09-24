@@ -20,22 +20,15 @@ keywords:
   - "Vercel 308 redirect"
 ---
 
-I bought brightjasper.com on September 16 and ran an Ahrefs audit the next day.
+I bought brightjasper.com on September 16 and ran an Ahrefs audit the next day. The health score was 33%. There were 55 errors. Almost half were 308 redirects. Ahrefs kept reporting "3xx redirect in sitemap."
 
-The health score was 33%. There were 55 errors. Almost half of it were 308 redirects.
+## Why does Ahrefs show 308 instead of 301?
 
-And Ahrefs kept reporting "3xx redirect in sitemap"
+Ahrefs shows 308 because that's what Vercel uses by default. Both 301 and 308 are permanent redirects, but 308 preserves the request method (POST stays POST). For SEO, both pass the same link equity. Vercel and Next.js use 308 for a reason, so there was no need to replace it with a 301.
 
-## Why 308 and not 301?
-
-Ahrefs shows 308 because that is what Vercel uses by default. Both 301 and 308 are permanent redirects, but 308 preserves the request method.
-
-A 301 can change a POST request to GET. A 308 does not. If you have forms, API routes, or anything that sends POST requests, 308 is the safer choice. For SEO, both pass the same link equity. Vercel and Next.js use 308 for a reason, so there was no need to replace it with a 301.
-
-## The actual problem
+## What was the actual problem?
 
 I had four versions of the domain competing with each other:
-
 - `http://brightjasper.com`
 - `http://www.brightjasper.com`
 - `https://www.brightjasper.com`
@@ -43,27 +36,23 @@ I had four versions of the domain competing with each other:
 
 The sitemap used one version, the canonical used another, and Ahrefs was set to crawl a third. The result was a site that kept redirecting requests instead of giving every URL one clear, final home.
 
-## My setup
+## What was my setup?
 
-Cloudflare was set to DNS-only: the grey cloud, not the orange one. That meant Cloudflare was not proxying traffic. If you have cloudflare set to proxy, scroll to the [last section](##If you use cloudflare proxi instead) for your version of the fix.
+Cloudflare was set to **DNS-only** (grey cloud, not orange). That meant Cloudflare was not proxying traffic. If you have Cloudflare set to proxy, see the [last section](#if-you-use-cloudflare-proxy-instead) for your version of the fix.
 
-Vercel handles HTTP-to-HTTPS redirects by default, so I did not need to add an HTTPS rule in Cloudflare.
+Vercel handles HTTP-to-HTTPS redirects by default, so I did not need to add an HTTPS rule in Cloudflare. That is also why I did not add a separate `www` redirect in Cloudflare — with DNS-only Cloudflare and Vercel handling the domain, adding another redirect layer would risk a loop: `Cloudflare -> Vercel -> Cloudflare`.
 
-That is also why I did not add a separate `www` redirect in Cloudflare. With DNS-only Cloudflare and Vercel handling the domain, adding another redirect layer would risk a loop:
+## How did I fix it?
 
-`Cloudflare -> Vercel -> Cloudflare`
+### Step 1: Pick one domain and commit to it
 
-## The fix
-
-### 1. Pick one domain and commit to it
-
-I chose `https://brightjasper.com`: HTTPS and non-www.
+I chose `https://brightjasper.com` (HTTPS and non-www).
 
 In Vercel, open **Dashboard > Your Project > Settings > Domains**.
 
 Set `brightjasper.com` as the primary domain. Add `www.brightjasper.com` and set it to redirect to `brightjasper.com`.
 
-Vercel handles the 308 automatically. You do not need a `vercel.json` file for this, but an explicit redirect would look like this:
+Vercel handles the 308 automatically. You don't need a `vercel.json` file, but an explicit redirect would look like this:
 
 ```json
 {
@@ -78,9 +67,9 @@ Vercel handles the 308 automatically. You do not need a `vercel.json` file for t
 }
 ```
 
-`permanent: true` produces a permanent redirect in Vercel. A 308 is fine here. Leave it alone.
+`permanent: true` produces a 308 in Vercel. Leave it alone.
 
-### 2. Fix the canonical in Next.js
+### Step 2: Fix the canonical in Next.js
 
 This was the part causing the most damage. Every page was canonicalizing to `/`.
 
@@ -100,43 +89,32 @@ export const metadata = {
 };
 ```
 
-For dynamic pages, build the canonical from the current slug. Check the generated HTML or page source and confirm that a post contains:
+For dynamic pages, build the canonical from the current slug. Check the generated HTML and confirm a post contains:
 
 ```html
-<link
-  rel="canonical"
-  href="https://brightjasper.com/blog/fix-ahrefs-308-redirect"
-/>
+<link rel="canonical" href="https://brightjasper.com/blog/fix-ahrefs-308-redirect" />
 ```
 
 It should not contain the homepage URL on every page.
 
-### 3. Fix the sitemap
+### Step 3: Fix the sitemap
 
 Your sitemap should use the same version of every URL: HTTPS, non-www, with no accidental homepage canonical.
 
-In an App Router project, that can look like this:
+In an App Router project:
 
 ```js
 export default function sitemap() {
   return [
-    {
-      url: "https://brightjasper.com",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://brightjasper.com/blog/fix-ahrefs-308-redirect",
-      lastModified: new Date(),
-    },
+    { url: "https://brightjasper.com", lastModified: new Date() },
+    { url: "https://brightjasper.com/blog/fix-ahrefs-308-redirect", lastModified: new Date() },
   ];
 }
 ```
 
 Make sure the sitemap, canonical URLs, and Ahrefs crawl target all use the same domain version.
 
-### 4. Fix the Ahrefs audit scope
-
-This is something else that could cause the "3xx redirect in sitemap" error message.
+### Step 4: Fix the Ahrefs audit scope
 
 In **Ahrefs > Site Audit > Settings**, set the project URL to:
 
@@ -144,21 +122,14 @@ In **Ahrefs > Site Audit > Settings**, set the project URL to:
 
 It should match the sitemap and canonical version exactly. Then rerun the audit.
 
-## Result
+## What was the result?
 
-Before: 33% health and 55 crawl errors.
-
-![Ahrefs site overview showing a 30% health score](/ahrefs-30-site-overview.png)
-
-After: 100% health and 0 errors.
-
-![Ahrefs site overview showing a 100% health score](/ahrefs-100-site-overview.png)
-
-![Ahrefs timeline showing the health score improvement](/ahrefs-timeline-image.png)
+**Before:** 33% health and 55 crawl errors.
+**After:** 100% health and 0 errors.
 
 The re-crawl took about four minutes.
 
-## If you use Cloudflare proxy instead
+## What if you use Cloudflare Proxy (orange cloud)?
 
 If your Cloudflare DNS is orange-cloud proxied, Vercel's automatic HTTPS handling is not the whole setup. In that case:
 

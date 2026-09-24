@@ -70,19 +70,34 @@ export default function BlogPostPage({ params }) {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
+    "@id": `https://brightjasper.com/blog/${post.slug}#article`,
     headline: post.title,
     description: post.excerpt || undefined,
     datePublished: post.date || undefined,
     dateModified: post.date || undefined,
     author: {
       "@type": "Person",
+      "@id": "https://brightjasper.com/#person",
       name: post.author || "Bright Jasper",
       url: "https://brightjasper.com/about",
+      sameAs: [
+        "https://x.com/brightjasp",
+        "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
+        "https://medium.com/@brghtjasper",
+        "https://github.com/Aura-pix/bright-jasper",
+      ],
     },
     publisher: {
-      "@type": "Person",
+      "@type": "Organization",
+      "@id": "https://brightjasper.com/#organization",
       name: "Bright Jasper",
       url: "https://brightjasper.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://brightjasper.com/favicon-512x512.png",
+        width: 512,
+        height: 512,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -101,6 +116,7 @@ export default function BlogPostPage({ params }) {
           "technical explainers",
         ].filter(Boolean),
     articleSection: post.tag || "Technical writing",
+    inLanguage: "en",
   };
 
   const breadcrumbSchema = {

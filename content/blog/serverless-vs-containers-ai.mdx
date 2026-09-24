@@ -17,60 +17,74 @@ keywords:
   - "when to use serverless or containers"
 ---
 
-Every "serverless vs. containers" debate eventually gets asked the wrong question. The right question isn't which one is better — it's which one fits the shape of the workload sitting in front of you. For AI inference specifically, that shape matters more than usual, because the two approaches fail in opposite directions: serverless fails on latency, containers fail on idle cost.
+Every "serverless vs. containers" debate eventually gets asked the wrong question. **The right question isn't which one is better — it's which one fits the shape of the workload sitting in front of you.** For AI inference specifically, that shape matters more than usual, because the two approaches fail in opposite directions: **serverless fails on latency, containers fail on idle cost.**
 
 Here's how I'd actually walk through the decision, and where I land.
 
-## What "serverless" means here
+## What does "serverless" mean for AI?
 
-Serverless platforms — AWS Lambda, Google Cloud Run, purpose-built AI serving platforms like Modal or Replicate — let you deploy code without provisioning or managing the underlying compute. You pay per invocation or per second of execution, and the platform handles scaling for you, including scaling down to zero when nothing's running.
+Serverless platforms — AWS Lambda, Google Cloud Run, purpose-built AI serving platforms like Modal or Replicate — let you deploy code without provisioning or managing the underlying compute. You pay per invocation or per second of execution, and the platform handles scaling for you, including **scaling down to zero when nothing's running.**
 
-Containers give you the opposite trade: full control over the runtime, but you own the capacity planning, the scaling policy, and the bill for whatever you provision, whether it's being used or not.
+Containers give you the opposite trade: **full control over the runtime, but you own the capacity planning, the scaling policy, and the bill for whatever you provision, whether it's being used or not.**
 
-## The problem that's specific to AI: cold starts
+## What's the problem specific to AI: cold starts?
 
-Cold starts exist in every serverless system, but they get worse — sometimes much worse — once a GPU and a multi-billion-parameter model are involved. A cold start in this context happens in stages: first the container itself spins up, then the model has to load into memory (and for GPU workloads, into VRAM), and only after that can inference actually begin.
+Cold starts exist in every serverless system, but they get **worse — sometimes much worse — once a GPU and a multi-billion-parameter model are involved.**
 
-For a small function, that whole sequence might take under a second. For a large language model, model loading alone can dominate the cold start, since you're moving billions of parameters into GPU memory before the first token is generated. Platforms have converged on roughly the same two workarounds:
+A cold start in this context happens in stages:
+1. The container itself spins up
+2. The model has to load into memory (and for GPU workloads, into VRAM)
+3. Only after that can inference actually begin
 
-- **Preloading**: load the model into memory during container startup, before any request arrives, so by the time a request comes in, only ordinary inference latency remains.
-- **Keeping instances warm**: hold a minimum number of containers running at all times so no request ever hits a cold one — at the cost of paying for idle GPU time to guarantee that availability.
+For a small function, that whole sequence might take under a second. **For a large language model, model loading alone can dominate the cold start**, since you're moving billions of parameters into GPU memory before the first token is generated.
 
-Neither workaround eliminates the trade-off. It just relocates it — from latency to cost, or the reverse.
+Platforms have converged on roughly the same two workarounds:
+- **Preloading**: load the model into memory during container startup, before any request arrives
+- **Keeping instances warm**: hold a minimum number of containers running at all times so no request ever hits a cold one — at the cost of paying for idle GPU time
 
-## The decision, as a checklist
+**Neither workaround eliminates the trade-off. It just relocates it — from latency to cost, or the reverse.**
+
+## How do you decide? (A checklist)
 
 Before picking a side, run your workload through these questions:
 
-**Does the task run longer than the platform's execution limit?** AWS Lambda caps out at 15 minutes per invocation. Model training, batch processing, and long-running pipelines exceed that easily — containers or a managed training service are the only options.
+### Does the task run longer than the platform's execution limit?
+AWS Lambda caps out at **15 minutes per invocation**. Model training, batch processing, and long-running pipelines exceed that easily — containers or a managed training service are the only options.
 
-**Does it need a GPU?** Traditional serverless functions (Lambda, standard Cloud Functions) don't support GPUs at all. If your workload needs one, you're either on containers, a Kubernetes-based setup, or a serverless platform purpose-built for GPU inference (Modal, Replicate, RunPod, and similar).
+### Does it need a GPU?
+Traditional serverless functions (Lambda, standard Cloud Functions) **don't support GPUs at all**. If your workload needs one, you're either on containers, a Kubernetes-based setup, or a serverless platform purpose-built for GPU inference (Modal, Replicate, RunPod, and similar).
 
-**Is traffic steady or bursty?** Steady, high-throughput traffic is where containers earn their cost advantage — you're paying for reserved capacity you're actually using continuously, rather than a per-invocation premium. Bursty, unpredictable, or low-volume traffic is where serverless's pay-per-use model works in your favor, because you're not paying for capacity that sits idle between requests.
+### Is traffic steady or bursty?
+**Steady, high-throughput traffic** is where containers earn their cost advantage — you're paying for reserved capacity you're actually using continuously, rather than a per-invocation premium. **Bursty, unpredictable, or low-volume traffic** is where serverless's pay-per-use model works in your favor, because you're not paying for capacity that sits idle between requests.
 
-**Can the product tolerate cold-start latency?** A batch job or an internal tool can absorb a few seconds of startup delay without anyone noticing. A customer-facing chat interface generally can't — a startup penalty in the hundreds of milliseconds is already a bad experience for real-time conversational AI.
+### Can the product tolerate cold-start latency?
+A batch job or an internal tool can absorb a few seconds of startup delay without anyone noticing. **A customer-facing chat interface generally can't** — a startup penalty in the hundreds of milliseconds is already a bad experience for real-time conversational AI.
 
-## Where serverless wins
+## Where does serverless win?
 
-Prototypes and low-traffic products benefit the most from serverless's pay-per-use economics, since you're not paying for GPU capacity between requests. It also removes a real chunk of operational work — you're not tuning cluster autoscalers or managing GPU fragmentation across a fleet of nodes, which matters a lot for a small team or a solo builder. And because deployment is usually just packaging your model as a function, iteration speed on early-stage products tends to be faster.
+**Prototypes and low-traffic products** benefit the most from serverless's pay-per-use economics, since you're not paying for GPU capacity between requests. It also removes a real chunk of operational work — you're not tuning cluster autoscalers or managing GPU fragmentation across a fleet of nodes, which matters a lot for a small team or a solo builder. And because deployment is usually just packaging your model as a function, **iteration speed on early-stage products tends to be faster.**
 
-## Where containers win
+## Where do containers win?
 
-Once traffic is steady and volume is high, the economics flip. You're no longer paying a per-invocation premium on top of compute — you're amortizing GPU utilization across a continuous stream of requests, which is a materially different cost structure at scale. Containers also give you fine-grained placement control that serverless generally doesn't: routing cheaper GPUs to lightweight tasks like generating embeddings, and reserving your most expensive hardware for the heaviest models, is straightforward on a container-orchestrated setup and awkward-to-impossible on most serverless platforms.
+Once traffic is **steady and volume is high**, the economics flip. You're no longer paying a per-invocation premium on top of compute — you're amortizing GPU utilization across a continuous stream of requests, which is a materially different cost structure at scale.
 
-This is also where the industry data leans: Kubernetes now runs in production at 80% of organizations surveyed by the Cloud Native Computing Foundation in 2024, up from 66% the year before, and by the 2025 survey, 66% of organizations hosting generative AI models were using Kubernetes to manage at least part of their inference workloads. That's not proof containers are "right" — plenty of that adoption predates the AI workload question entirely — but it does mean container orchestration is the path with the deeper operational tooling and community experience behind it for production-scale serving.
+Containers also give you **fine-grained placement control** that serverless generally doesn't: routing cheaper GPUs to lightweight tasks like generating embeddings, and reserving your most expensive hardware for the heaviest models, is straightforward on a container-orchestrated setup and awkward-to-impossible on most serverless platforms.
 
-For scale calibration on the serverless side: AWS Lambda alone processes tens of trillions of invocations a month across more than 1.5 million active customers, which tells you serverless is clearly production-proven too — just for a different traffic shape than steady, GPU-heavy inference.
+This is also where the industry data leans: **Kubernetes now runs in production at 80% of organizations** surveyed by the Cloud Native Computing Foundation in 2024, up from 66% the year before, and by the 2025 survey, **66% of organizations hosting generative AI models were using Kubernetes to manage at least part of their inference workloads.** That's not proof containers are "right" — plenty of that adoption predates the AI workload question entirely — but it does mean container orchestration is the path with the deeper operational tooling and community experience behind it for production-scale serving.
+
+For scale calibration on the serverless side: **AWS Lambda alone processes tens of trillions of invocations a month across more than 1.5 million active customers**, which tells you serverless is clearly production-proven too — just for a different traffic shape than steady, GPU-heavy inference.
 
 ## My actual take
 
-If I'm shipping a prototype, an internal tool, or anything with traffic I can't yet predict, I start serverless — the operational simplicity is worth more early on than the per-invocation cost premium. Once a product has steady, high-volume, latency-sensitive traffic, I'd expect to move toward containers, because that's where the cost curve and the control you need both point.
+**If I'm shipping a prototype, an internal tool, or anything with traffic I can't yet predict, I start serverless** — the operational simplicity is worth more early on than the per-invocation cost premium.
 
-The honest caveat: most real systems end up as a hybrid rather than a clean either/or — serverless for bursty or infrequent tasks (batch preprocessing, webhook-triggered jobs), containers for the steady-state serving path. Treating this as a permanent, one-time architectural choice is usually the mistake, not picking the "wrong" side on day one.
+**Once a product has steady, high-volume, latency-sensitive traffic, I'd expect to move toward containers**, because that's where the cost curve and the control you need both point.
+
+The honest caveat: **most real systems end up as a hybrid rather than a clean either/or** — serverless for bursty or infrequent tasks (batch preprocessing, webhook-triggered jobs), containers for the steady-state serving path. Treating this as a permanent, one-time architectural choice is usually the mistake, not picking the "wrong" side on day one.
 
 ---
 
-**A note on the numbers used here:** figures that show up frequently in this space but come from a single blog post's internal cost calculation (e.g., specific dollar comparisons between a named Lambda and Fargate setup) are left out of this piece, since they depend heavily on the exact workload the original author was measuring and don't generalize cleanly. The adoption and scale figures cited above come directly from AWS's and CNCF's own published data.
+**A note on the numbers used here:** Figures that show up frequently in this space but come from a single blog post's internal cost calculation (e.g., specific dollar comparisons between a named Lambda and Fargate setup) are left out of this piece, since they depend heavily on the exact workload the original author was measuring and don't generalize cleanly. The adoption and scale figures cited above come directly from AWS's and CNCF's own published data.
 
 ## References
 

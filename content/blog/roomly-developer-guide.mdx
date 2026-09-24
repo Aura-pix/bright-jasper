@@ -24,43 +24,30 @@ Roomly is a student housing platform connecting students with verified accommoda
 
 The API Specification defines what the API exposes. This guide explains how to use it to accomplish specific tasks.
 
-## Table of contents
-
-1. [Before you begin](#1-before-you-begin)
-2. [Authentication](#2-authentication)
-3. [Make your first request](#3-make-your-first-request)
-4. [Working with properties](#4-working-with-properties)
-5. [Working with schools and areas](#5-working-with-schools-and-areas)
-6. [Working with housing data](#6-working-with-housing-data)
-7. [Building with Roomly](#7-building-with-roomly)
-8. [Handling API responses](#8-handling-api-responses)
-9. [Building your integration](#9-building-your-integration)
-
 ---
 
-## 1. Before you begin
+## What do you need before you begin?
 
 Before making a request, you need:
-
-- An API key. See [Authentication](#2-authentication).
+- An API key. See [Authentication](#how-do-you-authenticate).
 - A tool for sending HTTP requests, such as `curl`, [Postman](https://www.postman.com/), or a JavaScript `fetch` call.
 - Familiarity with JSON, since every response is returned as JSON.
 
-All endpoints in this guide are relative to the base URL:
+All endpoints are relative to the base URL:
 
 ```text
 https://api.roomly.com.ng/v1
 ```
 
-Every example in this guide uses real Roomly identifiers — `school_futminna`, `area_bosso`, `prop_123` — so you can follow along by substituting your own values.
+Every example uses real Roomly identifiers — `school_futminna`, `area_bosso`, `prop_123` — so you can follow along by substituting your own values.
 
 ---
 
-## 2. Authentication
+## How do you authenticate?
 
-Every request needs a valid API key sent as a Bearer token in the `Authorization` header — the exact header format is defined in the [API Specification](/blog/roomly-api-specification#authentication). What the spec doesn't cover is how to handle that key inside a real project, so that's the focus here.
+**Every request needs a valid API key sent as a Bearer token in the `Authorization` header** — the exact header format is defined in the [API Specification](/blog/roomly-api-specification#authentication).
 
-If you're testing from the command line, store the key in an environment variable rather than pasting it into every command:
+If you're testing from the command line, store the key in an environment variable:
 
 ```bash
 export ROOMLY_API_KEY=your_api_key_here
@@ -69,13 +56,13 @@ curl "https://api.roomly.com.ng/v1/properties" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-**If you get a `401`,** it's almost always one of three things: the header is missing entirely, the key has expired, or it was copied with trailing whitespace. Check the raw header value before assuming the API itself is failing — a `401` is rarely the API's fault.
+**If you get a `401`**, it's almost always one of three things: the header is missing entirely, the key has expired, or it was copied with trailing whitespace. Check the raw header value before assuming the API itself is failing — a `401` is rarely the API's fault.
 
-**Keep your key private.** Never expose it in client-side JavaScript or commit it to source control. Section [9.2](#92-security-considerations) covers the architecture for keeping it server-side in a real application.
+**Keep your key private.** Never expose it in client-side JavaScript or commit it to source control. Section [9.2](#what-are-the-security-considerations) covers the architecture for keeping it server-side in a real application.
 
 ---
 
-## 3. Make your first request
+## How do you make your first request?
 
 With your key set, confirm everything's wired up by listing properties:
 
@@ -84,7 +71,7 @@ curl "https://api.roomly.com.ng/v1/properties" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-A `200` status with a `data` array — even an empty one — means your setup is correct. You don't need to inspect every field yet; the full response shape is covered when you get to [4.1](#41-list-properties).
+A `200` status with a `data` array — even an empty one — means your setup is correct. You don't need to inspect every field yet; the full response shape is covered in [How do you list properties?](#how-do-you-list-properties).
 
 If you get a `401`, revisit the check above. If you get a `404` or connection error instead, double-check the base URL rather than the key.
 
@@ -92,11 +79,11 @@ Once this call succeeds, every other endpoint in this guide follows the same pat
 
 ---
 
-## 4. Working with properties
+## How do you work with properties?
 
 Properties are the primary resource in the Roomly API. Most integrations start here.
 
-### 4.1 List properties
+### How do you list properties?
 
 ```http
 GET /v1/properties
@@ -107,9 +94,9 @@ curl "https://api.roomly.com.ng/v1/properties" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-Without filters, this returns the first page of all properties. Full response shape and pagination fields are covered in [8.1](#81-pagination).
+Without filters, this returns the first page of all properties. Full response shape and pagination fields are covered in [How does pagination work?](#how-does-pagination-work).
 
-### 4.2 Filter properties
+### How do you filter properties?
 
 Filters combine as `AND` conditions. The full parameter list — `school`, `area`, `minPrice`, `maxPrice`, `propertyType`, `gender`, `verified`, `available` — is in the [API Specification](/blog/roomly-api-specification#list-properties). In practice, most real searches stack three or four at once:
 
@@ -118,9 +105,9 @@ curl "https://api.roomly.com.ng/v1/properties?school=school_futminna&propertyTyp
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-An unmatched combination of filters returns an empty `data` array, not an error. Build your UI for that explicitly — an empty state, not a failure message.
+**An unmatched combination of filters returns an empty `data` array, not an error.** Build your UI for that explicitly — an empty state, not a failure message.
 
-### 4.3 Retrieve a property
+### How do you retrieve a single property?
 
 ```http
 GET /v1/properties/{propertyId}
@@ -131,9 +118,9 @@ curl "https://api.roomly.com.ng/v1/properties/prop_123" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-This returns fields the list endpoint omits — `description` and `amenities` — which is why a detail page should always call this endpoint directly rather than reusing data from a list response. See [7.2](#72-build-a-property-details-page).
+This returns fields the list endpoint omits — `description` and `amenities` — which is why a detail page should always call this endpoint directly rather than reusing data from a list response. See [How do you build a property details page?](#how-do-you-build-a-property-details-page).
 
-### 4.4 Check availability
+### How do you check availability?
 
 ```http
 GET /v1/properties/{propertyId}/availability
@@ -144,24 +131,24 @@ curl "https://api.roomly.com.ng/v1/properties/prop_123/availability" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-This is served separately from the property record because it changes far more often than the rest of a listing. Treat it as near-real-time: don't cache it, and re-check it immediately before a booking action rather than trusting an earlier response. See [9.3](#93-caching-and-stale-data).
+This is served separately from the property record because it changes far more often than the rest of a listing. **Treat it as near-real-time: don't cache it, and re-check it immediately before a booking action rather than trusting an earlier response.** See [What are the caching rules?](#what-are-the-caching-rules).
 
 ---
 
-## 5. Working with schools and areas
+## How do you work with schools and areas?
 
 Schools and areas are how Roomly organizes properties geographically and institutionally. Use them to narrow a search before the user even sees a list of properties.
 
-### 5.1 Find a school
+### How do you find a school?
 
 ```bash
 curl "https://api.roomly.com.ng/v1/schools" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-Returns every school Roomly supports, each with a stable `id` (like `school_futminna`) — use that ID, not the name, in every other request. `GET /v1/schools/{schoolId}` retrieves one directly. Full response shape is in the [API Specification](/blog/roomly-api-specification#schools).
+Returns every school Roomly supports, each with a stable `id` (like `school_futminna`) — **use that ID, not the name, in every other request.** `GET /v1/schools/{schoolId}` retrieves one directly. Full response shape is in the [API Specification](/blog/roomly-api-specification#schools).
 
-### 5.2 Find properties around a school
+### How do you find properties around a school?
 
 You can reach the same properties two ways: filter the properties endpoint by `school`, or query through the school resource directly:
 
@@ -174,11 +161,11 @@ curl "https://api.roomly.com.ng/v1/schools/school_futminna/properties" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-Both return identical data — the choice is about your app's structure, not the API. Use `/schools/{schoolId}/properties` when a school is the primary navigation context, like a school-specific landing page. Use `?school=...` on the properties endpoint when the school is just one filter among several, like a general search form.
+Both return identical data — the choice is about your app's structure, not the API. Use `/schools/{schoolId}/properties` when a school is the primary navigation context (like a school-specific landing page). Use `?school=...` on the properties endpoint when the school is just one filter among several (like a general search form).
 
-### 5.3 Find properties in an area
+### How do you find properties in an area?
 
-Areas mirror the school pattern exactly — `GET /v1/areas`, `GET /v1/areas/{areaId}`, `GET /v1/areas/{areaId}/properties` — including the same choice between a dedicated endpoint and a `?area=...` filter described above.
+Areas mirror the school pattern exactly — `GET /v1/areas`, `GET /v1/areas/{areaId}`, `GET /v1/areas/{areaId}/properties` — including the same choice between a dedicated endpoint and a `?area=...` filter.
 
 ```bash
 curl "https://api.roomly.com.ng/v1/areas/area_bosso/properties" \
@@ -187,20 +174,20 @@ curl "https://api.roomly.com.ng/v1/areas/area_bosso/properties" \
 
 ---
 
-## 6. Working with housing data
+## How do you work with housing market data?
 
-The `market-data` resource returns aggregated statistics rather than individual property records. Use it when you need numbers about a market, not listings within it.
+The `market-data` resource returns **aggregated statistics rather than individual property records**. Use it when you need numbers about a market, not listings within it.
 
-### 6.1 Retrieve market data
+### How do you retrieve market data?
 
 ```bash
 curl "https://api.roomly.com.ng/v1/market-data?area=area_bosso&propertyType=self_contain" \
   -H "Authorization: Bearer $ROOMLY_API_KEY"
 ```
 
-Accepts the same `area`, `school`, and `propertyType` parameters used elsewhere in the API (see [4.2](#42-filter-properties)). Add `propertyType` when you want to see how a specific unit type performs within an area or school, rather than the area's blended average across all types. Full response fields are in the [API Specification](/blog/roomly-api-specification#market-data).
+Accepts the same `area`, `school`, and `propertyType` parameters used elsewhere. Add `propertyType` when you want to see how a specific unit type performs within an area or school, rather than the area's blended average across all types. Full response fields are in the [API Specification](/blog/roomly-api-specification#market-data).
 
-### 6.2 Compare areas
+### How do you compare areas?
 
 There's no dedicated "compare" endpoint. Instead, make one `market-data` request per area and compare the results client-side:
 
@@ -213,11 +200,9 @@ For a fuller per-area breakdown of listing counts and pricing without narrowing 
 
 ---
 
-## 7. Building with Roomly
+## How do you build with Roomly? (Common patterns)
 
-This section walks through four common things developers build with the Roomly API. Each example combines endpoints from the sections above into a working feature.
-
-### 7.1 Build a housing search
+### How do you build a housing search?
 
 A search interface typically needs: a list of schools or areas to populate filter dropdowns, and a filtered property list that updates as the user adjusts filters.
 
@@ -241,9 +226,9 @@ searchProperties({
 });
 ```
 
-Populate your filter controls from `GET /v1/schools` and `GET /v1/areas` on page load, so users pick from valid identifiers rather than typing free text.
+**Populate your filter controls from `GET /v1/schools` and `GET /v1/areas` on page load**, so users pick from valid identifiers rather than typing free text.
 
-### 7.2 Build a property details page
+### How do you build a property details page?
 
 A details page needs the full property record, plus a live availability check if you're showing a booking call-to-action.
 
@@ -255,9 +240,7 @@ async function getPropertyDetails(propertyId) {
     }),
     fetch(
       `https://api.roomly.com.ng/v1/properties/${propertyId}/availability`,
-      {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-      },
+      { headers: { Authorization: `Bearer ${API_KEY}` } },
     ),
   ]);
 
@@ -270,7 +253,7 @@ async function getPropertyDetails(propertyId) {
 
 Fetching both endpoints in parallel avoids a waterfall: the user sees the property description without waiting on the availability check, and vice versa.
 
-### 7.3 Build an availability checker
+### How do you build an availability checker?
 
 If you only need a lightweight availability widget — for example, a badge on a listing card — poll the availability endpoint on an interval rather than refetching the whole property:
 
@@ -285,9 +268,9 @@ async function checkAvailability(propertyId) {
 }
 ```
 
-Because availability is time-sensitive (see [4.4](#44-check-availability)), avoid caching this result for longer than a few minutes, and always re-check immediately before a booking step.
+Because availability is time-sensitive, **avoid caching this result for longer than a few minutes, and always re-check immediately before a booking step.**
 
-### 7.4 Build a housing dashboard
+### How do you build a housing dashboard?
 
 A dashboard combining market data across areas is mostly a fan-out of `market-data` requests, aggregated client-side:
 
@@ -306,13 +289,13 @@ async function getMarketOverview(areaIds) {
 getMarketOverview(["area_bosso", "area_gidan_kwano", "area_gidan_mangoro"]);
 ```
 
-For a dashboard with several widgets — average rent by area, verified-listing counts, property type breakdown — issue these requests in parallel rather than sequentially, and cache the results for the length of the dashboard session rather than refetching on every render.
+For a dashboard with several widgets — average rent by area, verified-listing counts, property type breakdown — **issue these requests in parallel rather than sequentially, and cache the results for the length of the dashboard session rather than refetching on every render.**
 
 ---
 
-## 8. Handling API responses
+## How do you handle API responses?
 
-### 8.1 Pagination
+### How does pagination work?
 
 Collection endpoints use page-based pagination via `page` and `limit`:
 
@@ -333,7 +316,7 @@ GET /v1/properties?page=2&limit=20
 
 Use `totalPages` to know when to stop paginating, and `total` to show a result count in your UI. There's an enforced maximum on `limit` — don't rely on requesting unusually large pages to avoid pagination logic.
 
-### 8.2 Errors
+### What are the error codes?
 
 The API uses standard HTTP status codes, with a consistent error body:
 
@@ -346,22 +329,22 @@ The API uses standard HTTP status codes, with a consistent error body:
 }
 ```
 
-| Status | Meaning                            |
-| ------ | ---------------------------------- |
-| `400`  | Invalid request                    |
-| `401`  | Authentication required or invalid |
-| `403`  | Request not permitted              |
-| `404`  | Resource not found                 |
-| `429`  | Rate limit exceeded                |
-| `500`  | Internal server error              |
+| Status | Meaning |
+|--------|---------|
+| `400` | Invalid request |
+| `401` | Authentication required or invalid |
+| `403` | Request not permitted |
+| `404` | Resource not found |
+| `429` | Rate limit exceeded |
+| `500` | Internal server error |
 
 Handle errors in two layers: use the HTTP status for broad branching (retry, redirect to login, show a generic failure state), and the `error.code` for anything specific enough to show the user a targeted message — for example, distinguishing `PROPERTY_NOT_FOUND` from `INVALID_PARAMETER`.
 
-### 8.3 Rate limits
+### What are the rate limits?
 
 Authenticated applications are limited to:
 
-```text
+```
 1,000 requests per hour
 ```
 
@@ -371,17 +354,17 @@ Exceeding this returns a `429`:
 429 Too Many Requests
 ```
 
-Build in backoff for `429` responses rather than retrying immediately, and batch requests where the API allows it — for example, using filters to get exactly the properties you need in one call instead of paginating through the full list client-side.
+**Build in backoff for `429` responses rather than retrying immediately**, and batch requests where the API allows it — for example, using filters to get exactly the properties you need in one call instead of paginating through the full list client-side.
 
 > **Note:** Rate limits are part of the proposed API design and may vary by plan as the service scales — see the [API Specification](/blog/roomly-api-specification#rate-limits) for the current proposed figures.
 
 ---
 
-## 9. Building your integration
+## How do you build your integration? (Architecture)
 
-### 9.1 Recommended architecture
+### What's the recommended architecture?
 
-For any application that goes beyond a quick script, route Roomly API calls through your own backend rather than calling the API directly from client-side code:
+For any application that goes beyond a quick script, **route Roomly API calls through your own backend rather than calling the API directly from client-side code:**
 
 ```text
 Browser / Mobile App
@@ -395,24 +378,24 @@ Browser / Mobile App
 
 This gives you a place to hold your API key securely, cache frequently requested data (schools, areas, market data), and shape responses to exactly what your frontend needs.
 
-### 9.2 Security considerations
+### What are the security considerations?
 
 - **Never expose your API key client-side.** Requests from a browser or mobile app should go to your backend, which then calls Roomly with the key attached server-side.
 - **Validate user input before it reaches the API.** Even though Roomly validates parameters and returns `400` on invalid input, checking early avoids unnecessary round trips and gives you more control over error messages.
 - **Log failed requests**, especially `401` and `403` responses, since a spike often indicates a misconfigured or leaked key rather than a genuine user error.
 
-### 9.3 Caching and stale data
+### What are the caching rules?
 
 Not all Roomly data changes at the same rate, so it shouldn't all be cached the same way:
 
-| Data             | Change frequency | Suggested caching                              |
-| ---------------- | ---------------- | ---------------------------------------------- |
-| Schools, areas   | Rarely           | Cache for hours or a day                       |
-| Property details | Occasionally     | Cache for minutes                              |
-| Market data      | Daily-ish        | Cache for an hour or more                      |
-| Availability     | Frequently       | Avoid caching; re-check before booking actions |
+| Data | Change frequency | Suggested caching |
+|------|------------------|-------------------|
+| Schools, areas | Rarely | Cache for hours or a day |
+| Property details | Occasionally | Cache for minutes |
+| Market data | Daily-ish | Cache for an hour or more |
+| Availability | Frequently | Avoid caching; re-check before booking actions |
 
-The general rule: cache data proportionally to how expensive being wrong about it would be. Showing a stale school name costs nothing. Showing a property as available when it isn't costs the user a failed booking attempt — so treat [4.4](#44-check-availability) as close to real-time as your architecture allows.
+**The general rule: cache data proportionally to how expensive being wrong about it would be.** Showing a stale school name costs nothing. Showing a property as available when it isn't costs the user a failed booking attempt — so treat availability as close to real-time as your architecture allows.
 
 ---
 

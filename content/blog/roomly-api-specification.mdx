@@ -25,21 +25,24 @@ Roomly is a student housing platform that connects students with verified accomm
 
 This API is designed around a longer-term vision for Roomly as a student housing data and infrastructure layer. External applications could use the API to discover properties, query availability, retrieve location information, and build housing experiences on top of Roomly's underlying data.
 
-## API goals
+---
+
+## What are the API goals?
 
 The API should allow developers to:
+- Discover student accommodation
+- Filter properties by location, school, price, type, availability, and verification status
+- Retrieve detailed property information
+- Explore supported schools and locations
+- Check property availability
+- Retrieve aggregated housing market data
+- Build student housing applications and services using Roomly data
 
-- Discover student accommodation.
-- Filter properties by location, school, price, type, availability, and verification status.
-- Retrieve detailed property information.
-- Explore supported schools and locations.
-- Check property availability.
-- Retrieve aggregated housing market data.
-- Build student housing applications and services using Roomly data.
+The API is designed to be **read-oriented in its initial version**. Actions involving payments, bookings, withdrawals, and account management remain controlled by Roomly's own application until corresponding public API capabilities are explicitly introduced.
 
-The API is designed to be read-oriented in its initial version. Actions involving payments, bookings, withdrawals, and account management remain controlled by Roomly's own application until corresponding public API capabilities are explicitly introduced.
+---
 
-## Base URL
+## What is the base URL?
 
 The proposed production base URL is:
 
@@ -51,9 +54,11 @@ The "/v1" path identifies the first version of the API.
 
 > **Note:** This URL is proposed and is not currently presented as a live public API endpoint.
 
-## Authentication
+---
 
-Authenticated requests use an API key supplied as a Bearer token.
+## How does authentication work?
+
+**Authenticated requests use an API key supplied as a Bearer token.**
 
 ```http
 Authorization: Bearer YOUR_API_KEY
@@ -63,16 +68,18 @@ Example:
 
 ```bash
 curl "https://api.roomly.com.ng/v1/properties" \
-	-H "Authorization: Bearer YOUR_API_KEY"
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-API keys should be kept private and must not be exposed in client-side applications or committed to source control.
+**API keys should be kept private and must not be exposed in client-side applications or committed to source control.**
 
-## Response format
+---
+
+## What is the response format?
 
 Successful responses use JSON.
 
-Collection endpoints return their results inside a "data" property.
+Collection endpoints return their results inside a "data" property:
 
 ```json
 {
@@ -91,7 +98,7 @@ Collection endpoints return their results inside a "data" property.
 }
 ```
 
-Single-resource endpoints return the requested resource directly inside "data".
+Single-resource endpoints return the requested resource directly inside "data":
 
 ```json
 {
@@ -108,25 +115,27 @@ Single-resource endpoints return the requested resource directly inside "data".
 }
 ```
 
-## Resources
+---
 
-The initial API is organized around five primary resources:
+## What resources does the API expose?
 
-| Resource       | Purpose                                         |
-| -------------- | ----------------------------------------------- |
-| `properties`   | Student accommodation listings                  |
-| `schools`      | Schools and institutions served by Roomly       |
-| `areas`        | Geographic areas where properties are listed    |
+The initial API is organized around **five primary resources**:
+
+| Resource | Purpose |
+|----------|---------|
+| `properties` | Student accommodation listings |
+| `schools` | Schools and institutions served by Roomly |
+| `areas` | Geographic areas where properties are listed |
 | `availability` | Current availability information for properties |
-| `market-data`  | Aggregated housing and pricing information      |
+| `market-data` | Aggregated housing and pricing information |
 
 ---
 
-## Properties
+## How do you work with properties?
 
 Properties are the primary resource in the Roomly API.
 
-### List properties
+### How do you list properties?
 
 ```http
 GET /v1/properties
@@ -134,25 +143,24 @@ GET /v1/properties
 
 Returns a paginated list of properties.
 
-#### Query parameters
+#### What query parameters are supported?
 
-| Parameter      | Type    | Required | Description                                   |
-| -------------- | ------- | -------- | --------------------------------------------- |
-| `school`       | string  | No       | Filter by school identifier                   |
-| `area`         | string  | No       | Filter by area identifier                     |
-| `minPrice`     | integer | No       | Minimum rent                                  |
-| `maxPrice`     | integer | No       | Maximum rent                                  |
-| `propertyType` | string  | No       | Filter by property type                       |
-| `gender`       | string  | No       | Filter by gender preference                   |
-| `verified`     | boolean | No       | Return only verified properties               |
-| `available`    | boolean | No       | Return only currently available properties    |
-| `page`         | integer | No       | Page number. Defaults to `1`.                 |
-| `limit`        | integer | No       | Number of results per page. Defaults to `20`. |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `school` | string | No | Filter by school identifier |
+| `area` | string | No | Filter by area identifier |
+| `minPrice` | integer | No | Minimum rent |
+| `maxPrice` | integer | No | Maximum rent |
+| `propertyType` | string | No | Filter by property type |
+| `gender` | string | No | Filter by gender preference |
+| `verified` | boolean | No | Return only verified properties |
+| `available` | boolean | No | Return only currently available properties |
+| `page` | integer | No | Page number. Defaults to `1`. |
+| `limit` | integer | No | Number of results per page. Defaults to `20`. |
 
-### Supported property types
+### What property types are supported?
 
 The public Roomly product currently presents property types including:
-
 - Self Contain
 - One Bedroom
 - Room & Parlor
@@ -160,70 +168,66 @@ The public Roomly product currently presents property types including:
 
 The API uses machine-readable identifiers for these values:
 
-| Display name  | API value      |
-| ------------- | -------------- |
-| Self Contain  | `self_contain` |
-| One Bedroom   | `one_bedroom`  |
-| Room & Parlor | `room_parlor`  |
-| Two Bedroom   | `two_bedroom`  |
+| Display name | API value |
+|--------------|-----------|
+| Self Contain | `self_contain` |
+| One Bedroom | `one_bedroom` |
+| Room & Parlor | `room_parlor` |
+| Two Bedroom | `two_bedroom` |
 
-### Example request
+### What's an example request?
 
 ```bash
 curl "https://api.roomly.com.ng/v1/properties?area=bosso&propertyType=self_contain&available=true" \
-	-H "Authorization: Bearer YOUR_API_KEY"
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-### Example response
+### What's an example response?
 
 ```json
 {
-"data": [
-{
-	"data": [
-		{
-			"id": "prop_123",
-			"name": "Example Lodge",
-			"propertyType": "self_contain",
-			"area": {
-				"id": "area_bosso",
-				"name": "Bosso"
-			},
-			"school": {
-				"id": "school_futminna",
-				"name": "FUTMINNA"
-			},
-			"rent": 250000,
-			"gender": "any",
-			"available": true,
-			"verified": true
-		}
-	],
-	"pagination": {
-		"page": 1,
-		"limit": 20,
-		"total": 1,
-		"totalPages": 1
-	}
-
+  "data": [
+    {
+      "id": "prop_123",
+      "name": "Example Lodge",
+      "propertyType": "self_contain",
+      "area": {
+        "id": "area_bosso",
+        "name": "Bosso"
+      },
+      "school": {
+        "id": "school_futminna",
+        "name": "FUTMINNA"
+      },
+      "rent": 250000,
+      "gender": "any",
+      "available": true,
+      "verified": true
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 20,
+    "total": 1,
+    "totalPages": 1
+  }
+}
 ```
 
-### Retrieve a property
+### How do you retrieve a single property?
 
 ```http
 GET /v1/properties/{propertyId}
 ```
 
-Returns detailed information about a single property.
-
-### Example
+Example:
 
 ```bash
 curl "https://api.roomly.com.ng/v1/properties/prop_123" \
-	-H "Authorization: Bearer YOUR_API_KEY"
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
-### Example response
+Example response:
 
 ```json
 {
@@ -251,11 +255,11 @@ curl "https://api.roomly.com.ng/v1/properties/prop_123" \
 
 ---
 
-## Schools
+## How do you work with schools?
 
 Schools represent educational institutions associated with Roomly properties.
 
-### List schools
+### How do you list schools?
 
 ```http
 GET /v1/schools
@@ -263,7 +267,7 @@ GET /v1/schools
 
 Returns schools available for property discovery.
 
-### Example response
+Example response:
 
 ```json
 {
@@ -277,9 +281,7 @@ Returns schools available for property discovery.
 }
 ```
 
-}
-
-### Retrieve a school
+### How do you retrieve a single school?
 
 ```http
 GET /v1/schools/{schoolId}
@@ -287,7 +289,7 @@ GET /v1/schools/{schoolId}
 
 Returns information about a specific school.
 
-### Properties near a school
+### How do you get properties near a school?
 
 ```http
 GET /v1/schools/{schoolId}/properties
@@ -295,20 +297,20 @@ GET /v1/schools/{schoolId}/properties
 
 This endpoint provides a convenient way for applications to retrieve accommodation associated with a particular institution.
 
-### Example
+Example:
 
 ```bash
 curl "https://api.roomly.com.ng/v1/schools/school_futminna/properties" \
-	-H "Authorization: Bearer YOUR_API_KEY"
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 ---
 
-## Areas
+## How do you work with areas?
 
 Areas represent geographic locations used for property discovery.
 
-### List areas
+### How do you list areas?
 
 ```http
 GET /v1/areas
@@ -316,38 +318,38 @@ GET /v1/areas
 
 The API may return areas such as Bosso, Gidan Kwano, Gidan Mangoro, Gidan Painti, Dama, and Albishiri, which are currently presented as popular Roomly locations.
 
-### Retrieve an area
+### How do you retrieve a single area?
 
 ```http
 GET /v1/areas/{areaId}
 ```
 
-### Properties in an area
+### How do you get properties in an area?
 
 ```http
 GET /v1/areas/{areaId}/properties
 ```
 
-### Example
+Example:
 
 ```bash
 curl "https://api.roomly.com.ng/v1/areas/area_bosso/properties" \
-	-H "Authorization: Bearer YOUR_API_KEY"
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 ---
 
-## Availability
+## How do you check availability?
 
 Availability allows applications to determine whether a property currently has accommodation available.
 
-### Check property availability
+### How do you check property availability?
 
 ```http
 GET /v1/properties/{propertyId}/availability
 ```
 
-### Example response
+Example response:
 
 ```json
 {
@@ -360,36 +362,35 @@ GET /v1/properties/{propertyId}/availability
 }
 ```
 
-Availability data should be treated as time-sensitive. Applications should not assume that a property remains available after retrieving this response.
+**Availability data should be treated as time-sensitive.** Applications should not assume that a property remains available after retrieving this response.
 
 ---
 
-## Market data
+## How do you work with market data?
 
-The market-data resource provides aggregated information rather than individual property records.
+The market-data resource provides **aggregated information rather than individual property records**.
 
 This allows developers to build applications that answer questions such as:
-
 - What is the average rent in an area?
 - How many verified properties are available?
 - Which property types are most common?
 - How does pricing vary between areas?
 
-### Retrieve market data
+### How do you retrieve market data?
 
 ```http
 GET /v1/market-data
 ```
 
-#### Query parameters
+#### What query parameters are supported?
 
-| Parameter      | Type   | Required | Description                            |
-| -------------- | ------ | -------- | -------------------------------------- |
-| `area`         | string | No       | Restrict statistics to an area         |
-| `school`       | string | No       | Restrict statistics to a school        |
-| `propertyType` | string | No       | Restrict statistics to a property type |
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `area` | string | No | Restrict statistics to an area |
+| `school` | string | No | Restrict statistics to a school |
+| `propertyType` | string | No | Restrict statistics to a property type |
 
-### Example response
+Example response:
 
 ```json
 {
@@ -404,7 +405,7 @@ GET /v1/market-data
 }
 ```
 
-### Area statistics
+### How do you get area statistics?
 
 ```http
 GET /v1/areas/{areaId}/statistics
@@ -414,7 +415,7 @@ Returns aggregated housing statistics for an area.
 
 ---
 
-## Pagination
+## How does pagination work?
 
 Collection endpoints use page-based pagination.
 
@@ -439,11 +440,11 @@ The maximum permitted "limit" should be enforced by the API to prevent unnecessa
 
 ---
 
-## Filtering
+## How does filtering work?
 
 Filters can be combined in a single request.
 
-For example:
+Example:
 
 ```http
 GET /v1/properties?school=school_futminna&area=area_bosso&minPrice=150000&maxPrice=300000&verified=true&available=true
@@ -451,7 +452,7 @@ GET /v1/properties?school=school_futminna&area=area_bosso&minPrice=150000&maxPri
 
 Applications should treat unspecified filters as unrestricted.
 
-If no properties match the supplied filters, the API returns an empty "data" array rather than an error.
+If no properties match the supplied filters, the API returns an empty "data" array rather than an error:
 
 ```json
 {
@@ -467,7 +468,7 @@ If no properties match the supplied filters, the API returns an empty "data" arr
 
 ---
 
-## Sorting
+## How does sorting work?
 
 Collection endpoints may support sorting using the "sort" and "order" parameters.
 
@@ -475,31 +476,28 @@ Collection endpoints may support sorting using the "sort" and "order" parameters
 GET /v1/properties?sort=rent&order=asc
 ```
 
-Supported sorting fields should be limited to fields for which predictable ordering is available.
-
-For example:
-
+Supported sorting fields should be limited to fields for which predictable ordering is available:
 - "rent"
 - "createdAt"
 - "updatedAt"
 
 ---
 
-## Errors
+## What are the error codes?
 
 The API uses standard HTTP status codes.
 
-| Status | Meaning                            |
-| ------ | ---------------------------------- |
-| `200`  | Request succeeded                  |
-| `400`  | Invalid request                    |
-| `401`  | Authentication required or invalid |
-| `403`  | Request not permitted              |
-| `404`  | Resource not found                 |
-| `429`  | Rate limit exceeded                |
-| `500`  | Internal server error              |
+| Status | Meaning |
+|--------|---------|
+| `200` | Request succeeded |
+| `400` | Invalid request |
+| `401` | Authentication required or invalid |
+| `403` | Request not permitted |
+| `404` | Resource not found |
+| `429` | Rate limit exceeded |
+| `500` | Internal server error |
 
-Errors use a consistent response structure.
+Errors use a consistent response structure:
 
 ```json
 {
@@ -521,17 +519,17 @@ Example: invalid request
 }
 ```
 
-Applications should use the HTTP status code for broad error handling and the error code for application-specific handling.
+**Applications should use the HTTP status code for broad error handling and the error code for application-specific handling.**
 
 ---
 
-## Rate limits
+## What are the rate limits?
 
 The proposed API should enforce rate limits to protect the service from excessive requests.
 
 Authenticated applications may initially receive:
 
-```text
+```
 1,000 requests per hour
 ```
 
@@ -547,7 +545,7 @@ Rate limits may vary by API plan and can be changed as the service scales.
 
 ---
 
-## Versioning
+## How does versioning work?
 
 The API uses URL-based versioning.
 
@@ -557,8 +555,7 @@ https://api.roomly.com.ng/v1/
 
 Breaking changes should result in a new API version rather than silently changing the behaviour of an existing version.
 
-For example:
-
+Example:
 ```text
 /v1/properties
 /v2/properties
@@ -568,7 +565,7 @@ Existing API versions should remain available for a defined deprecation period b
 
 ---
 
-## Resource relationships
+## How are resources related?
 
 Roomly resources are related through stable identifiers.
 
@@ -583,29 +580,23 @@ Property
 └── Availability
 ```
 
-Applications should use resource IDs when making API requests rather than relying on display names.
+**Applications should use resource IDs when making API requests rather than relying on display names.**
 
-For example:
-
-area_bosso
-
-is preferred over:
-
-Bosso
-
-when requesting a specific area.
+Example:
+- `area_bosso` is preferred over `Bosso` when requesting a specific area.
 
 ---
 
-## Read and write operations
+## What operations are available?
 
-The initial proposed API focuses on read operations.
+The initial proposed API focuses on **read operations**.
 
 ### Available in the initial API design
 
 ```text
 GET /v1/properties
 GET /v1/properties/{propertyId}
+GET /v1/properties/{propertyId}/availability
 
 GET /v1/schools
 GET /v1/schools/{schoolId}
@@ -616,15 +607,12 @@ GET /v1/areas/{areaId}
 GET /v1/areas/{areaId}/properties
 GET /v1/areas/{areaId}/statistics
 
-GET /v1/properties/{propertyId}/availability
-
 GET /v1/market-data
 ```
 
 ### Future capabilities
 
 Write operations could eventually expose selected Roomly functionality, including:
-
 - Creating or updating listings
 - Managing availability
 - Creating reservations
@@ -637,21 +625,21 @@ These operations require additional authentication, authorization, validation, a
 
 ---
 
-## API design principles
+## What are the API design principles?
 
 The proposed API follows these principles:
 
-1. Resource-oriented URLs — URLs represent resources rather than actions.
-2. Predictable responses — related endpoints use consistent response structures.
-3. Explicit filtering — clients can narrow results without requiring separate endpoints for every use case.
-4. Stable identifiers — resources are referenced by IDs rather than display names.
-5. Versioned contracts — breaking changes are isolated behind API versions.
-6. Progressive capability — the initial API exposes useful read operations before introducing higher-risk write operations.
-7. Developer usability — endpoints, parameters, responses, and errors should be predictable enough for developers to integrate without needing access to Roomly's internal implementation.
+1. **Resource-oriented URLs** — URLs represent resources rather than actions.
+2. **Predictable responses** — related endpoints use consistent response structures.
+3. **Explicit filtering** — clients can narrow results without requiring separate endpoints for every use case.
+4. **Stable identifiers** — resources are referenced by IDs rather than display names.
+5. **Versioned contracts** — breaking changes are isolated behind API versions.
+6. **Progressive capability** — the initial API exposes useful read operations before introducing higher-risk write operations.
+7. **Developer usability** — endpoints, parameters, responses, and errors should be predictable enough for developers to integrate without needing access to Roomly's internal implementation.
 
-## Proposed API surface
+---
 
-The initial API can therefore be summarized as:
+## What's the proposed API surface summary?
 
 ```text
 Properties
@@ -673,6 +661,8 @@ GET /v1/areas/{areaId}/statistics
 Market Data
 GET /v1/market-data
 ```
+
+---
 
 This specification serves as the proposed contract from which the Roomly Developer Guides can be written.
 
