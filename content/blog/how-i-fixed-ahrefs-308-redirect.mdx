@@ -29,6 +29,7 @@ Ahrefs shows 308 because that's what Vercel uses by default. Both 301 and 308 ar
 ## What was the actual problem?
 
 I had four versions of the domain competing with each other:
+
 - `http://brightjasper.com`
 - `http://www.brightjasper.com`
 - `https://www.brightjasper.com`
@@ -92,7 +93,10 @@ export const metadata = {
 For dynamic pages, build the canonical from the current slug. Check the generated HTML and confirm a post contains:
 
 ```html
-<link rel="canonical" href="https://brightjasper.com/blog/fix-ahrefs-308-redirect" />
+<link
+  rel="canonical"
+  href="https://brightjasper.com/blog/fix-ahrefs-308-redirect"
+/>
 ```
 
 It should not contain the homepage URL on every page.
@@ -107,7 +111,10 @@ In an App Router project:
 export default function sitemap() {
   return [
     { url: "https://brightjasper.com", lastModified: new Date() },
-    { url: "https://brightjasper.com/blog/fix-ahrefs-308-redirect", lastModified: new Date() },
+    {
+      url: "https://brightjasper.com/blog/fix-ahrefs-308-redirect",
+      lastModified: new Date(),
+    },
   ];
 }
 ```
@@ -125,9 +132,13 @@ It should match the sitemap and canonical version exactly. Then rerun the audit.
 ## What was the result?
 
 **Before:** 33% health and 55 crawl errors.
+![Ahreft site overview showing 30% health score](/ahrefs-30-site-overview.png)
+
 **After:** 100% health and 0 errors.
+![Ahreft site overview showing 100% health score](/ahrefs-100-site-overview.png)
 
 The re-crawl took about four minutes.
+![Ahrefs timeline image showing 33% to 100% jump in 3 days](/ahrefs-timeline-image.png)
 
 ## What if you use Cloudflare Proxy (orange cloud)?
 
