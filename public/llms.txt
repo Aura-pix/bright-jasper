@@ -72,6 +72,28 @@ Bright helps brands get found by search engines and AI answer engines. He fixes 
 - [RSS feed](https://brightjasper.com/rss.xml): New blog posts.
 - [Sitemap](https://brightjasper.com/sitemap.xml): All indexable URLs.
 
+## Markdown for Agents
+
+Clean Markdown versions of all blog posts (for AI crawlers with `Accept: text/markdown`):
+
+- [How I Fixed Ahrefs 3xx Redirects](https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect/markdown)
+- [How I Got a New Domain Indexed in 24 Hours](https://brightjasper.com/blog/how-i-got-a-new-domain-indexed-in-24-hours/markdown)
+- [Dangote Refinery Stock: Why N10,000 Is Unrealistic](https://brightjasper.com/blog/dangote-refinery-stock-10000/markdown)
+- [Founder Story: Why I Built Roomly](https://brightjasper.com/blog/founder-story-why-i-built-roomly/markdown)
+- [Getting Started with Roomly](https://brightjasper.com/blog/getting-started-with-roomly/markdown)
+- [Roomly Developer Guide](https://brightjasper.com/blog/roomly-developer-guide/markdown)
+- [Roomly API Specification](https://brightjasper.com/blog/roomly-api-specification/markdown)
+- [Roomly Student Guide](https://brightjasper.com/blog/roomly-student-guide/markdown)
+- [Roomly Caretaker Guide](https://brightjasper.com/blog/roomly-caretaker-guide/markdown)
+- [Recursive zk-SNARKs: How Mina Keeps Its Blockchain Succinct](https://brightjasper.com/blog/recursive-zk-snarks-the-mechanism-that-keeps-mina-succinct/markdown)
+- [LLM Production Cost: APIs vs Self-Hosted GPUs](https://brightjasper.com/blog/llm-production-cost/markdown)
+- [Serverless vs Containers for AI Workloads](https://brightjasper.com/blog/serverless-vs-containers-ai/markdown)
+- [How RAG Works: Query, Retrieve, and Generate](https://brightjasper.com/blog/rag-explained/markdown)
+- [Build a RAG Pipeline with Node.js and TypeScript](https://brightjasper.com/blog/rag-tutorial-nodejs/markdown)
+- [How Kubernetes HPA Scales](https://brightjasper.com/blog/how-autoscaling-works/markdown)
+- [How Mina Keeps a Blockchain Under 22KB](https://brightjasper.com/blog/how-does-mina-keep-an-entire-blockchain-at-22kb/markdown)
+- [The Pigeonhole Principle: Simple Math, Huge Consequences](https://brightjasper.com/blog/pigeonhole-principle-is-terrifying/markdown)
+
 ## Elsewhere
 
 - [X](https://x.com/brightjasp)
