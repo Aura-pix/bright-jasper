@@ -7,7 +7,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "SEO writing & process | Bright Jasper",
   description:
-    "SEO articles, technical SEO audits broken down, and practical how-tos on fixing what is actually wrong with a site.",
+    "SEO articles, technical SEO audits broken down, and practical how-tos from Bright Jasper for fixing what is actually wrong with a site.",
   path: "/writing-samples/persuasive",
   keywords: [
     "SEO writing samples",

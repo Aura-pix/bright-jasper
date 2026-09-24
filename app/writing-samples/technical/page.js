@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Technical writing samples | Bright Jasper",
   description:
-    "Developer docs, API references, protocol explainers, and technical writing samples for product teams.",
+    "Developer docs, API references, protocol explainers, and technical writing samples by Bright Jasper for product teams.",
   path: "/writing-samples/technical",
   keywords: [
     "technical writing samples",
