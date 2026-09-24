@@ -34,7 +34,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Bright Jasper",
   url: SITE_URL,
-  logo: `${SITE_URL}/images/logo.png`,
+  logo: `${SITE_URL}/favicon-512x512.png`,
   sameAs: [
     "https://x.com/brightjasp",
     "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
@@ -82,7 +82,15 @@ export const metadata = {
   description:
     "Bright Jasper does SEO, GEO, AEO, and content writing for brands that want to be found by search engines and AI, plus technical writing for web2 and web3 teams.",
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon-144x144.png", sizes: "144x144", type: "image/png" },
+      { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   verification: {
     other: {

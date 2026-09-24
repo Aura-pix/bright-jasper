@@ -26,7 +26,7 @@ export default function Nav() {
           className="flex items-center gap-2 text-[15px] font-medium text-ink flex-shrink-0"
         >
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Bright Jasper logo"
             width={28}
             height={28}
