@@ -10,6 +10,7 @@
     "indexnow": "node scripts/indexnow.js"
   },
   "dependencies": {
+    "googleapis": "^144.0.0",
     "gray-matter": "^4.0.3",
     "next": "^14.2.25",
     "next-mdx-remote": "^6.0.0",

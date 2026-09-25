@@ -1,4 +1,4 @@
-name: IndexNow ping on publish
+name: IndexNow + Google Indexing API on publish
 
 on:
   workflow_dispatch:
@@ -39,7 +39,7 @@ jobs:
 
           echo "urls=$(jq -c . <<< "$URLS")" >> "$GITHUB_OUTPUT"
 
-      - name: Submit to IndexNow
+      - name: Submit to IndexNow (Bing, Yandex, Seznam, etc.)
         if: steps.urls.outputs.urls != '[]'
         env:
           URLS: ${{ steps.urls.outputs.urls }}
@@ -54,3 +54,12 @@ jobs:
             | curl --fail-with-body -sS -X POST "https://api.indexnow.org/indexnow" \
                 -H "Content-Type: application/json; charset=utf-8" \
                 --data-binary @-
+
+      - name: Submit to Google Indexing API
+        if: steps.urls.outputs.urls != '[]'
+        env:
+          URLS: ${{ steps.urls.outputs.urls }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          echo "$GOOGLE_SERVICE_ACCOUNT_JSON" > google-service-account.json
+          node scripts/google-indexing.js $(jq -r '.[]' <<< "$URLS")
