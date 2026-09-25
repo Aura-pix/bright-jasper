@@ -8,8 +8,7 @@ import HamburgerMenu from "@/components/nav/HamburgerMenu";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
-  { href: "/writing-samples/technical", label: "Technical Writing" },
-  { href: "/writing-samples/seo-growth", label: "SEO & Growth" },
+  { href: "/writing-samples", label: "Writing Samples" },
   { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact me" },
   { href: "/about", label: "About" },
