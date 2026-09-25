@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
   { href: "/writing-samples/technical", label: "Technical Writing" },
-  { href: "/writing-samples/persuasive", label: "SEO Articles" },
+  { href: "/writing-samples/seo-growth", label: "SEO & Growth" },
   { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact Me" },
   { href: "/about", label: "About" },
@@ -28,7 +28,9 @@ export default function HamburgerMenu() {
 
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("touchstart", handleClickOutside, { passive: true });
+      document.addEventListener("touchstart", handleClickOutside, {
+        passive: true,
+      });
     }
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);

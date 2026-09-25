@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
   { href: "/writing-samples/technical", label: "Technical Writing" },
-  { href: "/writing-samples/persuasive", label: "SEO Articles" },
+  { href: "/writing-samples/seo-growth", label: "SEO & Growth" },
   { href: "/projects", label: "Projects" },
   { href: "/contact", label: "Contact me" },
   { href: "/about", label: "About" },

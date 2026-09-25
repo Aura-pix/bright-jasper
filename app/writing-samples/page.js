@@ -4,15 +4,14 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Writing samples | Bright Jasper",
   description:
-    "SEO content, articles, product copy, research, and technical writing samples from Bright Jasper for clear communication across audiences.",
+    "Writing samples from Bright Jasper for technical documentation, SEO and growth, and research-driven thought leadership.",
   path: "/writing-samples",
   keywords: [
     "SEO writing samples",
     "technical writing samples",
-    "content writing portfolio",
-    "product copywriting samples",
+    "SEO and growth writing samples",
+    "thought leadership writing samples",
     "developer documentation samples",
-    "web3 writing samples",
   ],
 });
 
@@ -22,7 +21,7 @@ export default function WritingSamplesPage() {
     "@type": "CollectionPage",
     name: "Writing samples",
     description:
-      "SEO content, product copy, research, and technical writing samples from Bright Jasper.",
+      "Writing samples from Bright Jasper for technical documentation, SEO and growth, and research-driven thought leadership.",
     url: "https://brightjasper.com/writing-samples",
     hasPart: [
       {
@@ -32,8 +31,13 @@ export default function WritingSamplesPage() {
       },
       {
         "@type": "CollectionPage",
-        name: "SEO writing & process",
-        url: "https://brightjasper.com/writing-samples/persuasive",
+        name: "SEO & Growth writing samples",
+        url: "https://brightjasper.com/writing-samples/seo-growth",
+      },
+      {
+        "@type": "CollectionPage",
+        name: "Thought Leadership writing samples",
+        url: "https://brightjasper.com/writing-samples/thought-leadership",
       },
     ],
   };
@@ -49,12 +53,12 @@ export default function WritingSamplesPage() {
           Writing samples
         </h1>
         <p className="text-[15px] text-muted mb-10 max-w-lg">
-          SEO content, product copy, research, and technical writing for
-          technical and non-technical audiences. Here are some examples of my
-          work, organized by type of writing.
+          Looking for a writer who can make complex ideas clear, help the right
+          people find your work, or shape a stronger point of view? Browse
+          examples by the kind of writing you need.
         </p>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid gap-6">
           <Link
             href="/writing-samples/technical"
             className="block p-6 rounded-lg border border-ink/10 hover:border-accent transition-colors"
@@ -63,22 +67,34 @@ export default function WritingSamplesPage() {
               Technical Writing
             </h2>
             <p className="text-[14px] text-muted leading-relaxed">
-              Developer docs, API references, protocol explainers, tutorials,
-              and research-backed technical content for engineers and technical
-              decision-makers.
+              See how I document APIs, software architecture, developer
+              workflows, and technical products for engineers and users.
             </p>
           </Link>
 
           <Link
-            href="/writing-samples/persuasive"
+            href="/writing-samples/seo-growth"
             className="block p-6 rounded-lg border border-ink/10 hover:border-accent transition-colors"
           >
             <h2 className="text-[18px] font-medium text-ink mb-2">
-              SEO Writing
+              SEO &amp; Growth
             </h2>
             <p className="text-[14px] text-muted leading-relaxed">
-              SEO articles, audits broken down, and practical how-tos on fixing
-              what is actually wrong with a site.
+              Review SEO articles, technical audits, ranking experiments, and
+              case studies focused on organic growth.
+            </p>
+          </Link>
+
+          <Link
+            href="/writing-samples/thought-leadership"
+            className="block p-6 rounded-lg border border-ink/10 hover:border-accent transition-colors"
+          >
+            <h2 className="text-[18px] font-medium text-ink mb-2">
+              Thought Leadership
+            </h2>
+            <p className="text-[14px] text-muted leading-relaxed">
+              Read research-driven deep dives on macroeconomics, Web3 protocols,
+              AI infrastructure, and computer science frameworks.
             </p>
           </Link>
         </div>

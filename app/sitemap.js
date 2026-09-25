@@ -12,7 +12,8 @@ export default function sitemap() {
     "/contact",
     "/writing-samples",
     "/writing-samples/technical",
-    "/writing-samples/persuasive",
+    "/writing-samples/seo-growth",
+    "/writing-samples/thought-leadership",
     "/rss.xml",
   ].map((route) => ({
     url: `${SITE_URL}${route}`,
@@ -27,11 +28,13 @@ export default function sitemap() {
             ? 0.9
             : route === "/writing-samples/technical"
               ? 0.88
-              : route === "/writing-samples/persuasive"
+              : route === "/writing-samples/seo-growth"
                 ? 0.88
-                : route === "/about"
-                  ? 0.7
-                  : 0.6,
+                : route === "/writing-samples/thought-leadership"
+                  ? 0.88
+                  : route === "/about"
+                    ? 0.7
+                    : 0.6,
   }));
 
   const blogRoutes = getAllBlogPosts().map((post) => ({
