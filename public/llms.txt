@@ -29,6 +29,7 @@ Bright helps brands get found by search engines and AI answer engines. He fixes 
 
 ## Technical explainers and tutorials
 
+- [Why do autonomous AI agents fail? The architecture bottlenecks](https://brightjasper.com/blog/why-autonomous-ai-agents-fail): Context drift, infinite ReAct loops, and tool hallucinations—and the deterministic guardrails that fix them. Sep 2026.
 - [How Kubernetes HPA scales](https://brightjasper.com/blog/how-autoscaling-works): The Horizontal Pod Autoscaler loop, formulas, and default settings. Sep 2026.
 - [LLM production cost: APIs vs self-hosted GPUs](https://brightjasper.com/blog/llm-production-cost): How traffic, latency, model choice, and infrastructure ownership change the cost. Sep 2026.
 - [Serverless vs containers for AI workloads](https://brightjasper.com/blog/serverless-vs-containers-ai): A framework for choosing based on workload shape. Sep 2026.
@@ -76,6 +77,7 @@ Bright helps brands get found by search engines and AI answer engines. He fixes 
 
 Clean Markdown versions of all blog posts (for AI crawlers with `Accept: text/markdown`):
 
+- [Why Do Autonomous AI Agents Fail? The Architecture Bottlenecks](https://brightjasper.com/blog/why-autonomous-ai-agents-fail/markdown)
 - [How I Fixed Ahrefs 3xx Redirects](https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect/markdown)
 - [How I Got a New Domain Indexed in 24 Hours](https://brightjasper.com/blog/how-i-got-a-new-domain-indexed-in-24-hours/markdown)
 - [Dangote Refinery Stock: Why N10,000 Is Unrealistic](https://brightjasper.com/blog/dangote-refinery-stock-10000/markdown)
