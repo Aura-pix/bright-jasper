@@ -2,6 +2,7 @@
 title: "How to Rank a New Domain in 7 Days: A Programmatic GEO & AEO Framework"
 author: "Bright Jasper"
 date: "2026-09-25"
+coverImage: "https://brightjasper.com/how-to-rank-new-domain-7-days.jpg"
 tag: "Technical SEO"
 track: "seo-growth"
 excerpt: "Traditional search engines take weeks to crawl new domains. Use programmatic indexing APIs, JSON-LD schema, and AI Overview optimization to rank on Google and AI search engines in 7 days."
@@ -50,12 +51,12 @@ AI search engines don't just read page keywords—they calculate **information d
 
 ### How does GEO formatting differ from traditional SEO?
 
-| Optimization Element | Traditional SEO | Generative Engine Optimization (GEO) |
-| :--- | :--- | :--- |
-| **Primary Goal** | Rank for targeted search keywords | Get cited as the direct answer in AI overviews |
-| **Content Structure** | Long-form prose with high word counts | Explicit definition blocks, tables, and code samples |
-| **Metadata Focus** | Title tags and meta descriptions | JSON-LD Linked Data (`TechArticle`, `FAQPage`) |
-| **Signal Source** | Backlink authority and anchor text | Semantic relevance, clear sources, and entity relationships |
+| Optimization Element  | Traditional SEO                       | Generative Engine Optimization (GEO)                        |
+| :-------------------- | :------------------------------------ | :---------------------------------------------------------- |
+| **Primary Goal**      | Rank for targeted search keywords     | Get cited as the direct answer in AI overviews              |
+| **Content Structure** | Long-form prose with high word counts | Explicit definition blocks, tables, and code samples        |
+| **Metadata Focus**    | Title tags and meta descriptions      | JSON-LD Linked Data (`TechArticle`, `FAQPage`)              |
+| **Signal Source**     | Backlink authority and anchor text    | Semantic relevance, clear sources, and entity relationships |
 
 ### How do you write "snippet bait" for Featured Snippets and AI Overviews?
 
@@ -86,21 +87,21 @@ Search bots rely on structured JSON-LD data to identify key facts without parsin
 }
 ```
 
-Placing this JSON-LD block inside your Next.js layout header gives bots explicit context about your author identity, publish date, and content structure on the very first crawl pass. As implemented in [this site's blog post template](/blog/rag-explained), the schema is auto-generated from frontmatter.
+Placing this JSON-LD block inside your Next.js layout header gives bots explicit context about your author identity, publish date, and content structure on the very first crawl pass. As implemented in [this site's blog post template](https://github.com/Aura-pix/bright-jasper), the schema is auto-generated from frontmatter.
 
 ## What is the 7-day execution calendar for a new domain?
 
 Here is the exact step-by-step roadmap to go from a clean domain to indexed search results in one week:
 
-| Day | Primary Execution Focus | Key Deliverable |
-| :--- | :--- | :--- |
-| **Day 1** | Technical Setup | Configure custom domain, SSL, canonical redirect rules, and XML sitemaps in Next.js. |
-| **Day 2** | Search Property Verification | Register domain with Google Search Console & Bing Webmaster Tools. |
-| **Day 3** | Indexing Pipeline Setup | Implement IndexNow webhooks and enable GSC Indexing API scripts. |
-| **Day 4** | Schema & GEO Audit | Deploy `TechArticle` and `FAQPage` JSON-LD schemas across all target routes. |
-| **Day 5** | High-Density Content Publish | Publish 3–5 well-structured articles with bold answer definitions under every section header. |
-| **Day 6** | Automated API Submission | Trigger direct URL indexing requests via API and run Live Inspections. |
-| **Day 7** | Search & Citation Verification | Verify live status in Search Console and test entity retrieval across Perplexity and Gemini. |
+| Day       | Primary Execution Focus        | Key Deliverable                                                                               |
+| :-------- | :----------------------------- | :-------------------------------------------------------------------------------------------- |
+| **Day 1** | Technical Setup                | Configure custom domain, SSL, canonical redirect rules, and XML sitemaps in Next.js.          |
+| **Day 2** | Search Property Verification   | Register domain with Google Search Console & Bing Webmaster Tools.                            |
+| **Day 3** | Indexing Pipeline Setup        | Implement IndexNow webhooks and enable GSC Indexing API scripts.                              |
+| **Day 4** | Schema & GEO Audit             | Deploy `TechArticle` and `FAQPage` JSON-LD schemas across all target routes.                  |
+| **Day 5** | High-Density Content Publish   | Publish 3–5 well-structured articles with bold answer definitions under every section header. |
+| **Day 6** | Automated API Submission       | Trigger direct URL indexing requests via API and run Live Inspections.                        |
+| **Day 7** | Search & Citation Verification | Verify live status in Search Console and test entity retrieval across Perplexity and Gemini.  |
 
 ### How do you automate IndexNow and Google Indexing API submissions?
 

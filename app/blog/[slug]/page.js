@@ -37,7 +37,8 @@ export function generateMetadata({ params }) {
     type: "article",
   });
 
-  const coverImage = post.coverImage || "https://brightjasper.com/illustrations/book-writer.svg";
+  const rawCover = post.coverImage || "/illustrations/book-writer.svg";
+  const coverImage = rawCover.startsWith("http") ? rawCover : `https://brightjasper.com${rawCover}`;
   metadata.openGraph.images = [
     {
       url: coverImage,
@@ -65,6 +66,9 @@ export default function BlogPostPage({ params }) {
   const post = getBlogPostBySlug(params.slug);
   if (!post) notFound();
   const adjacentPosts = getAdjacentBlogPosts(params.slug, post.track);
+
+  const rawCover = post.coverImage || "/illustrations/book-writer.svg";
+  const coverImage = rawCover.startsWith("http") ? rawCover : `https://brightjasper.com${rawCover}`;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -102,7 +106,7 @@ export default function BlogPostPage({ params }) {
       "@type": "WebPage",
       "@id": `https://brightjasper.com/blog/${post.slug}`,
     },
-    image: post.coverImage || "https://brightjasper.com/illustrations/book-writer.svg",
+    image: coverImage,
     keywords: post.keywords?.length
       ? post.keywords
       : [

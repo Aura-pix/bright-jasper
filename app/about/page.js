@@ -118,10 +118,10 @@ export default function AboutPage() {
 
       <div className="mt-10 flex flex-wrap gap-4">
         <Link
-          href="/contact"
+          href="https://brightjasper.com/contact"
           className="text-[14px] px-5 py-2.5 rounded-full bg-accent text-white hover:opacity-90"
         >
-          Get in touch 
+          Get in touch
         </Link>
 
         <ResumeButton />
