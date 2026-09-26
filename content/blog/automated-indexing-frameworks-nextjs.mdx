@@ -43,10 +43,10 @@ Here is a complete, production-ready Next.js App Router API Route Handler (`app/
 ### What is the Next.js API route implementation?
 
 ```typescript
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/IndexNow';
-const HOST_DOMAIN = 'brightjasper.com';
+const INDEXNOW_ENDPOINT = "https://api.indexnow.org/IndexNow";
+const HOST_DOMAIN = "brightjasper.com";
 const INDEXNOW_KEY = process.env.INDEXNOW_API_KEY; // Your 32-character hex key
 
 export async function POST(request: Request) {
@@ -56,14 +56,14 @@ export async function POST(request: Request) {
     if (!urls || !Array.isArray(urls) || urls.length === 0) {
       return NextResponse.json(
         { error: 'Missing or invalid "urls" array in request payload.' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!INDEXNOW_KEY) {
       return NextResponse.json(
-        { error: 'INDEXNOW_API_KEY environment variable is not configured.' },
-        { status: 500 }
+        { error: "INDEXNOW_API_KEY environment variable is not configured." },
+        { status: 500 },
       );
     }
 
@@ -75,9 +75,9 @@ export async function POST(request: Request) {
     };
 
     const response = await fetch(INDEXNOW_ENDPOINT, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
+        "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(payload),
     });
@@ -92,12 +92,12 @@ export async function POST(request: Request) {
     const errorText = await response.text();
     return NextResponse.json(
       { error: `IndexNow submission failed: ${errorText}` },
-      { status: response.status }
+      { status: response.status },
     );
   } catch (error) {
     return NextResponse.json(
-      { error: 'Internal server error processing indexing request.' },
-      { status: 500 }
+      { error: "Internal server error processing indexing request." },
+      { status: 500 },
     );
   }
 }
@@ -121,11 +121,11 @@ Google uses its own dedicated **Google Search Console Indexing API**. While orig
 
 ### What is the system flow for Google API automation?
 
-| Component | Responsibility | Implementation |
-|-----------|----------------|----------------|
-| **GCP Service Account** | Authenticates secure API requests | Keyfile stored in environment secrets |
-| **Google Indexing API** | Receives single or batched URL publish events | `https://indexing.googleapis.com/v3/urlNotifications:publish` |
-| **Next.js Revalidation Hook** | Triggers upon publishing or updating MDX/CMS posts | Dispatches `URL_UPDATED` notification payload |
+| Component                     | Responsibility                                     | Implementation                                                |
+| ----------------------------- | -------------------------------------------------- | ------------------------------------------------------------- |
+| **GCP Service Account**       | Authenticates secure API requests                  | Keyfile stored in environment secrets                         |
+| **Google Indexing API**       | Receives single or batched URL publish events      | `https://indexing.googleapis.com/v3/urlNotifications:publish` |
+| **Next.js Revalidation Hook** | Triggers upon publishing or updating MDX/CMS posts | Dispatches `URL_UPDATED` notification payload                 |
 
 ### What is the implementation script (`lib/googleIndexing.ts`)?
 
@@ -139,9 +139,7 @@ const jwtClient = new google.auth.JWT(
   clientEmail,
   undefined,
   privateKey,
-  [
-    "https://www.googleapis.com/auth/indexing",
-  ],
+  ["https://www.googleapis.com/auth/indexing"],
   undefined,
 );
 
@@ -192,14 +190,11 @@ export async function POST(request: Request) {
   await requestGoogleIndexing(targetUrl);
 
   // 3. Trigger IndexNow Pipeline
-  await fetch(
-    "https://brightjasper.com/api/indexnow",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ urls: [targetUrl] }),
-    },
-  );
+  await fetch("https://brightjasper.com/api/indexnow", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ urls: [targetUrl] }),
+  });
 
   return NextResponse.json({
     revalidated: true,
@@ -209,10 +204,6 @@ export async function POST(request: Request) {
 }
 ```
 
-## Conclusion
-
-Automating your search indexing transforms organic discoverability from a passive waiting game into an integrated CI/CD pipeline step. By wiring IndexNow endpoints and Google Search Console APIs directly into your Next.js dynamic build pipeline, you ensure every new post is crawled, evaluated, and indexed within hours of going live.
-
 ### GitHub Actions Workflow (Ready to Use)
 
 The complete CI/CD integration is available as a GitHub Actions workflow:
@@ -220,12 +211,18 @@ The complete CI/CD integration is available as a GitHub Actions workflow:
 **[`.github/workflows/indexnow.yaml`](https://github.com/Aura-pix/bright-jasper/blob/main/.github/workflows/indexnow.yaml)**
 
 This workflow:
+
 - Triggers on successful Vercel production deployments
 - Extracts the published slug from the deployment payload
 - Calls your `/api/revalidate` endpoint (which fires IndexNow + Google Indexing API)
 - Requires `REVALIDATION_SECRET` in GitHub repository secrets
 
 Add to your repo secrets:
+
 - `REVALIDATION_SECRET` — matches `process.env.REVALIDATION_SECRET` in your API route
 
 As covered in [How to Rank a New Domain in 7 Days](https://brightjasper.com/blog/how-to-rank-new-domain-7-days), programmatic push protocols are the foundation of modern SEO engineering.
+
+## Conclusion
+
+Automating your search indexing transforms organic discoverability from a passive waiting game into an integrated CI/CD pipeline step. By wiring IndexNow endpoints and Google Search Console APIs directly into your Next.js dynamic build pipeline, you ensure every new post is crawled, evaluated, and indexed within hours of going live.
