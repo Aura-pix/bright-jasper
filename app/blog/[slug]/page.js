@@ -37,17 +37,16 @@ export function generateMetadata({ params }) {
     type: "article",
   });
 
-  if (post.slug === "dangote-refinery-stock-10000") {
-    metadata.openGraph.images = [
-      {
-        url: "https://brightjasper.com/refinery.png",
-        width: 1280,
-        height: 853,
-        alt: "Dangote refinery at sunset with the Nigerian flag",
-      },
-    ];
-    metadata.twitter.images = ["https://brightjasper.com/refinery.png"];
-  }
+  const coverImage = post.coverImage || "https://brightjasper.com/illustrations/book-writer.svg";
+  metadata.openGraph.images = [
+    {
+      url: coverImage,
+      width: 1280,
+      height: 670,
+      alt: post.title,
+    },
+  ];
+  metadata.twitter.images = [coverImage];
 
   return metadata;
 }
@@ -103,10 +102,7 @@ export default function BlogPostPage({ params }) {
       "@type": "WebPage",
       "@id": `https://brightjasper.com/blog/${post.slug}`,
     },
-    image:
-      post.slug === "dangote-refinery-stock-10000"
-        ? "https://brightjasper.com/refinery.png"
-        : "https://brightjasper.com/illustrations/book-writer.svg",
+    image: post.coverImage || "https://brightjasper.com/illustrations/book-writer.svg",
     keywords: post.keywords?.length
       ? post.keywords
       : [
