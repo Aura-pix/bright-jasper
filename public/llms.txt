@@ -26,6 +26,7 @@ Bright helps brands get found by search engines and AI answer engines. He fixes 
 
 - [Why B2B SaaS landing pages lose high-intent traffic (and how to fix it)](https://brightjasper.com/blog/why-b2b-saas-landing-pages-lose-high-intent-traffic): Teardown of why technical landing pages fail to convert developers, with hero section templates and a 5-point audit checklist. Sep 2026.
 - [How to rank a new domain in 7 days: A programmatic GEO & AEO framework](https://brightjasper.com/blog/how-to-rank-new-domain-7-days): Step-by-step roadmap using IndexNow, Google Indexing API, JSON-LD schema, and AI Overview optimization. Sep 2026.
+- [Automated Indexing Frameworks for Modern Next.js Apps](https://brightjasper.com/blog/automated-indexing-frameworks-nextjs): Event-driven indexing pipeline with IndexNow webhooks, Google Search Console APIs, and Cloudflare Workers. Sep 2026.
 - [How I fixed Ahrefs 3xx redirects in the sitemap (www vs non-www on Cloudflare DNS and Vercel)](https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect): Walkthrough of the www and non-www canonical loop behind a 33% Ahrefs health score. Sep 2026.
 - [How I got a new domain indexed in 24 hours (GSC live test and sitemap)](https://brightjasper.com/blog/how-i-got-a-new-domain-indexed-in-24-hours): Getting brightjasper.com indexed with Search Console, a working sitemap, and deliberate discovery signals. Sep 2026.
 
@@ -81,6 +82,7 @@ Clean Markdown versions of all blog posts (for AI crawlers with `Accept: text/ma
 
 - [Why B2B SaaS Landing Pages Lose High-Intent Traffic (And How to Fix It)](https://brightjasper.com/blog/why-b2b-saas-landing-pages-lose-high-intent-traffic/markdown)
 - [How to Rank a New Domain in 7 Days: A Programmatic GEO & AEO Framework](https://brightjasper.com/blog/how-to-rank-new-domain-7-days/markdown)
+- [Automated Indexing Frameworks for Modern Next.js Apps](https://brightjasper.com/blog/automated-indexing-frameworks-nextjs/markdown)
 - [Why Do Autonomous AI Agents Fail? The Architecture Bottlenecks](https://brightjasper.com/blog/why-autonomous-ai-agents-fail/markdown)
 - [How I Fixed Ahrefs 3xx Redirects](https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect/markdown)
 - [How I Got a New Domain Indexed in 24 Hours](https://brightjasper.com/blog/how-i-got-a-new-domain-indexed-in-24-hours/markdown)
