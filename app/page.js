@@ -11,16 +11,15 @@ export const metadata = createPageMetadata({
     "I'm Bright Jasper — an SEO/GEO/AEO specialist, content writer, and technical writer. I help brands get found by search engines and AI through technical SEO fixes, developer docs, and content built for how AI models surface answers.",
   path: "",
   keywords: [
-    "SEO specialist",
-    "GEO specialist",
-    "AEO specialist",
-    "content writer",
-    "technical writer",
-    "freelance SEO specialist",
-    "technical SEO audit",
+    "SEO specialist nigeria",
+    "GEO specialist nigeria",
+    "AEO specialist nigeria",
+    "content writer nigeria",
+    "technical writer nigeria",
+    "freelance SEO specialist nigeria",
+    "technical SEO audit nigeria",
     "SEO content writing",
     "web3 technical writing",
-    "Bright Jasper blog",
     "Bright Jasper SEO",
   ],
 });
@@ -154,8 +153,10 @@ export default function HomePage() {
           <div>
             <h2 className="text-[20px] font-medium text-ink mb-4">Skills</h2>
             <p className="text-[15px] text-ink/90 leading-relaxed">
-              SEO · GEO · AEO · Keyword Research · On-Page SEO · Off-Page SEO ·
-              SEO Content Writing · Content Optimization · Technical Writing
+              SEO · GEO (certified) · AEO · Keyword Research · On-Page SEO ·
+              Off-Page SEO · SEO Content Writing · Content Optimization ·
+              Technical Writing · Analytics & Reporting · Stakeholder
+              Communication · Client Collaboration
             </p>
           </div>
           <div>
@@ -163,13 +164,15 @@ export default function HomePage() {
             <p className="text-[15px] text-ink/90 leading-relaxed">
               Ahrefs · Screamingfrog · Ubersuggest · SEMrush · Google Analytics
               · Google Search Console · Google Tag Manager · Microsoft Clarity ·
-              Sanity CMS · Google Docs · Markdown · HTML/CSS/JS
+              Core Web Vitals · Page Speed Insights · Data Studio (formerly
+              Looker studio) · Notion · Sanity CMS · Google Docs · Markdown ·
+              HTML/CSS/JS · Git/GitHub
             </p>
           </div>
         </div>
 
         <p className="mt-8 text-[14px] text-muted">
-          Based in UTC+1, open to remote and contract roles.
+          Based in UTC+1, open to remote freelance and contract roles.
         </p>
       </section>
 
