@@ -164,9 +164,9 @@ export default function HomePage() {
             <p className="text-[15px] text-ink/90 leading-relaxed">
               Ahrefs · Screamingfrog · Ubersuggest · SEMrush · Google Analytics
               · Google Search Console · Google Tag Manager · Microsoft Clarity ·
-              Core Web Vitals · Page Speed Insights · Data Studio (formerly
-              Looker studio) · Notion · Sanity CMS · Google Docs · Markdown ·
-              HTML/CSS/JS · Git/GitHub
+              Profound · Core Web Vitals · Page Speed Insights · Data Studio
+              (formerly Looker studio) · Notion · Sanity CMS · Google Docs ·
+              Markdown · HTML/CSS/JS · Git/GitHub
             </p>
           </div>
         </div>

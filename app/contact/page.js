@@ -15,7 +15,6 @@ export const metadata = createPageMetadata({
   ],
 });
 
-
 const socials = [
   {
     label: "Email",
@@ -87,14 +86,13 @@ export default function ContactPage() {
 
       <p className="text-[15px] text-ink/90 mb-4 max-w-lg leading-relaxed">
         Need an SEO strategy for your brand, technical writing, or content
-        writing across the tech, finance, and web3 space? I reply within 24
-        hours.
+        writing across the tech, finance, and web3 space? Send me a message. I
+        reply within 24 hours.
       </p>
 
       <p className="text-[15px] text-muted mb-10 max-w-lg leading-relaxed">
-        I&apos;m open to freelance, contract, and part-time remote work.
-        Based in UTC+1, happy to schedule calls that work for your time
-        zone.
+        I&apos;m open to freelance, contract, and part-time remote work. Based
+        in UTC+1, happy to schedule calls that work for your time zone.
       </p>
 
       <div className="flex flex-wrap gap-3 mb-16">
@@ -132,5 +130,4 @@ export default function ContactPage() {
       </div>
     </div>
   );
-    }
-    
+}
