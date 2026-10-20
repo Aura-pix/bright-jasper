@@ -1,3 +1,5 @@
+Bright Jasper socials across the web
+
 Portfolio website: https://brightjasper.com
 
 Hashnode: https://hashnode.com/@brightjasper
@@ -6,7 +8,7 @@ Twitter: https://x.com/brightjasper
 
 Facebook: https://facebook.com/brightjasp
 
-Linkedin: https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3
+Linkedin: https://www.linkedin.com/in/bright-jasper-20a8223b3
 
 Dev.to: https://dev.to/bright-jasper
 
