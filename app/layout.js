@@ -93,7 +93,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: `${SITE_URL}/og-image.jpg`,
+        url: `${SITE_URL}/brightjasper.jpg`,
         width: 1280,
         height: 853,
         alt: "Bright Jasper",
@@ -105,7 +105,7 @@ export const metadata = {
     title: "Bright Jasper",
     description:
       "Bright Jasper does SEO audits, content writing, technical fixes, developer docs, and protocol explainers for brands and web2/web3 teams.",
-    images: [`${SITE_URL}/og-image.jpg`],
+    images: [`${SITE_URL}/brightjasper.jpg`],
   },
 };
 
