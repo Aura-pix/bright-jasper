@@ -1,17 +1,8 @@
 const links = [
-  { label: "X", href: "https://x.com/brightjasp" },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
+    href: "https://www.linkedin.com/in/bright-jasper-20a8223b3",
   },
-  { label: "Medium", href: "https://medium.com/@brghtjasper" },
-  {
-    label: "Upwork",
-    href: "https://www.upwork.com/freelancers/~018d2a2818ff617a2b",
-  },
-  { label: "GitHub", href: "https://github.com/Aura-pix/bright-jasper" },
-  { label: "Telegram", href: "https://t.me/Jasper074" },
-  { label: "Facebook", href: "https://www.facebook.com/brightjasp" },
   { label: "Email", href: "mailto:brghtjasper@gmail.com" },
 ];
 

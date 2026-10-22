@@ -9,9 +9,8 @@ const CONTACT_LINKS = [
   { label: "Telegram", href: "https://t.me/Jasper074" },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
+    href: "https://www.linkedin.com/in/bright-jasper-20a8223b3",
   },
-
 ];
 
 /**

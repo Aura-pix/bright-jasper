@@ -2,6 +2,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import { SOCIAL_PROFILES } from "@/lib/socialProfiles";
 
 const SITE_URL = "https://brightjasper.com";
 const CANONICAL_HOST = "https://brightjasper.com";
@@ -18,14 +19,7 @@ const siteSchema = {
   publisher: {
     "@type": "Person",
     name: "Bright Jasper",
-    sameAs: [
-      "https://x.com/brightjasp",
-      "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
-      "https://medium.com/@brghtjasper",
-      "https://www.facebook.com/brightjasp",
-      "https://www.youtube.com/@brightjasp",
-      "https://www.upwork.com/freelancers/~018d2a2818ff617a2b",
-    ],
+    sameAs: SOCIAL_PROFILES,
   },
 };
 
@@ -35,14 +29,7 @@ const organizationSchema = {
   name: "Bright Jasper",
   url: SITE_URL,
   logo: `${SITE_URL}/favicon-512x512.png`,
-  sameAs: [
-    "https://x.com/brightjasp",
-    "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
-    "https://medium.com/@brghtjasper",
-    "https://www.facebook.com/brightjasp",
-    "https://www.youtube.com/@brightjasp",
-    "https://github.com/Aura-pix/bright-jasper",
-  ],
+  sameAs: SOCIAL_PROFILES,
 };
 
 const personSchema = {
@@ -50,14 +37,7 @@ const personSchema = {
   "@type": "Person",
   name: "Bright Jasper",
   url: SITE_URL,
-  sameAs: [
-    "https://x.com/brightjasp",
-    "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
-    "https://medium.com/@brghtjasper",
-    "https://www.facebook.com/brightjasp",
-    "https://www.youtube.com/@brightjasp",
-    "https://github.com/Aura-pix/bright-jasper",
-  ],
+  sameAs: SOCIAL_PROFILES,
   jobTitle: "SEO/GEO/AEO Specialist, Content Writer, and Technical Writer",
   knowsAbout: [
     "Technical writing",

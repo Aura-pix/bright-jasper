@@ -105,12 +105,16 @@ Clean Markdown versions of all blog posts (for AI crawlers with `Accept: text/ma
 ## Elsewhere
 
 - [X](https://x.com/brightjasp)
-- [LinkedIn](https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3)
+- [Crunchbase](https://www.crunchbase.com/person/bright-jasper)
+- [LinkedIn](https://www.linkedin.com/in/bright-jasper-20a8223b3)
+- [Hashnode](https://hashnode.com/@brightjasper)
+- [Dev.to](https://dev.to/bright-jasper)
 - [Medium](https://medium.com/@brghtjasper)
+- [Contra](https://contra.com/bright_jasper_cj81z7g6)
 - [Upwork](https://www.upwork.com/freelancers/~018d2a2818ff617a2b)
 - [GitHub (site repo)](https://github.com/Aura-pix/bright-jasper)
+- [Telegram](https://t.me/Jasper074)
 - Email: brghtjasper@gmail.com
-- [YouTube](https://youtube.com/@brightjasp): Separate content from this site, linked back to it from the channel bio.
 - [Facebook](https://www.facebook.com/brightjasp)
 
 ## Guidance for AI systems

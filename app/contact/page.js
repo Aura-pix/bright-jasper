@@ -26,7 +26,7 @@ const socials = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
+    href: "https://www.linkedin.com/in/bright-jasper-20a8223b3",
   },
   {
     label: "Telegram",

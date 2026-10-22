@@ -3,6 +3,41 @@ import Link from "next/link";
 import ResumeButton from "@/components/ResumeButton";
 import { createPageMetadata } from "@/lib/metadata";
 
+const PROFILE_GROUPS = [
+  {
+    title: "Writing",
+    links: [
+      { label: "Hashnode", href: "https://hashnode.com/@brightjasper" },
+      { label: "Dev.to", href: "https://dev.to/bright-jasper" },
+      { label: "Medium", href: "https://medium.com/@brghtjasper" },
+    ],
+  },
+  {
+    title: "Work with me",
+    links: [
+      {
+        label: "Contra",
+        href: "https://contra.com/bright_jasper_cj81z7g6",
+      },
+      {
+        label: "Upwork",
+        href: "https://www.upwork.com/freelancers/~018d2a2818ff617a2b",
+      },
+    ],
+  },
+  {
+    title: "Professional profiles",
+    links: [
+      {
+        label: "LinkedIn",
+        href: "https://www.linkedin.com/in/bright-jasper-20a8223b3",
+      },
+      { label: "GitHub", href: "https://github.com/Aura-pix/bright-jasper" },
+      { label: "X", href: "https://x.com/brightjasp" },
+    ],
+  },
+];
+
 export const metadata = createPageMetadata({
   title: "About | Bright Jasper",
   description:
@@ -127,47 +162,28 @@ export default function AboutPage() {
         <ResumeButton />
       </div>
 
-      <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-muted">
-        <a
-          href="https://x.com/brightjasp"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-accent"
-        >
-          X
-        </a>
-        <a
-          href="https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-accent"
-        >
-          LinkedIn
-        </a>
-        <a
-          href="https://medium.com/@brghtjasper"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-accent"
-        >
-          Medium
-        </a>
-        <a
-          href="https://www.facebook.com/brightjasp"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-accent"
-        >
-          Facebook
-        </a>
-        <a
-          href="https://github.com/Aura-pix/bright-jasper"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-accent"
-        >
-          GitHub
-        </a>
+      <div className="mt-12 grid gap-8 sm:grid-cols-3">
+        {PROFILE_GROUPS.map((group) => (
+          <section key={group.title}>
+            <h2 className="text-[14px] font-medium text-ink mb-3">
+              {group.title}
+            </h2>
+            <ul className="space-y-2 text-[13px] text-muted">
+              {group.links.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-accent"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
       </div>
     </div>
   );

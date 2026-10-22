@@ -4,7 +4,7 @@ Portfolio website: https://brightjasper.com
 
 Hashnode: https://hashnode.com/@brightjasper
 
-Twitter: https://x.com/brightjasper
+Twitter: https://x.com/brightjasp
 
 Facebook: https://facebook.com/brightjasp
 
@@ -23,3 +23,5 @@ Telegram: https://t.me/Jasper074
 Upwork: https://www.upwork.com/freelancers/~018d2a2818ff617a2b
 
 Youtube: https://www.youtube.com/@brightjasp
+
+Crunchbase: https://www.crunchbase.com/person/bright-jasper

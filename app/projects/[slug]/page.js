@@ -9,6 +9,7 @@ import ResponsiveTable from "@/components/ResponsiveTable";
 import AdjacentLinks from "@/components/AdjacentLinks";
 import { getLinkProps } from "@/lib/linkProps";
 import { createPageMetadata } from "@/lib/metadata";
+import { SOCIAL_PROFILES } from "@/lib/socialProfiles";
 import { notFound } from "next/navigation";
 
 const SITE_URL = "https://brightjasper.com";
@@ -67,12 +68,7 @@ export default function ProjectDetailPage({ params }) {
       "@id": `${SITE_URL}/#person`,
       name: "Bright Jasper",
       url: `${SITE_URL}/about`,
-      sameAs: [
-        "https://x.com/brightjasp",
-        "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
-        "https://medium.com/@brghtjasper",
-        "https://github.com/Aura-pix/bright-jasper",
-      ],
+      sameAs: SOCIAL_PROFILES,
     },
     publisher: {
       "@type": "Organization",

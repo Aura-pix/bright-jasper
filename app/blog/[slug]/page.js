@@ -13,6 +13,7 @@ import ImageLightbox from "@/components/ImageLightbox";
 import ShareButton from "@/components/ShareButton";
 import { getLinkProps } from "@/lib/linkProps";
 import { createPageMetadata } from "@/lib/metadata";
+import { SOCIAL_PROFILES } from "@/lib/socialProfiles";
 import { notFound } from "next/navigation";
 
 // Pre-builds a static page for every .mdx file found in content/blog at build time.
@@ -87,12 +88,7 @@ export default function BlogPostPage({ params }) {
       "@id": "https://brightjasper.com/#person",
       name: post.author || "Bright Jasper",
       url: "https://brightjasper.com/about",
-      sameAs: [
-        "https://x.com/brightjasp",
-        "https://www.linkedin.com/in/bright-olorunfunmilola-20a8223b3",
-        "https://medium.com/@brghtjasper",
-        "https://github.com/Aura-pix/bright-jasper",
-      ],
+      sameAs: SOCIAL_PROFILES,
     },
     publisher: {
       "@type": "Organization",
