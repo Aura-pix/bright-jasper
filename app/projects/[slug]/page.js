@@ -56,7 +56,7 @@ export default function ProjectDetailPage({ params }) {
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
+    "@type": ["Article", "TechArticle"],
     "@id": `${SITE_URL}/projects/${project.slug}#article`,
     headline: project.title,
     description: project.excerpt || undefined,
@@ -134,51 +134,51 @@ export default function ProjectDetailPage({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <article className="max-w-2xl mx-auto px-6 py-16">
-      <h1 className="text-[26px] sm:text-[30px] font-medium text-ink mb-1 leading-tight">
-        {project.title}
-      </h1>
-      <p className="text-[12px] text-muted mb-6">
-        {STATUS_LABELS[project.status] || project.status}
-        {project.statusNote ? ` — ${project.statusNote}` : ""}
-        {project.date ? ` · ${formatDate(project.date)}` : ""}
-      </p>
+        <h1 className="text-[26px] sm:text-[30px] font-medium text-ink mb-1 leading-tight">
+          {project.title}
+        </h1>
+        <p className="text-[12px] text-muted mb-6">
+          {STATUS_LABELS[project.status] || project.status}
+          {project.statusNote ? ` — ${project.statusNote}` : ""}
+          {project.date ? ` · ${formatDate(project.date)}` : ""}
+        </p>
 
-      <div className="flex flex-wrap gap-x-8 gap-y-1 text-[13px] text-muted mb-8">
-        {project.role && (
-          <p>
-            <span className="font-medium text-ink/80">Role:</span>{" "}
-            {project.role}
-          </p>
-        )}
-        {project.tools && (
-          <p>
-            <span className="font-medium text-ink/80">Tools:</span>{" "}
-            {project.tools}
-          </p>
-        )}
-      </div>
+        <div className="flex flex-wrap gap-x-8 gap-y-1 text-[13px] text-muted mb-8">
+          {project.role && (
+            <p>
+              <span className="font-medium text-ink/80">Role:</span>{" "}
+              {project.role}
+            </p>
+          )}
+          {project.tools && (
+            <p>
+              <span className="font-medium text-ink/80">Tools:</span>{" "}
+              {project.tools}
+            </p>
+          )}
+        </div>
 
-      <div className="prose-content">
-        <MDXRemote
-          source={project.content}
-          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
-          components={{
-            table: ResponsiveTable,
-            a: ({ href, children, ...props }) => (
-              <a {...props} {...getLinkProps(href)}>
-                {children}
-              </a>
-            ),
-          }}
+        <div className="prose-content">
+          <MDXRemote
+            source={project.content}
+            options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+            components={{
+              table: ResponsiveTable,
+              a: ({ href, children, ...props }) => (
+                <a {...props} {...getLinkProps(href)}>
+                  {children}
+                </a>
+              ),
+            }}
+          />
+        </div>
+
+        <AdjacentLinks
+          previous={adjacentProjects.previous}
+          next={adjacentProjects.next}
+          type="project"
         />
-      </div>
-
-      <AdjacentLinks
-        previous={adjacentProjects.previous}
-        next={adjacentProjects.next}
-        type="project"
-      />
-    </article>
+      </article>
     </>
   );
 }

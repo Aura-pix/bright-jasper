@@ -38,9 +38,7 @@ For new domains or large programmatic sites, search engines assign low initial c
 
 IndexNow is an open-source protocol used by Bing, Yandex, Naver, and Seznam that allows developers to submit newly generated URLs once and simultaneously inform all participating search engines.
 
-Here is a complete, production-ready Next.js App Router API Route Handler (`app/api/indexnow/route.ts`) that accepts published URLs and dispatches them directly to the IndexNow gateway.
-
-### What is the Next.js API route implementation?
+The current workflow submits directly to IndexNow from GitHub Actions (no API route needed). For reference, here's a standalone Next.js API route implementation if you prefer a webhook-based approach:
 
 ```typescript
 import { NextResponse } from "next/server";
@@ -166,43 +164,13 @@ export async function requestGoogleIndexing(url: string) {
 
 ## How do you trigger indexing on dynamic MDX deployments?
 
-To tie this entire pipeline together seamlessly inside a Next.js App Router application, call your indexing helper directly inside your content publishing workflow or webhook revalidation routes (`app/api/revalidate/route.ts`).
+The GitHub Actions workflow handles this entirely in CI/CD — no API route required. On push to `main`, it:
 
-```typescript
-import { NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
-import { requestGoogleIndexing } from "@/lib/googleIndexing";
+1. Detects changed MDX files via `git diff`
+2. Maps them to public URLs
+3. Submits directly to IndexNow + Google Indexing API
 
-export async function POST(request: Request) {
-  const secret = request.headers.get("x-revalidate-secret");
-
-  if (secret !== process.env.REVALIDATION_SECRET) {
-    return NextResponse.json({ error: "Unauthorized secret" }, { status: 401 });
-  }
-
-  const { slug } = await request.json();
-  const targetUrl = `https://brightjasper.com/blog/${slug}`;
-
-  // 1. Revalidate Next.js static cache
-  revalidatePath(`/blog/${slug}`);
-
-  // 2. Trigger Google Search Console Indexing
-  await requestGoogleIndexing(targetUrl);
-
-  // 3. Trigger IndexNow Pipeline
-  await fetch("https://brightjasper.com/api/indexnow", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ urls: [targetUrl] }),
-  });
-
-  return NextResponse.json({
-    revalidated: true,
-    indexed: true,
-    url: targetUrl,
-  });
-}
-```
+See the workflow section below for the complete implementation.
 
 ### GitHub Actions Workflow (Ready to Use)
 
@@ -212,14 +180,15 @@ The complete CI/CD integration is available as a GitHub Actions workflow:
 
 This workflow:
 
-- Triggers on successful Vercel production deployments
-- Extracts the published slug from the deployment payload
-- Calls your `/api/revalidate` endpoint (which fires IndexNow + Google Indexing API)
-- Requires `REVALIDATION_SECRET` in GitHub repository secrets
+- Triggers on push to `main` (when `content/**/*.mdx` or key page files change)
+- Uses `git diff` to detect exactly which MDX files were added/modified
+- Maps files to their public URLs (`/blog/{slug}`, `/projects/{slug}`, and key static pages)
+- Submits URLs directly to **IndexNow API** (Bing, Yandex, Naver, Seznam) and **Google Indexing API**
+- No API route required — runs entirely in GitHub Actions
 
 Add to your repo secrets:
 
-- `REVALIDATION_SECRET` — matches `process.env.REVALIDATION_SECRET` in your API route
+- `GOOGLE_SERVICE_ACCOUNT_JSON` — GCP service account key with Indexing API access
 
 As covered in [How to Rank a New Domain in 7 Days](https://brightjasper.com/blog/how-to-rank-new-domain-7-days), programmatic push protocols are the foundation of modern SEO engineering.
 

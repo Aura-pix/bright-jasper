@@ -46,7 +46,7 @@ export default function BlogIndexPage() {
       "SEO content, articles, explainers, research, product writing, and web3 perspectives from Bright Jasper.",
     url: "https://brightjasper.com/blog",
     hasPart: posts.slice(0, 10).map((post) => ({
-      "@type": "TechArticle",
+      "@type": ["Article", "TechArticle"],
       name: post.title,
       url: `https://brightjasper.com/blog/${post.slug}`,
     })),

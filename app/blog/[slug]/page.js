@@ -38,7 +38,9 @@ export function generateMetadata({ params }) {
   });
 
   const rawCover = post.coverImage || "/illustrations/book-writer.svg";
-  const coverImage = rawCover.startsWith("http") ? rawCover : `https://brightjasper.com${rawCover}`;
+  const coverImage = rawCover.startsWith("http")
+    ? rawCover
+    : `https://brightjasper.com${rawCover}`;
   metadata.openGraph.images = [
     {
       url: coverImage,
@@ -68,11 +70,13 @@ export default function BlogPostPage({ params }) {
   const adjacentPosts = getAdjacentBlogPosts(params.slug, post.track);
 
   const rawCover = post.coverImage || "/illustrations/book-writer.svg";
-  const coverImage = rawCover.startsWith("http") ? rawCover : `https://brightjasper.com${rawCover}`;
+  const coverImage = rawCover.startsWith("http")
+    ? rawCover
+    : `https://brightjasper.com${rawCover}`;
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
+    "@type": ["Article", "TechArticle"],
     "@id": `https://brightjasper.com/blog/${post.slug}#article`,
     headline: post.title,
     description: post.excerpt || undefined,

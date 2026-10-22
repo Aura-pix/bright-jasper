@@ -5,7 +5,12 @@ on:
   push:
     branches: [main]
     paths:
-      - "content/blog/**/*.mdx"
+      - "content/**/*.mdx"
+      - "app/page.js"
+      - "app/about/page.js"
+      - "app/contact/page.js"
+      - "app/projects/page.js"
+      - "app/blog/page.js"
 
 jobs:
   ping-indexnow:
@@ -24,17 +29,36 @@ jobs:
         run: |
           BEFORE="${{ github.event.before }}"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            FILES=$(find content/blog -maxdepth 1 -type f -name '*.mdx' -print)
+            FILES=$(find content -type f -name '*.mdx' -print)
+            FILES="$FILES"$'\n'"app/page.js"$'\n'"app/about/page.js"$'\n'"app/contact/page.js"$'\n'"app/projects/page.js"$'\n'"app/blog/page.js"
           elif [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
-            FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'content/blog/*.mdx' || true)
+            FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'content/**/*.mdx' 'app/page.js' 'app/about/page.js' 'app/contact/page.js' 'app/projects/page.js' 'app/blog/page.js' || true)
           else
-            FILES=$(git diff --name-only --diff-filter=AM "$BEFORE" "${{ github.sha }}" -- 'content/blog/*.mdx')
+            FILES=$(git diff --name-only --diff-filter=AM "$BEFORE" "${{ github.sha }}" -- 'content/**/*.mdx' 'app/page.js' 'app/about/page.js' 'app/contact/page.js' 'app/projects/page.js' 'app/blog/page.js')
           fi
 
           URLS="[]"
           for file in $FILES; do
-            slug=$(basename "$file" .mdx)
-            URLS=$(jq --arg url "https://brightjasper.com/blog/$slug" '. + [$url]' <<< "$URLS")
+            if [[ "$file" == content/blog/* ]]; then
+              slug=$(basename "$file" .mdx)
+              url="https://brightjasper.com/blog/$slug"
+            elif [[ "$file" == content/projects/* ]]; then
+              slug=$(basename "$file" .mdx)
+              url="https://brightjasper.com/projects/$slug"
+            elif [[ "$file" == "app/page.js" ]]; then
+              url="https://brightjasper.com/"
+            elif [[ "$file" == "app/about/page.js" ]]; then
+              url="https://brightjasper.com/about"
+            elif [[ "$file" == "app/contact/page.js" ]]; then
+              url="https://brightjasper.com/contact"
+            elif [[ "$file" == "app/projects/page.js" ]]; then
+              url="https://brightjasper.com/projects"
+            elif [[ "$file" == "app/blog/page.js" ]]; then
+              url="https://brightjasper.com/blog"
+            else
+              continue
+            fi
+            URLS=$(jq --arg url "$url" '. + [$url]' <<< "$URLS")
           done
 
           echo "urls=$(jq -c . <<< "$URLS")" >> "$GITHUB_OUTPUT"
@@ -61,6 +85,6 @@ jobs:
           URLS: ${{ steps.urls.outputs.urls }}
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
         run: |
-          npm ci
+          npm ci --omit=dev
           echo "$GOOGLE_SERVICE_ACCOUNT_JSON" > google-service-account.json
           node scripts/google-indexing.js $(jq -r '.[]' <<< "$URLS")
