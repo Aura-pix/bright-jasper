@@ -153,20 +153,20 @@ export default function HomePage() {
           <div>
             <h2 className="text-[20px] font-medium text-ink mb-4">Skills</h2>
             <p className="text-[15px] text-ink/90 leading-relaxed">
-              SEO · GEO (certified) · AEO · Keyword Research · On-Page SEO ·
-              Off-Page SEO · SEO Content Writing · Content Optimization ·
-              Technical Writing · Analytics & Reporting · Stakeholder
-              Communication · Client Collaboration
+              SEO (certified) · GEO · AEO (certified) · Keyword Research ·
+              On-Page SEO · Off-Page SEO · SEO Content Writing · Content
+              Optimization · Technical Writing · Analytics & Reporting ·
+              Stakeholder Communication · Client Collaboration
             </p>
           </div>
           <div>
             <h2 className="text-[20px] font-medium text-ink mb-4">Stack</h2>
             <p className="text-[15px] text-ink/90 leading-relaxed">
               Ahrefs · Screamingfrog · Ubersuggest · SEMrush · Google Analytics
-              · Google Search Console · Google Tag Manager · Microsoft Clarity ·
-              Profound · Core Web Vitals · Page Speed Insights · Data Studio
-              (formerly Looker studio) · Notion · Sanity CMS · Google Docs ·
-              Markdown · HTML/CSS/JS · Git/GitHub
+              (certified) · Google Search Console · Google Tag Manager ·
+              Microsoft Clarity · Peec.ai · Core Web Vitals · Page Speed
+              Insights · Data Studio (formerly Looker studio) · Notion · Sanity
+              CMS · Google Docs · Markdown · HTML/CSS/JS · Git/GitHub
             </p>
           </div>
         </div>

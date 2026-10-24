@@ -1,6 +1,8 @@
-Bright Jasper socials across the web
+Bright Jasper's online prescence across the web
 
 Portfolio website: https://brightjasper.com
+
+Himalayas: https://himalayas.app/@brightjasper
 
 Hashnode: https://hashnode.com/@brightjasper
 
@@ -25,3 +27,5 @@ Upwork: https://www.upwork.com/freelancers/~018d2a2818ff617a2b
 Youtube: https://www.youtube.com/@brightjasp
 
 Crunchbase: https://www.crunchbase.com/person/bright-jasper
+
+CryptoJobsList: https://cryptojobslist.com/@brightjasper

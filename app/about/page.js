@@ -146,8 +146,8 @@ export default function AboutPage() {
 
         <h2>Right now</h2>
         <p>
-          Writing and doing SEO work for web2 and web3 clients, building my own
-          projects, and writing articles on my blog.
+          Writing articles, doing SEO work for web2 and web3 clients and
+          building my own projects onchain and offchain
         </p>
       </div>
 

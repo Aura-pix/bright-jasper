@@ -85,7 +85,7 @@ Then give each page its own canonical path:
 ```js
 export const metadata = {
   alternates: {
-    canonical: "/blog/fix-ahrefs-308-redirect",
+    canonical: "/blog/how-i-fixed-ahrefs-308-redirect",
   },
 };
 ```
@@ -95,7 +95,7 @@ For dynamic pages, build the canonical from the current slug. Check the generate
 ```html
 <link
   rel="canonical"
-  href="https://brightjasper.com/blog/fix-ahrefs-308-redirect"
+  href="https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect"
 />
 ```
 
@@ -112,7 +112,7 @@ export default function sitemap() {
   return [
     { url: "https://brightjasper.com", lastModified: new Date() },
     {
-      url: "https://brightjasper.com/blog/fix-ahrefs-308-redirect",
+      url: "https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect",
       lastModified: new Date(),
     },
   ];
