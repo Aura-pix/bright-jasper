@@ -1,5 +1,7 @@
 const SITE_URL = "https://brightjasper.com";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const robotsTxt = `User-Agent: *
 Allow: /
@@ -7,6 +9,9 @@ Allow: /
 Content-Signal: ai-train=no, search=yes, ai-input=yes
 
 Sitemap: ${SITE_URL}/sitemap.xml
+Sitemap: ${SITE_URL}/sitemap-pages.xml
+Sitemap: ${SITE_URL}/sitemap-articles.xml
+Sitemap: ${SITE_URL}/sitemap-projects.xml
 Host: ${SITE_URL}
 `;
 

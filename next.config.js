@@ -16,6 +16,30 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap_index.xml",
+        destination: "/sitemap.xml",
+      },
+      {
+        source: "/sitemap-posts.xml",
+        destination: "/sitemap-articles.xml",
+      },
+      {
+        source: "/sitemaps/pages.xml",
+        destination: "/sitemap-pages.xml",
+      },
+      {
+        source: "/sitemaps/articles.xml",
+        destination: "/sitemap-articles.xml",
+      },
+      {
+        source: "/sitemaps/projects.xml",
+        destination: "/sitemap-projects.xml",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
