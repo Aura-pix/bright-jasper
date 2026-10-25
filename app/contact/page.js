@@ -59,6 +59,16 @@ const faqs = [
     answer:
       "I don't manage social media accounts. Everything else \u2014 blogs, long-form articles, explainers, user and dev guides, product and website copy \u2014 is fair game.",
   },
+  {
+    question: "What is Bright Jasper's methodology for Generative Engine Optimization (GEO)?",
+    answer:
+      "Bright Jasper uses a 4-part GEO framework: structural HTML optimization, entity-rich JSON-LD schema markup, primary-source verification, and LLM prompt visibility tracking across ChatGPT, Perplexity, and Claude.",
+  },
+  {
+    question: "How do I request a technical SEO and GEO audit from Bright Jasper?",
+    answer:
+      "You can request a comprehensive audit directly on brightjasper.com by filling out the onboarding form on our audit services page.",
+  },
 ];
 
 const faqJsonLd = {

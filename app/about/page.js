@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ResumeButton from "@/components/ResumeButton";
 import { createPageMetadata } from "@/lib/metadata";
+import { SOCIAL_PROFILES } from "@/lib/socialProfiles";
 
 const PROFILE_GROUPS = [
   {
@@ -38,6 +39,82 @@ const PROFILE_GROUPS = [
   },
 ];
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Bright Jasper",
+  url: "https://brightjasper.com",
+  sameAs: SOCIAL_PROFILES,
+  jobTitle: "Technical Writer & GEO Specialist",
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Computer Science Degree Program",
+  },
+  knowsAbout: [
+    "Computer Science",
+    "Software Architecture",
+    "Search Engine Optimization",
+    "Generative AI Content Strategy",
+    "Technical Writing",
+    "Developer Documentation",
+    "Web3 & Blockchain",
+    "Structured Data (JSON-LD)",
+    "IndexNow Protocol",
+    "Google Indexing API",
+  ],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "AEO Fundamentals",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "HubSpot Academy",
+      },
+      credentialCategory: "Certification",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Ahrefs Certification",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Ahrefs Academy",
+      },
+      credentialCategory: "Certification",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Google Analytics 4 Certification",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Google",
+      },
+      credentialCategory: "Certification",
+    },
+  ],
+  workPerformed: [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/blog/how-to-rank-new-domain-7-days",
+      name: "How to Rank a New Domain in 7 Days: A Programmatic GEO & AEO Framework",
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/blog/automated-indexing-frameworks-nextjs",
+      name: "Automated Indexing Frameworks for Modern Next.js Apps",
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect",
+      name: "How I Fixed Ahrefs 3xx Redirects in Sitemap",
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/projects/seo-geo-case-study",
+      name: "SEO/GEO Case Study: 33% to 100% Health in 72 Hours",
+    },
+  ],
+};
+
 export const metadata = createPageMetadata({
   title: "About | Bright Jasper",
   description:
@@ -57,7 +134,12 @@ export const metadata = createPageMetadata({
 
 export default function AboutPage() {
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <div className="max-w-2xl mx-auto px-6 py-16">
       <h1 className="text-[26px] font-medium text-ink mb-8">About</h1>
       <div className="prose-content">
         <p>

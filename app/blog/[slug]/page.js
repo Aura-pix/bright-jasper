@@ -81,6 +81,9 @@ export default function BlogPostPage({ params }) {
     "@id": `https://brightjasper.com/blog/${post.slug}#article`,
     headline: post.title,
     description: post.excerpt || undefined,
+    articleBody: post.content || undefined,
+    dependencies: "JSON-LD, Schema.org Vocabulary v24.0",
+    proficiencyLevel: "Expert",
     datePublished: post.date || undefined,
     dateModified: post.date || undefined,
     author: {
@@ -89,6 +92,7 @@ export default function BlogPostPage({ params }) {
       name: post.author || "Bright Jasper",
       url: "https://brightjasper.com/about",
       sameAs: SOCIAL_PROFILES,
+      jobTitle: "Technical Writer & GEO Specialist",
     },
     publisher: {
       "@type": "Organization",
@@ -117,6 +121,10 @@ export default function BlogPostPage({ params }) {
         ].filter(Boolean),
     articleSection: post.tag || "Technical writing",
     inLanguage: "en",
+    about: post.keywords?.map((kw) => ({
+      "@type": "Thing",
+      name: kw,
+    })) || [],
   };
 
   const breadcrumbSchema = {

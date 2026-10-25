@@ -17,6 +17,37 @@ export const metadata = createPageMetadata({
   ],
 });
 
+const faqs = [
+  {
+    question: "What certifications does Bright Jasper hold?",
+    answer:
+      "AEO Fundamentals (HubSpot Academy), Ahrefs Certification (Ahrefs Academy), and Google Analytics 4 Certification (Google). All credentials are verifiable via the links on this page.",
+  },
+  {
+    question: "How can I verify Bright Jasper's certifications?",
+    answer:
+      "Each certification on this page includes a direct link to the issuing platform (HubSpot, Ahrefs, Google Skillshop) where you can verify the credential independently.",
+  },
+  {
+    question: "Does Bright Jasper offer certification training for teams?",
+    answer:
+      "Not directly. The focus is on delivering technical SEO, GEO, and documentation services. However, audit engagements include knowledge transfer so your team learns the methodology.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 const certifications = [
   {
     title: "AEO Fundamentals",
@@ -52,7 +83,12 @@ const certifications = [
 
 export default function CredentialsPage() {
   return (
-    <div className="max-w-3xl mx-auto px-6 py-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <div className="max-w-3xl mx-auto px-6 py-16">
       <header className="mb-12 max-w-2xl">
         <p className="text-[12px] uppercase tracking-[0.12em] text-accent mb-3">
           Proof of practice

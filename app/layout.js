@@ -23,12 +23,68 @@ const siteSchema = {
   },
 };
 
-const organizationSchema = {
+const professionalServiceSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   name: "Bright Jasper",
   url: SITE_URL,
   logo: `${SITE_URL}/favicon-512x512.png`,
+  image: `${SITE_URL}/brightjasper.jpg`,
+  description:
+    "Specialized Generative Engine Optimization (GEO), Answer Engine Optimization (AEO), and technical documentation writing for Web3 and tech platforms.",
+  priceRange: "$$$",
+  knowsAbout: [
+    "Generative Engine Optimization (GEO)",
+    "Answer Engine Optimization (AEO)",
+    "Web3 Developer Documentation",
+    "Technical SEO Audits",
+    "LLM Prompt Tracking & Search Indexation",
+    "Structured Data & JSON-LD Schema",
+    "IndexNow & Google Indexing API",
+    "AI Overview Optimization",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "GEO & Technical Content Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Technical SEO & GEO Audit",
+          description:
+            "Comprehensive audit evaluating site architecture, crawlability, and LLM entity visibility.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Developer Documentation & API Writing",
+          description:
+            "End-to-end technical documentation creation tailored for developer adoption and search accuracy.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Web3 & Blockchain Technical Writing",
+          description:
+            "Protocol explainers, whitepapers, and developer docs for web3 projects.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Content Strategy for AI Search",
+          description:
+            "GEO-focused content built for how AI models surface answers (Perplexity, ChatGPT, Claude, Google AI Overviews).",
+        },
+      },
+    ],
+  },
   sameAs: SOCIAL_PROFILES,
 };
 
@@ -38,21 +94,73 @@ const personSchema = {
   name: "Bright Jasper",
   url: SITE_URL,
   sameAs: SOCIAL_PROFILES,
-  jobTitle: "SEO/GEO/AEO Specialist, Content Writer, and Technical Writer",
+  jobTitle: "Technical Writer & GEO Specialist",
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Computer Science Degree Program",
+  },
   knowsAbout: [
-    "Technical writing",
-    "Content writing",
-    "SEO writing",
-    "SEO optimization",
-    "SEO,AEO,GEO",
-    "Product copy",
-    "Developer documentation",
-    "Web3 content writing",
-    "Blockchain",
-    "Technical explainers",
-    "Software engineering",
-    "Agile software development",
-    "Documentation systems",
+    "Computer Science",
+    "Software Architecture",
+    "Search Engine Optimization",
+    "Generative AI Content Strategy",
+    "Technical Writing",
+    "Developer Documentation",
+    "Web3 & Blockchain",
+    "Structured Data (JSON-LD)",
+    "IndexNow Protocol",
+    "Google Indexing API",
+  ],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "AEO Fundamentals",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "HubSpot Academy",
+      },
+      credentialCategory: "Certification",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Ahrefs Certification",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Ahrefs Academy",
+      },
+      credentialCategory: "Certification",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Google Analytics 4 Certification",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Google",
+      },
+      credentialCategory: "Certification",
+    },
+  ],
+  workPerformed: [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/blog/how-to-rank-new-domain-7-days",
+      name: "How to Rank a New Domain in 7 Days: A Programmatic GEO & AEO Framework",
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/blog/automated-indexing-frameworks-nextjs",
+      name: "Automated Indexing Frameworks for Modern Next.js Apps",
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect",
+      name: "How I Fixed Ahrefs 3xx Redirects in Sitemap",
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://brightjasper.com/projects/seo-geo-case-study",
+      name: "SEO/GEO Case Study: 33% to 100% Health in 72 Hours",
+    },
   ],
 };
 
@@ -156,7 +264,7 @@ gtag('config', 'G-NQ2P6Y51RT');`}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
+            __html: JSON.stringify(professionalServiceSchema),
           }}
         />
         <script
