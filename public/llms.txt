@@ -28,6 +28,7 @@
 
 - [Why B2B SaaS Landing Pages Lose High-Intent Traffic (And How to Fix It) — 2026](https://brightjasper.com/blog/why-b2b-saas-landing-pages-lose-high-intent-traffic)
 - [Schema Markup & Site Architecture for AI Search: How to Rank in ChatGPT, Perplexity, and Google AI Overviews](https://brightjasper.com/blog/schema-markup-site-architecture-ai-search)
+- [Generative Engine Optimization (GEO) vs. Traditional SEO: The Complete Methodology for Web3 & Tech Brands](https://brightjasper.com/blog/geo-vs-seo-methodology-web3-tech)
 - [How to rank a new domain in 7 days: A programmatic GEO & AEO framework](https://brightjasper.com/blog/how-to-rank-new-domain-7-days)
 - [Automated Indexing Frameworks for Modern Next.js Apps](https://brightjasper.com/blog/automated-indexing-frameworks-nextjs)
 - [How I fixed Ahrefs 3xx redirects in the sitemap (www vs non-www on Cloudflare DNS and Vercel)](https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect)
@@ -73,6 +74,7 @@
 
 - [Why B2B SaaS Landing Pages Lose High-Intent Traffic (And How to Fix It) — 2026](https://brightjasper.com/blog/why-b2b-saas-landing-pages-lose-high-intent-traffic/markdown)
 - [Schema Markup & Site Architecture for AI Search: How to Rank in ChatGPT, Perplexity, and Google AI Overviews](https://brightjasper.com/blog/schema-markup-site-architecture-ai-search/markdown)
+- [Generative Engine Optimization (GEO) vs. Traditional SEO: The Complete Methodology for Web3 & Tech Brands](https://brightjasper.com/blog/geo-vs-seo-methodology-web3-tech/markdown)
 - [How to Rank a New Domain in 7 Days: A Programmatic GEO & AEO Framework](https://brightjasper.com/blog/how-to-rank-new-domain-7-days/markdown)
 - [Automated Indexing Frameworks for Modern Next.js Apps](https://brightjasper.com/blog/automated-indexing-frameworks-nextjs/markdown)
 - [Why Do Autonomous AI Agents Fail? The Architecture Bottlenecks](https://brightjasper.com/blog/why-autonomous-ai-agents-fail/markdown)
