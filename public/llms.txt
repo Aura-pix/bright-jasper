@@ -65,6 +65,7 @@
 - [Getting started with Roomly](https://brightjasper.com/blog/getting-started-with-roomly)
 - [Roomly investor overview](https://brightjasper.com/blog/roomly-investor-overview)
 - [Roomly founder story: why I built it](https://brightjasper.com/blog/founder-story-why-i-built-roomly)
+- [Structuring Developer Documentation for Human Engineers and AI Answer Engines](https://brightjasper.com/blog/structuring-dev-docs-humans-ai)
 
 ## Reflections
 
@@ -87,6 +88,7 @@
 - [Roomly API Specification](https://brightjasper.com/blog/roomly-api-specification/markdown)
 - [Roomly Student Guide](https://brightjasper.com/blog/roomly-student-guide/markdown)
 - [Roomly Caretaker Guide](https://brightjasper.com/blog/roomly-caretaker-guide/markdown)
+- [Structuring Developer Documentation for Human Engineers and AI Answer Engines](https://brightjasper.com/blog/structuring-dev-docs-humans-ai/markdown)
 - [Recursive zk-SNARKs: How Mina Keeps Its Blockchain Succinct](https://brightjasper.com/blog/recursive-zk-snarks-the-mechanism-that-keeps-mina-succinct/markdown)
 - [LLM Production Cost: APIs vs Self-Hosted GPUs (2026)](https://brightjasper.com/blog/llm-production-cost/markdown)
 - [Serverless vs Containers for AI Workloads (2026)](https://brightjasper.com/blog/serverless-vs-containers-ai/markdown)
