@@ -44,6 +44,7 @@ const personSchema = {
   "@type": "Person",
   name: "Bright Jasper",
   url: "https://brightjasper.com",
+  image: "https://brightjasper.com/author-image.jpeg",
   sameAs: SOCIAL_PROFILES,
   jobTitle: "Technical Writer & GEO Specialist",
   alumniOf: {
@@ -89,28 +90,6 @@ const personSchema = {
         name: "Google",
       },
       credentialCategory: "Certification",
-    },
-  ],
-  workPerformed: [
-    {
-      "@type": "CreativeWork",
-      "@id": "https://brightjasper.com/blog/how-to-rank-new-domain-7-days",
-      name: "How to Rank a New Domain in 7 Days: A Programmatic GEO & AEO Framework",
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://brightjasper.com/blog/automated-indexing-frameworks-nextjs",
-      name: "Automated Indexing Frameworks for Modern Next.js Apps",
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://brightjasper.com/blog/how-i-fixed-ahrefs-308-redirect",
-      name: "How I Fixed Ahrefs 3xx Redirects in Sitemap",
-    },
-    {
-      "@type": "CreativeWork",
-      "@id": "https://brightjasper.com/projects/seo-geo-case-study",
-      name: "SEO/GEO Case Study: 33% to 100% Health in 72 Hours",
     },
   ],
 };

@@ -5,19 +5,24 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/blog", label: "Blog" },
-  { href: "/writing-samples", label: "Writing Samples" },
+  { href: "/services", label: "Services" },
   { href: "/projects", label: "Projects" },
+  { href: "/writing-samples", label: "Writing Samples" },
+  { href: "/blog", label: "Blog" },
   { href: "/credentials", label: "Credentials" },
-  { href: "/contact", label: "Contact Me" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact Me" },
 ];
 
 export default function HamburgerMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const menuRef = useRef(null);
+
+  const isActive = (href) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -91,18 +96,45 @@ export default function HamburgerMenu() {
       >
         <nav className="flex flex-col gap-1">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`rounded-lg px-3 py-2 text-[14px] transition-colors ${
-                pathname === link.href
-                  ? "bg-accent/10 text-accent font-medium"
-                  : "text-muted hover:bg-ink/5 hover:text-ink"
-              }`}
-              onClick={() => setOpen(false)}
-            >
-              {link.label}
-            </Link>
+            <div key={link.href}>
+              <Link
+                href={link.href}
+                className={`block rounded-lg px-3 py-2 text-[14px] transition-colors ${
+                  isActive(link.href)
+                    ? "bg-accent/10 text-accent font-medium"
+                    : "text-muted hover:bg-ink/5 hover:text-ink"
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+              {link.href === "/services" && (
+                <div className="pl-4 pt-1 pb-1 space-y-1">
+                  <Link
+                    href="/services/agencies"
+                    className={`block rounded-lg px-2.5 py-1.5 text-[13px] transition-colors ${
+                      pathname === "/services/agencies"
+                        ? "text-accent font-medium bg-accent/5"
+                        : "text-muted hover:text-ink hover:bg-ink/5"
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    ↳ For Agencies
+                  </Link>
+                  <Link
+                    href="/services/documentation"
+                    className={`block rounded-lg px-2.5 py-1.5 text-[13px] transition-colors ${
+                      pathname === "/services/documentation"
+                        ? "text-accent font-medium bg-accent/5"
+                        : "text-muted hover:text-ink hover:bg-ink/5"
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    ↳ Documentation
+                  </Link>
+                </div>
+              )}
+            </div>
           ))}
         </nav>
       </div>
