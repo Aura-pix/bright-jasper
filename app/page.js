@@ -176,32 +176,70 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* Recent writing */}
-      {recentPosts.length > 0 && (
-        <section
-          className="px-6 py-14"
-          style={{
-            background: "linear-gradient(180deg, #ffffff 0%, #F7FAFD 100%)",
-          }}
-        ></section>
-      )}
-
-      {/* Proof of work */}
+      {/* Proof of work & delivered samples */}
       <section className="max-w-3xl mx-auto px-6 py-14">
-        <p className="text-[13px] uppercase tracking-[0.12em] text-muted mb-3">
-          Recent proof of work
-        </p>
-        <p className="text-[18px] text-ink leading-relaxed max-w-2xl">
-          I took brightjasper.com from unindexed and 33% Ahrefs health score to
-          a 100% Ahrefs health score, then to a Google AI Overview citation - in
-          72 hours.
-        </p>
-        <Link
-          href="/projects/seo-geo-case-study"
-          className="inline-block mt-4 text-[14px] text-accent hover:underline"
-        >
-          Read the case study →
-        </Link>
+        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mb-6">
+          <div>
+            <p className="text-[13px] uppercase tracking-[0.12em] text-muted mb-1">
+              Recent proof of work
+            </p>
+            <h2 className="text-[20px] font-medium text-ink">
+              Selected deliverables and case studies
+            </h2>
+          </div>
+          <Link
+            href="/projects"
+            className="text-[14px] text-accent hover:underline shrink-0"
+          >
+            All projects →
+          </Link>
+        </div>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          {/* SEO / GEO Case Study */}
+          <div className="border border-ink/10 rounded-lg p-5 flex flex-col justify-between hover:border-accent transition-colors">
+            <div>
+              <p className="text-[12px] text-muted mb-1 font-medium">
+                Technical SEO & GEO
+              </p>
+              <h3 className="text-[16px] font-medium text-ink mb-2">
+                SEO/GEO Case Study — Bright Jasper
+              </h3>
+              <p className="text-[14px] text-ink/80 leading-relaxed">
+                From unindexed and a 33% Ahrefs health score to 100% health and
+                a Google AI Overview citation in 72 hours.
+              </p>
+            </div>
+            <Link
+              href="/projects/seo-geo-case-study"
+              className="inline-block mt-4 text-[14px] text-accent hover:underline font-medium"
+            >
+              Read case study →
+            </Link>
+          </div>
+
+          {/* Startup Documentation Audit */}
+          <div className="border border-ink/10 rounded-lg p-5 flex flex-col justify-between hover:border-accent transition-colors">
+            <div>
+              <p className="text-[12px] text-muted mb-1 font-medium">
+                Technical Documentation
+              </p>
+              <h3 className="text-[16px] font-medium text-ink mb-2">
+                Nexus 9 — Startup Documentation Audit
+              </h3>
+              <p className="text-[14px] text-ink/80 leading-relaxed">
+                Restructuring gated accordion guides into a public, task-based
+                documentation architecture that eliminates onboarding friction.
+              </p>
+            </div>
+            <Link
+              href="/projects/startup-documentation-audit"
+              className="inline-block mt-4 text-[14px] text-accent hover:underline font-medium"
+            >
+              Read documentation audit →
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* If you're building something */}

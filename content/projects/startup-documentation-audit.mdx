@@ -1,0 +1,80 @@
+---
+title: "Nexus 9 — Startup Documentation Audit"
+role: "Technical Writer & Documentation Auditor"
+tools: "Information Architecture, Content Auditing, UX Writing, Docs-as-Code"
+status: "completed"
+statusNote: "Documentation audit & restructuring roadmap"
+date: "2026-09-11"
+excerpt: "A comprehensive audit and restructuring proposal for Nexus 9's Help & Guide content, transforming gated accordions into a public, task-based documentation architecture that reduces onboarding friction and support tickets."
+link: null
+linkLabel: "Documentation Audit Sample"
+tracks:
+  - "technical"
+keywords:
+  - "startup documentation audit"
+  - "Nexus 9 documentation audit"
+  - "technical documentation audit"
+  - "developer docs restructuring"
+  - "public documentation architecture"
+  - "task-based documentation"
+  - "technical writing sample"
+---
+
+Nexus 9 is an academic prep and study platform helping students practice past exam questions, access study materials, and track learning progress.
+
+This audit evaluates the platform's existing Help & Guide resources, identifies structural and discoverability friction points, and outlines a clear transition plan to turn gated, static FAQs into a public, task-based documentation hub.
+
+## Current state & friction points
+
+Nexus 9's existing FAQ answers high-level questions well. A separate Help & Guide section already exists with useful topics, but it suffers from two core architectural issues:
+
+1. **Authentication wall:** Help documentation is gated behind authentication. Prospective users evaluating the platform or new users experiencing onboarding friction cannot access self-serve guides without contacting direct support.
+2. **Accordion format:** Guides are collapsed into accordion drop-downs on a single view rather than standalone pages, preventing direct deep-linking, search engine indexing, and step-by-step readability.
+
+## The opportunity
+
+The existing help content does not need to be rewritten from scratch. Instead, it needs to be made publicly accessible and restructured into dedicated, task-oriented guides.
+
+The landing page FAQ remains in place for fast answers to pre-purchase questions, while a dedicated documentation section handles user onboarding, workflows, and self-serve problem resolution.
+
+## Strategic recommendations
+
+### 1. Make guides publicly accessible
+
+Remove the login requirement from all user documentation. Host help content under an open, discoverable route: `/guides`.
+
+- Allows prospective users to inspect product capabilities before registering.
+- Makes every guide discoverable by search engines and AI answer engines.
+- Enables support and community managers to send direct, one-click links to specific solutions.
+
+### 2. Restructure into task-based, individual pages
+
+Replace the accordion format with a scalable documentation layout:
+
+- **Index hub (`/guides`):** Categorized directory listing every guide grouped by user goal (Getting Started, Materials, Quizzes, Billing).
+- **Standalone topic routes:** Clean individual URLs such as `/guides/getting-started`, `/guides/uploading-materials`, and `/guides/quizzes-and-practice`.
+- **Standardized page anatomy:** Each guide follows an actionable template: brief outcome summary, prerequisite checklist, numbered step-by-step actions, callout tips, and screenshots where helpful.
+
+### 3. Integrate with the existing FAQ
+
+Keep the high-level FAQ on the marketing page, but cross-link related questions directly to corresponding deep-dive guides in `/guides`.
+
+### 4. Phased implementation priority
+
+1. **Phase 1 — Core onboarding & setup:** Getting Started, Account Setup, Uploading Materials, Taking Quizzes, Billing & Subscription troubleshooting.
+2. **Phase 2 — Support material library:** Common edge-case workarounds and account management.
+3. **Phase 3 — Growth content:** Academic study strategies, exam guides, and editorial articles building on the documentation base.
+
+## Expected business & user impact
+
+- **Reduced onboarding drop-off:** New users resolve initial friction instantly without leaving the flow.
+- **Lower support load:** Recurring inquiries are resolved through self-serve, indexable documentation.
+- **Organic search & brand trust:** Public technical documentation is crawled, indexed, and cited by search engines, signaling an active, well-supported product.
+- **Scalable documentation foundation:** Creates a structured information architecture that can expand as new features and content types launch.
+
+## Deliverables provided
+
+- Comprehensive content inventory and friction audit of all existing help resources.
+- Information architecture site map for the public `/guides` directory.
+- Standardized guide page template and markdown style guidelines.
+- Priority roadmap for migration and upcoming feature documentation.
