@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import { SOCIAL_PROFILES } from "@/lib/socialProfiles";
+import { Analytics } from "@vercel/analytics/next";
 
 const SITE_URL = "https://brightjasper.com";
 const CANONICAL_HOST = "https://brightjasper.com";
@@ -274,6 +275,7 @@ gtag('config', 'G-NQ2P6Y51RT');`}
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
