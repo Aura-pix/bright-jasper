@@ -39,7 +39,7 @@ export default function Footer() {
           Sitemap
         </a>
         <p className="text-[12px] text-muted">
-          © {year} Bright Jasper | SEO/GEO specialist and content writer
+          © {year} Bright Jasper | SEO/GEO specialist, content writer, and technical writer
         </p>
       </div>
     </footer>
