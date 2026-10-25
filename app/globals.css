@@ -164,3 +164,56 @@ button:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
+/* Badge callout components for MDX */
+.badge-callout {
+  border-radius: 6px;
+  padding: 16px;
+  margin: 20px 0;
+  border-width: 1px;
+  border-style: solid;
+  border-left-width: 4px;
+}
+
+.badge-callout--proposed {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+  border-left-color: #f59e0b;
+}
+
+.badge-callout--verified {
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+  border-left-color: #2563eb;
+}
+
+.badge-callout__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.badge-callout__label {
+  font-size: 0.8em;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.badge-callout--proposed .badge-callout__label {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.badge-callout--verified .badge-callout__label {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.badge-callout__text {
+  margin: 0;
+  font-size: 0.9em;
+  color: #475569;
+}

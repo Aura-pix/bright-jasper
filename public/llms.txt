@@ -6,13 +6,17 @@
 - [About](https://brightjasper.com/about)
 - [Blog](https://brightjasper.com/blog)
 - [Projects](https://brightjasper.com/projects)
+- [Services](https://brightjasper.com/services)
+- [Services for Agencies](https://brightjasper.com/services/agencies)
+- [Documentation Engineering Services](https://brightjasper.com/services/documentation)
 - [Writing samples](https://brightjasper.com/writing-samples)
 - [Technical writing samples](https://brightjasper.com/writing-samples/technical)
 - [SEO & persuasive writing samples](https://brightjasper.com/writing-samples/persuasive)
 - [SEO growth samples](https://brightjasper.com/writing-samples/seo-growth)
 - [Thought leadership samples](https://brightjasper.com/writing-samples/thought-leadership)
-- [Threads](https://brightjasper.com/threads)
 - [Certifications & achievements](https://brightjasper.com/credentials)
+- [Subscribe](https://brightjasper.com/subscribe)
+- [Contact](https://brightjasper.com/contact)
 
 ## Projects and case studies
 
@@ -36,7 +40,8 @@
 - [Serverless vs containers for AI workloads: when to choose each (2026)](https://brightjasper.com/blog/serverless-vs-containers-ai)
 - [How RAG works: query, retrieve, and generate](https://brightjasper.com/blog/rag-explained)
 - [Build a RAG pipeline with Node.js and TypeScript](https://brightjasper.com/blog/rag-tutorial-nodejs)
-- [5 Sub-3B Small Language Models You Can Run on Your Laptop CPU (No GPU Required) — 2026](https://brightjasper.com/blog/sub-3b-small-language-models-run-on-laptop)
+- [Sub-3B small language models run on laptop (2026)](https://brightjasper.com/blog/sub-3b-small-language-models-run-on-laptop)
+- [OpenAPI Spec & Live Response Verification Script](https://brightjasper.com/blog/api-verification-script)
 
 ## Web3
 
@@ -87,6 +92,7 @@
 - [How Mina Keeps a Blockchain Under 22KB](https://brightjasper.com/blog/how-does-mina-keep-an-entire-blockchain-at-22kb/markdown)
 - [The Pigeonhole Principle: Simple Math, Huge Consequences](https://brightjasper.com/blog/pigeonhole-principle-is-terrifying/markdown)
 - [Sub-3B Small Language Models Run on Laptop (2026)](https://brightjasper.com/blog/sub-3b-small-language-models-run-on-laptop/markdown)
+- [OpenAPI Spec & Live Response Verification Script](https://brightjasper.com/blog/api-verification-script/markdown)
 
 ## Elsewhere
 

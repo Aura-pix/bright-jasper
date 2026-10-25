@@ -43,7 +43,7 @@ export default function AgencyServicesPage() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Technical and AI Visibility Audit",
+            name: "Technical SEO and AI Visibility Audit",
             description:
               "Full crawl, indexation review, schema fixes written as code, and 15-20 buyer prompts benchmarked across ChatGPT, Perplexity, and Google AI Overviews against two competitors. Delivered unbranded.",
           },
@@ -174,7 +174,10 @@ export default function AgencyServicesPage() {
 
           {/* Guarantee banner */}
           <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-accent/20 bg-accent/5 px-4 py-3 text-[14px] text-ink">
-            <span className="flex h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+            <span
+              className="flex h-2 w-2 rounded-full bg-accent"
+              aria-hidden="true"
+            />
             <span>
               <strong>Fixed scope, fixed date:</strong> If I miss the delivery
               date, the price drops 20%.
@@ -186,7 +189,8 @@ export default function AgencyServicesPage() {
         <section className="mb-14 grid sm:grid-cols-2 gap-4">
           <div className="rounded-xl border border-ink/10 bg-white p-6">
             <h2 className="text-[16px] font-medium text-ink mb-3 flex items-center gap-2">
-              <span className="text-emerald-600 font-bold">✓</span> Who this is for
+              <span className="text-emerald-600 font-bold">✓</span> Who this is
+              for
             </h2>
             <ul className="space-y-2.5 text-[14px] text-ink/80 leading-relaxed">
               <li className="flex items-start gap-2">
@@ -205,8 +209,8 @@ export default function AgencyServicesPage() {
               <li className="flex items-start gap-2">
                 <span className="text-muted mt-0.5">•</span>
                 <span>
-                  Anyone who needs white-label output they can put their own name
-                  on.
+                  Anyone who needs white-label output they can put their own
+                  name on.
                 </span>
               </li>
             </ul>
@@ -214,16 +218,21 @@ export default function AgencyServicesPage() {
 
           <div className="rounded-xl border border-ink/10 bg-[#FAFAFA] p-6">
             <h2 className="text-[16px] font-medium text-ink mb-3 flex items-center gap-2">
-              <span className="text-red-500 font-bold">✕</span> Who this isn&apos;t for
+              <span className="text-red-500 font-bold">✕</span> Who this
+              isn&apos;t for
             </h2>
             <ul className="space-y-2.5 text-[14px] text-ink/80 leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-muted mt-0.5">•</span>
-                <span>Agencies that need someone sitting on live client calls.</span>
+                <span>
+                  Agencies that need someone sitting on live client calls.
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-muted mt-0.5">•</span>
-                <span>Projects that want unlimited revisions or moving targets.</span>
+                <span>
+                  Projects that want unlimited revisions or moving targets.
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-muted mt-0.5">•</span>
@@ -252,13 +261,18 @@ export default function AgencyServicesPage() {
                   Technical and AI Visibility Audit
                 </h3>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-[22px] font-semibold text-ink">$400</span>
-                  <span className="text-[13px] text-muted">· 5 business days</span>
+                  <span className="text-[22px] font-semibold text-ink">
+                    $400
+                  </span>
+                  <span className="text-[13px] text-muted">
+                    · 5 business days
+                  </span>
                 </div>
               </div>
 
               <p className="text-[13px] text-muted font-medium mb-4">
-                Paid up front · Delivered unbranded, so it goes out under your logo.
+                Paid up front · Delivered unbranded, so it goes out under your
+                logo.
               </p>
 
               <div className="space-y-2.5 text-[14px] text-ink/90 leading-relaxed mb-6">
@@ -275,8 +289,8 @@ export default function AgencyServicesPage() {
                     Perplexity, Google AI Mode and AI Overviews
                   </li>
                   <li className="border-l-2 border-accent/40 pl-3">
-                    Comparison showing what engines say about your client vs. two
-                    named competitors
+                    Comparison showing what engines say about your client vs.
+                    two named competitors
                   </li>
                   <li className="border-l-2 border-accent/40 pl-3">
                     Actionable fix list ordered by business impact
@@ -289,7 +303,9 @@ export default function AgencyServicesPage() {
               </div>
 
               <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="text-[12px] text-muted">Turnaround: 5 business days</span>
+                <span className="text-[12px] text-muted">
+                  Turnaround: 5 business days
+                </span>
                 <a
                   href="mailto:hello@brightjasper.com?subject=Agency%20Technical%20%26%20AI%20Visibility%20Audit"
                   className="text-[13px] px-4 py-2 rounded-full bg-accent text-white hover:opacity-90 font-medium"
@@ -310,8 +326,12 @@ export default function AgencyServicesPage() {
                   Audit Plus Implementation
                 </h3>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-[22px] font-semibold text-ink">$700</span>
-                  <span className="text-[13px] text-muted">· 10 business days</span>
+                  <span className="text-[22px] font-semibold text-ink">
+                    $700
+                  </span>
+                  <span className="text-[13px] text-muted">
+                    · 10 business days
+                  </span>
                 </div>
               </div>
 
@@ -321,18 +341,20 @@ export default function AgencyServicesPage() {
 
               <div className="space-y-3 text-[14px] text-ink/90 leading-relaxed mb-6">
                 <p>
-                  <strong>Everything in the audit</strong>, plus the fixes shipped directly,
-                  or a ticket-ready spec per issue with acceptance criteria for your
-                  dev team.
+                  <strong>Everything in the audit</strong>, plus the fixes
+                  shipped directly, or a ticket-ready spec per issue with
+                  acceptance criteria for your dev team.
                 </p>
                 <p>
-                  Includes a complete re-crawl afterwards to confirm and document
-                  what actually changed.
+                  Includes a complete re-crawl afterwards to confirm and
+                  document what actually changed.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="text-[12px] text-muted">Turnaround: 10 business days</span>
+                <span className="text-[12px] text-muted">
+                  Turnaround: 10 business days
+                </span>
                 <a
                   href="mailto:hello@brightjasper.com?subject=Agency%20Audit%20Plus%20Implementation"
                   className="text-[13px] px-4 py-2 rounded-full bg-accent text-white hover:opacity-90 font-medium"
@@ -349,8 +371,12 @@ export default function AgencyServicesPage() {
                   Monthly Visibility Report
                 </h3>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-[22px] font-semibold text-ink">$250</span>
-                  <span className="text-[13px] text-muted">/ client / month</span>
+                  <span className="text-[22px] font-semibold text-ink">
+                    $250
+                  </span>
+                  <span className="text-[13px] text-muted">
+                    / client / month
+                  </span>
                 </div>
               </div>
 
@@ -360,18 +386,20 @@ export default function AgencyServicesPage() {
 
               <div className="space-y-3 text-[14px] text-ink/90 leading-relaxed mb-6">
                 <p>
-                  Rankings, indexing health, and what the AI engines answer about
-                  your client against two competitors, with what moved since last
-                  month and the next three things to do.
+                  Rankings, indexing health, and what the AI engines answer
+                  about your client against two competitors, with what moved
+                  since last month and the next three things to do.
                 </p>
                 <p className="text-muted text-[13px]">
-                  Written, formatted analysis ready for client presentation — not an
-                  unhelpful dashboard login.
+                  Written, formatted analysis ready for client presentation —
+                  not an unhelpful dashboard login.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="text-[12px] text-muted">Delivered monthly</span>
+                <span className="text-[12px] text-muted">
+                  Delivered monthly
+                </span>
                 <a
                   href="mailto:hello@brightjasper.com?subject=Agency%20Monthly%20Visibility%20Reporting"
                   className="text-[13px] px-4 py-2 rounded-full border border-ink/15 text-ink hover:border-accent hover:text-accent font-medium"
@@ -388,9 +416,9 @@ export default function AgencyServicesPage() {
               Larger programmes &amp; multi-client retainers
             </h3>
             <p className="text-[14px] text-ink/80 leading-relaxed">
-              Ongoing delivery partnerships and multi-client batches are available
-              by arrangement. Send over the shape of what you need and I&apos;ll come
-              back with a scope, a price, and a date.
+              Ongoing delivery partnerships and multi-client batches are
+              available by arrangement. Send over the shape of what you need and
+              I&apos;ll come back with a scope, a price, and a date.
             </p>
           </div>
         </section>
@@ -426,8 +454,8 @@ export default function AgencyServicesPage() {
                 One-Email Confirmation
               </h3>
               <p className="text-[13px] text-ink/80 leading-relaxed">
-                I confirm the scope, price, and exact delivery date in one single
-                email. No drawn-out sales calls.
+                I confirm the scope, price, and exact delivery date in one
+                single email. No drawn-out sales calls.
               </p>
             </div>
 
@@ -439,8 +467,8 @@ export default function AgencyServicesPage() {
                 Unbranded Delivery
               </h3>
               <p className="text-[13px] text-ink/80 leading-relaxed">
-                Deliverables arrive unbranded on or before the agreed date, ready
-                to go out under your logo.
+                Deliverables arrive unbranded on or before the agreed date,
+                ready to go out under your logo.
               </p>
             </div>
           </div>
@@ -455,23 +483,23 @@ export default function AgencyServicesPage() {
             Where I sit: A developer who does SEO
           </h2>
           <p className="text-[15px] text-ink/90 leading-relaxed mb-4">
-            I&apos;m a developer who does SEO, not a marketer who learned it. I build in
-            Next.js, TypeScript, and Prisma, work across WordPress and Elementor,
-            and have written and tested Solidity contracts deployed to Ethereum
-            mainnet.
+            I&apos;m a developer who does SEO, not a marketer who learned it. I
+            build in Next.js, TypeScript, and Prisma, work across WordPress and
+            Elementor, and have written and tested Solidity contracts deployed
+            to Ethereum mainnet.
           </p>
           <p className="text-[15px] text-ink/90 leading-relaxed mb-4">
             That matters for two reasons:
           </p>
           <ul className="space-y-2 text-[14px] text-ink/90 mb-6 pl-4 border-l-2 border-accent">
             <li>
-              <strong>1. Codebase-ready fixes:</strong> I fix issues directly in the
-              code instead of just describing them in a slide deck.
+              <strong>1. Codebase-ready fixes:</strong> I fix issues directly in
+              the code instead of just describing them in a slide deck.
             </li>
             <li>
-              <strong>2. Tri-audience fluency:</strong> I can write and optimize for
-              the three audiences an AI or web3 product has: the user, the developer,
-              and the agent parsing the page.
+              <strong>2. Tri-audience fluency:</strong> I can write and optimize
+              for the three audiences an AI or web3 product has: the user, the
+              developer, and the agent parsing the page.
             </li>
           </ul>
 
@@ -494,9 +522,9 @@ export default function AgencyServicesPage() {
             Ready to hand off your next audit?
           </h2>
           <p className="text-[15px] text-ink/80 max-w-md mx-auto mb-6">
-            Email <strong className="text-ink">hello@brightjasper.com</strong> with
-            your client&apos;s URL and I&apos;ll respond with a scope, price, and date
-            within one working day.
+            Email <strong className="text-ink">hello@brightjasper.com</strong>{" "}
+            with your client&apos;s URL and I&apos;ll respond with a scope,
+            price, and date within one working day.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a

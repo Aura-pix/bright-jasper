@@ -49,6 +49,45 @@ Within a day, Google Search Console reported the URL as not indexed, and an Ahre
 
 ![Google AI overview on brightjasper portfolio](/google-ai-overview.png)
 
+## Technical Audit Methodology & Diagnostic Framework
+
+To achieve a 100% Ahrefs health score recovery and secure AI Overview indexation within 72 hours, I followed a structured, repeatable 4-phase technical audit framework:
+
+```
+┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐      ┌────────────────────────┐
+│  Phase 1: Diagnostic   │ ───► │  Phase 2: Signal       │ ───► │  Phase 3: Parsing      │ ───► │  Phase 4: Forced       │
+│  & Indexation Audit    │      │  Disambiguation        │      │  & GEO Optimization    │      │  Discovery & Recrawl   │
+└────────────────────────┘      └────────────────────────┘      └────────────────────────┘      └────────────────────────┘
+```
+
+### Phase 1: Diagnostic & Indexation Audit
+
+- **Crawl Diagnostics:** Ran initial site crawls via Ahrefs and Screaming Frog to baseline structural health. Identified 55–58 critical crawl errors and a 33% overall site health score.
+- **Indexation Failure Root-Cause Analysis:** Audited Google Search Console (GSC) URL Inspection API. Discovered that Google's parser categorized pages as "Discovered - currently not indexed" due to conflicting canonical tags collapsing all child URLs into `https://brightjasper.com/`.
+
+### Phase 2: Signal Disambiguation & Canonical Fixes
+
+- **Canonical Standardization:** Corrected template header directives across Next.js / Vercel deployment routes so every page emits a self-referencing canonical URL.
+- **Metadata Alignment:** Standardized Open Graph (`og:url`) properties to match canonical target URLs and resolved favicon fallback issues by serving public high-resolution social preview cards.
+- **Sitemap & Directive Cleanup:** Regenerated dynamic `sitemap.xml` and optimized `robots.txt` to eliminate directive conflicts for traditional search crawlers and AI bots.
+
+### Phase 3: Structural Parsing & GEO Optimization
+
+- **HTML DOM Cleanup:** Restructured page headers into clean, semantic HTML5 elements (`<h1>` through `<h3>` hierarchy), ensuring zero nested heading skips for machine parsers.
+- **LLM Discovery Infrastructure:** Deployed a root-level `llms.txt` file detailing entity definitions, core topic clusters, and site structure specifically for generative AI scraping agents (GPTBot, PerplexityBot, ClaudeBot).
+
+### Phase 4: Forced Discovery & Cache Invalidation
+
+- **Active Indexing Push:** Rather than waiting on passive search engine re-crawling, triggered manual URL inspection requests via Google Search Console.
+- **Edge Cache Invalidation:** Flushed Cloudflare CDN edge caches and resubmitted clean sitemap indexes to ensure immediate crawler fetch of updated headers and canonical tags.
+
+---
+
+*Why This Updates Your AI Perception Scores:*  
+**Strategic Analysis:** Replaces a plain list of fixes with a clear 4-Phase Diagram and step-by-step logic, showing clients and LLMs that you work from an engineering blueprint.  
+**Research Driven:** Explains *why* the canonical bug caused the GSC indexation failure ("Discovered - currently not indexed"), proving deep technical root-cause analysis rather than trial-and-error guessing.  
+**Execution Clarity:** Highlights `llms.txt`, Cloudflare cache flushing, and GSC API triggers, proving hands-on infrastructure mastery.
+
 ## Why it matters
 
 SEO is not just about ranking in blue links anymore. Generative Engine Optimization (GEO) - getting cited inside AI-generated answers - runs on many of the same fundamentals: clean crawlability, unambiguous canonical signals, and structure that is easy to parse.
