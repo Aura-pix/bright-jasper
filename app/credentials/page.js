@@ -89,7 +89,7 @@ export default function CredentialsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="max-w-3xl mx-auto px-6 py-16">
-      <header className="mb-12 max-w-2xl">
+        <header className="mb-12 max-w-2xl">
         <p className="text-[12px] uppercase tracking-[0.12em] text-accent mb-3">
           Proof of practice
         </p>
@@ -202,6 +202,7 @@ export default function CredentialsPage() {
           </div>
         </article>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
