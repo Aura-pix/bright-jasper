@@ -28,20 +28,6 @@ Before documenting an endpoint, I run automated schema validation scripts agains
 
 ---
 
-<div className="badge-callout badge-callout--verified">
-  <div className="badge-callout__header">
-    <span>✓ Tested Against Live Endpoints</span>
-    <span className="badge-callout__label">OpenAPI 3.0 Validated</span>
-  </div>
-  <p className="badge-callout__text">
-    All endpoints, parameters, and code snippets in this documentation are
-    programmatically verified against live responses using automated schema
-    validation scripts.
-  </p>
-</div>
-
----
-
 ## Python Verification Script (`verify_api_schema.py`)
 
 This script fetches a target OpenAPI specification, executes HTTP calls against live endpoints, and validates the returned payload against expected JSON schemas.
@@ -107,23 +93,25 @@ if __name__ == "__main__":
 
 ---
 
-## Validation Output Sample (`cli-report.log`)
+## Validation Output Sample
+
+Running the script against the live GitHub API:
 
 ```
-==================================================
-BRIGHT JASPER API ACCURACY VERIFICATION REPORT
-Timestamp: 2026-10-25T14:30:00Z
-Target Spec: OpenAPI 3.0.3
-==================================================
-
 [TESTING] GET https://api.github.com/users/octocat...
 [STATUS] HTTP 200
 [PASS] Response payload perfectly matches OpenAPI JSON Schema.
-[PASS] Rate-limit headers present (X-RateLimit-Limit: 60).
-[PASS] Response latency: 142ms.
+[INFO] Execution finished. Success: True
+```
 
-Status: 0 Failures | 1 Passed | 0 Outdated Parameters
-Documentation Status: APPROVED FOR PUBLIC DRAFTING
+---
+
+### Troubleshooting
+
+If you run this in Google Colab, the last line (`sys.exit(0 if success else 1)`) will throw an error because it tries to exit the kernel. Replace it with:
+
+```python
+print(f"[INFO] Execution finished. Success: {success}")
 ```
 
 ---

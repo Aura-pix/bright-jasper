@@ -5,7 +5,7 @@ coverImage: "https://brightjasper.com/why-ai-agents-fail.jpg"
 date: "2026-09-25"
 tag: "Technical Explainers"
 track: "technical"
-excerpt: "AI agents don't fail because models are dumb. They fail because our architectures let them get confused—context drift, infinite loops, and tool hallucinations. Here's how to fix each."
+excerpt: "AI agents don't fail because models are dumb. They fail because architectures let them get confused—context drift, infinite loops, and tool hallucinations. Here's how to fix each."
 readTime: "8 min read"
 sample: true
 sampleCategory: "Technical Explainers"
@@ -86,26 +86,10 @@ When an agent has access to 20 different tools at the same time, the LLM gets co
 
 If you want agents that handle complex tasks reliably, you can't rely on the LLM alone. You need to wrap the probabilistic AI in deterministic code guardrails.
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                      DETERMINISTIC CODE GUARDRAILS                     │
-│                                                                        │
-│   ┌──────────────────┐    State Check   ┌──────────────────────────┐   │
-│   │ Max Step Counter ├─────────────────►│ Strict Data Validation   │   │
-│   │  (Stop at Step 10) │                │     (Pydantic/Zod)       │   │
-│   └────────┬─────────┘                  └────────────┬─────────────┘   │
-│            │                                         │                 │
-└────────────┼─────────────────────────────────────────┼─────────────────┘
-             │                                         │
-             ▼                                         ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                          LLM REASONING LAYER                           │
-│                                                                        │
-│   ┌────────────────────────────────────────────────────────────────┐   │
-│   │ Dynamic Prompt Pruning + Smart Vector Retrieval Engine         │   │
-│   └────────────────────────────────────────────────────────────────┘   │
-└────────────────────────────────────────────────────────────────────────┘
-```
+**The guardrail pattern:**
+
+- **Max Step Counter** (hard stop at Step 10) → **Strict Data Validation** (Pydantic/Zod)
+- **Dynamic Prompt Pruning** + **Smart Vector Retrieval** for the LLM reasoning layer
 
 ### What is the reliability blueprint for production agents?
 
