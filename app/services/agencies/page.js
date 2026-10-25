@@ -486,7 +486,7 @@ export default function AgencyServicesPage() {
             I&apos;m a developer who does SEO, not a marketer who learned it. I
             build in Next.js, TypeScript, and Prisma, work across WordPress and
             Elementor, and have written and tested Solidity contracts deployed
-            to Ethereum mainnet.
+            to Sepolia testnet
           </p>
           <p className="text-[15px] text-ink/90 leading-relaxed mb-4">
             That matters for two reasons:

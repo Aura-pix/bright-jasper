@@ -131,9 +131,9 @@ export default function ServicesPage() {
             Developer-led delivery across SEO, AI search, and technical docs.
           </h1>
           <p className="text-[15px] text-ink/90 leading-relaxed max-w-xl">
-            I don&apos;t sell open-ended hours or vague retainers. Every offering is
-            priced up front with a fixed delivery date, backed by a simple
-            commitment: if I miss the date, the price drops 20%.
+            I don&apos;t sell open-ended hours or vague retainers. Every
+            offering is priced up front with a fixed delivery date, backed by a
+            simple commitment: if I miss the date, the price drops 20%.
           </p>
         </header>
 
@@ -196,7 +196,8 @@ export default function ServicesPage() {
 
             <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-ink/10">
               <p className="text-[13px] text-muted">
-                Best for agencies adding GEO/AI visibility without hiring in-house.
+                Best for agencies adding GEO/AI visibility without hiring
+                in-house.
               </p>
               <Link
                 href="/services/agencies"
@@ -248,7 +249,9 @@ export default function ServicesPage() {
                 <p className="text-muted text-[11px] uppercase tracking-wider mb-1">
                   Docs Sprint
                 </p>
-                <p className="font-medium text-ink">$300 / piece (3 for $750)</p>
+                <p className="font-medium text-ink">
+                  $300 / piece (3 for $750)
+                </p>
                 <p className="text-muted text-[12px] mt-1">
                   User guides, developer guides, and tutorials.
                 </p>
@@ -267,7 +270,8 @@ export default function ServicesPage() {
 
             <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-ink/10">
               <p className="text-[13px] text-muted">
-                Best for products where documentation is part of the product experience.
+                Best for products where documentation is part of the product
+                experience.
               </p>
               <Link
                 href="/services/documentation"
@@ -286,9 +290,9 @@ export default function ServicesPage() {
           </h2>
           <p className="text-[15px] text-ink/90 leading-relaxed mb-4">
             Most SEO audits stop at a spreadsheet, and most technical docs are
-            drafted by marketers who can&apos;t run the code. I build in Next.js,
-            TypeScript, and Prisma, work across WordPress, and have tested and
-            deployed Solidity smart contracts to Ethereum mainnet.
+            drafted by marketers who can&apos;t run the code. I build in
+            Next.js, TypeScript, and Prisma, work across WordPress, and have
+            tested and deployed Solidity smart contracts to Sepolia testnet.
           </p>
           <p className="text-[15px] text-ink/90 leading-relaxed">
             That means audit fixes are shipped directly to your codebase, API
@@ -301,8 +305,8 @@ export default function ServicesPage() {
         {/* Direct CTA */}
         <div className="mt-14 text-center">
           <p className="text-[15px] text-ink/90 mb-4 max-w-md mx-auto">
-            Have a project in mind or need white-label delivery this month?
-            Send over the scope and I&apos;ll respond with a fixed price and date.
+            Have a project in mind or need white-label delivery this month? Send
+            over the scope and I&apos;ll respond with a fixed price and date.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <HireMeButton />

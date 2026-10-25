@@ -175,7 +175,10 @@ export default function DocumentationServicesPage() {
 
           {/* Guarantee banner */}
           <div className="mt-6 inline-flex items-center gap-3 rounded-lg border border-accent/20 bg-accent/5 px-4 py-3 text-[14px] text-ink">
-            <span className="flex h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
+            <span
+              className="flex h-2 w-2 rounded-full bg-accent"
+              aria-hidden="true"
+            />
             <span>
               <strong>Fixed scope, fixed date:</strong> If I miss the delivery
               date, the price drops 20%.
@@ -187,7 +190,8 @@ export default function DocumentationServicesPage() {
         <section className="mb-14 grid sm:grid-cols-2 gap-4">
           <div className="rounded-xl border border-ink/10 bg-white p-6">
             <h2 className="text-[16px] font-medium text-ink mb-3 flex items-center gap-2">
-              <span className="text-emerald-600 font-bold">✓</span> Who this is for
+              <span className="text-emerald-600 font-bold">✓</span> Who this is
+              for
             </h2>
             <ul className="space-y-2.5 text-[14px] text-ink/80 leading-relaxed">
               <li className="flex items-start gap-2">
@@ -199,7 +203,8 @@ export default function DocumentationServicesPage() {
               <li className="flex items-start gap-2">
                 <span className="text-muted mt-0.5">•</span>
                 <span>
-                  Web3 and AI products where the docs are part of the core product.
+                  Web3 and AI products where the docs are part of the core
+                  product.
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -214,7 +219,8 @@ export default function DocumentationServicesPage() {
 
           <div className="rounded-xl border border-ink/10 bg-[#FAFAFA] p-6">
             <h2 className="text-[16px] font-medium text-ink mb-3 flex items-center gap-2">
-              <span className="text-red-500 font-bold">✕</span> Who this isn&apos;t for
+              <span className="text-red-500 font-bold">✕</span> Who this
+              isn&apos;t for
             </h2>
             <ul className="space-y-2.5 text-[14px] text-ink/80 leading-relaxed">
               <li className="flex items-start gap-2">
@@ -225,11 +231,15 @@ export default function DocumentationServicesPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-muted mt-0.5">•</span>
-                <span>Marketing copy dressed up as technical documentation.</span>
+                <span>
+                  Marketing copy dressed up as technical documentation.
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-muted mt-0.5">•</span>
-                <span>Teams unwilling to give repository or staging access.</span>
+                <span>
+                  Teams unwilling to give repository or staging access.
+                </span>
               </li>
             </ul>
           </div>
@@ -254,8 +264,12 @@ export default function DocumentationServicesPage() {
                   Documentation &amp; IA Review
                 </h3>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-[22px] font-semibold text-ink">$400</span>
-                  <span className="text-[13px] text-muted">· 5 business days</span>
+                  <span className="text-[22px] font-semibold text-ink">
+                    $400
+                  </span>
+                  <span className="text-[13px] text-muted">
+                    · 5 business days
+                  </span>
                 </div>
               </div>
 
@@ -265,11 +279,14 @@ export default function DocumentationServicesPage() {
 
               <div className="space-y-3 text-[14px] text-ink/90 leading-relaxed mb-6">
                 <p>
-                  A complete diagnostic of where the docs break, what a user can&apos;t
-                  find, what&apos;s out of date, and what&apos;s missing entirely.
+                  A complete diagnostic of where the docs break, what a user
+                  can&apos;t find, what&apos;s out of date, and what&apos;s
+                  missing entirely.
                 </p>
                 <p>
-                  Prioritized by onboarding friction, with the <strong>three worst pages rewritten</strong> so you can see the standard instead of just reading critique.
+                  Prioritized by onboarding friction, with the{" "}
+                  <strong>three worst pages rewritten</strong> so you can see
+                  the standard instead of just reading critique.
                 </p>
                 <p className="text-[13px] text-muted">
                   See how an audit works in practice:{" "}
@@ -283,7 +300,9 @@ export default function DocumentationServicesPage() {
               </div>
 
               <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="text-[12px] text-muted">Turnaround: 5 business days</span>
+                <span className="text-[12px] text-muted">
+                  Turnaround: 5 business days
+                </span>
                 <a
                   href="mailto:hello@brightjasper.com?subject=Documentation%20%26%20IA%20Review"
                   className="text-[13px] px-4 py-2 rounded-full bg-accent text-white hover:opacity-90 font-medium"
@@ -301,28 +320,35 @@ export default function DocumentationServicesPage() {
                 </h3>
                 <div className="flex items-baseline gap-2">
                   <span className="text-[22px] font-semibold text-ink">
-                    $300 / piece <span className="text-[15px] font-normal text-muted">(3 for $750)</span>
+                    $300 / piece{" "}
+                    <span className="text-[15px] font-normal text-muted">
+                      (3 for $750)
+                    </span>
                   </span>
                 </div>
               </div>
 
               <p className="text-[13px] text-muted font-medium mb-4">
-                Single pieces paid on order · 3-pack split 50% up front and 50% on last delivery
+                Single pieces paid on order · 3-pack split 50% up front and 50%
+                on last delivery
               </p>
 
               <div className="space-y-3 text-[14px] text-ink/90 leading-relaxed mb-6">
                 <p>
-                  User guides, developer guides, tutorials, and API walkthroughs.
+                  User guides, developer guides, tutorials, and API
+                  walkthroughs.
                 </p>
                 <p>
-                  Markdown, version-controlled in your repo. Structure chosen so a
-                  page is as easy to quote as it is to read, with tested code
+                  Markdown, version-controlled in your repo. Structure chosen so
+                  a page is as easy to quote as it is to read, with tested code
                   examples and clear callouts.
                 </p>
               </div>
 
               <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="text-[12px] text-muted">3 business days per piece</span>
+                <span className="text-[12px] text-muted">
+                  3 business days per piece
+                </span>
                 <a
                   href="mailto:hello@brightjasper.com?subject=Docs%20Sprint%20Inquiry"
                   className="text-[13px] px-4 py-2 rounded-full bg-accent text-white hover:opacity-90 font-medium"
@@ -343,8 +369,12 @@ export default function DocumentationServicesPage() {
                   API Reference from an OpenAPI Spec
                 </h3>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-[22px] font-semibold text-ink">$800</span>
-                  <span className="text-[13px] text-muted">· 10 business days</span>
+                  <span className="text-[22px] font-semibold text-ink">
+                    $800
+                  </span>
+                  <span className="text-[13px] text-muted">
+                    · 10 business days
+                  </span>
                 </div>
               </div>
 
@@ -354,17 +384,21 @@ export default function DocumentationServicesPage() {
 
               <div className="space-y-3 text-[14px] text-ink/90 leading-relaxed mb-6">
                 <p>
-                  Built from your spec and <strong>tested against real responses</strong>,
-                  not just generated and shipped without running.
+                  Built from your spec and{" "}
+                  <strong>tested against real responses</strong>, not just
+                  generated and shipped without running.
                 </p>
                 <p>
-                  Auth mechanisms, error schemas, rate limits, and working copy-pasteable
-                  examples in the languages your users actually write in (JS/TS, Python, cURL).
+                  Auth mechanisms, error schemas, rate limits, and working
+                  copy-pasteable examples in the languages your users actually
+                  write in (JS/TS, Python, cURL).
                 </p>
               </div>
 
               <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
-                <span className="text-[12px] text-muted">Turnaround: 10 business days</span>
+                <span className="text-[12px] text-muted">
+                  Turnaround: 10 business days
+                </span>
                 <a
                   href="mailto:hello@brightjasper.com?subject=OpenAPI%20Reference%20Project"
                   className="text-[13px] px-4 py-2 rounded-full bg-accent text-white hover:opacity-90 font-medium"
@@ -381,10 +415,10 @@ export default function DocumentationServicesPage() {
               Larger documentation programmes &amp; guides maintenance
             </h3>
             <p className="text-[14px] text-ink/80 leading-relaxed">
-              Full developer hub buildouts, protocol documentation overhauls, and
-              ongoing guides maintenance are available by arrangement. Send over
-              the shape of what you need and I&apos;ll come back with a scope, a price,
-              and a date.
+              Full developer hub buildouts, protocol documentation overhauls,
+              and ongoing guides maintenance are available by arrangement. Send
+              over the shape of what you need and I&apos;ll come back with a
+              scope, a price, and a date.
             </p>
           </div>
         </section>
@@ -407,8 +441,8 @@ export default function DocumentationServicesPage() {
                 Send Docs or Spec
               </h3>
               <p className="text-[13px] text-ink/80 leading-relaxed">
-                Send your current docs URL, or the repo and OpenAPI spec if it&apos;s
-                an API project.
+                Send your current docs URL, or the repo and OpenAPI spec if
+                it&apos;s an API project.
               </p>
             </div>
 
@@ -433,8 +467,8 @@ export default function DocumentationServicesPage() {
                 Git-Native Delivery
               </h3>
               <p className="text-[13px] text-ink/80 leading-relaxed">
-                I work directly in your repository and your branch, opening clean
-                pull requests — not tossing over Google Docs.
+                I work directly in your repository and your branch, opening
+                clean pull requests — not tossing over Google Docs.
               </p>
             </div>
           </div>
@@ -452,18 +486,19 @@ export default function DocumentationServicesPage() {
           <div className="space-y-4 text-[15px] text-ink/90 leading-relaxed">
             <p>
               <strong>DeFi user for five years:</strong> I write user docs from
-              inside the real user experience and mental model, not from a detached
-              product brief.
+              inside the real user experience and mental model, not from a
+              detached product brief.
             </p>
             <p>
               <strong>Solidity developer:</strong> I have tested and deployed
-              smart contracts to Ethereum mainnet, so I can read contract logic,
-              events, and error revert strings before documenting them.
+              smart contracts to sepolia testnet (pending Arbitrum deployment),
+              so I can read contract logic, events, and error revert strings
+              before documenting them.
             </p>
             <p>
-              <strong>Built &amp; documented Roomly end to end:</strong> Created the
-              entire platform architecture, its API spec, developer guides, and
-              student/caretaker journeys (
+              <strong>Built &amp; documented Roomly end to end:</strong> Created
+              the entire platform architecture, its API spec, developer guides,
+              and student/caretaker journeys (
               <Link
                 href="/projects/roomly-student-housing-platform"
                 className="text-accent underline font-medium"
@@ -475,8 +510,8 @@ export default function DocumentationServicesPage() {
             <p>
               <strong>Tri-reader documentation design:</strong> Every page is
               crafted for the three readers that actually exist today: the human
-              user solving a problem, the engineer integrating an endpoint, and the
-              AI model summarizing and retrieving answers.
+              user solving a problem, the engineer integrating an endpoint, and
+              the AI model summarizing and retrieving answers.
             </p>
           </div>
 
@@ -499,9 +534,9 @@ export default function DocumentationServicesPage() {
             Have docs that need an engineer&apos;s eye?
           </h2>
           <p className="text-[15px] text-ink/80 max-w-md mx-auto mb-6">
-            Email <strong className="text-ink">hello@brightjasper.com</strong> with
-            your docs URL or OpenAPI spec and I&apos;ll respond with a scope, price,
-            and date within one working day.
+            Email <strong className="text-ink">hello@brightjasper.com</strong>{" "}
+            with your docs URL or OpenAPI spec and I&apos;ll respond with a
+            scope, price, and date within one working day.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
