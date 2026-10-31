@@ -550,7 +550,7 @@ export default function AgencyServicesPage() {
               href="/contact"
               className="text-[14px] px-6 py-3 rounded-full border border-ink/15 text-ink hover:border-accent hover:text-accent font-medium"
             >
-              Contact form
+              Contact page
             </Link>
           </div>
         </section>

@@ -3,7 +3,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Get in Touch | Bright Jasper",
   description:
-    "Get in touch with Bright Jasper for SEO strategy, technical writing, or content writing across tech, finance, and web3. Replies within 24 hours.",
+    "Get in touch with Bright Jasper for SEO strategy, technical writing, or content writing across tech, finance, and web3. I reply within 2 hours during working hours.",
   path: "/contact",
   keywords: [
     "hire SEO strategist",
@@ -97,7 +97,7 @@ export default function ContactPage() {
       <p className="text-[15px] text-ink/90 mb-4 max-w-lg leading-relaxed">
         Need an SEO strategy for your brand, technical writing, or content
         writing across the tech, finance, and web3 space? Send me a message. I
-        reply within 24 hours.
+        I reply within 2 hours during working hours.
       </p>
 
       <p className="text-[15px] text-muted mb-10 max-w-lg leading-relaxed">
