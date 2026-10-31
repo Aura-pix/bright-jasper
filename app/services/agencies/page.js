@@ -45,7 +45,7 @@ export default function AgencyServicesPage() {
             "@type": "Service",
             name: "Technical SEO and AI Visibility Audit",
             description:
-              "Full crawl, indexation review, schema fixes written as code, and 15-20 buyer prompts benchmarked across ChatGPT, Perplexity, and Google AI Overviews against two competitors. Delivered unbranded.",
+              "From $400 for sites up to 100 URLs. Larger sites are quoted after a crawl. Full crawl, indexation review, schema fixes written as code, and 15-20 buyer prompts benchmarked across ChatGPT, Perplexity, and Google AI Overviews against two competitors. Delivered unbranded.",
           },
           price: "400",
           priceCurrency: "USD",
@@ -93,7 +93,7 @@ export default function AgencyServicesPage() {
         name: "What happens if a delivery date is missed?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "All projects run on a fixed scope and a fixed date. If I miss the agreed delivery date, the project price automatically drops 20%.",
+          text: "All projects run on a fixed scope and a fixed date. If I miss the agreed delivery date, the project price automatically drops 20%. This applies to the delivery date, not to fixes waiting on your client's developers.",
         },
       },
       {
@@ -101,7 +101,7 @@ export default function AgencyServicesPage() {
         name: "How are payments structured for agency work?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The Technical and AI Visibility Audit ($400) is paid up front. Audit plus Implementation ($700) is split 50% up front and 50% on delivery. Monthly visibility reports ($250/mo) are billed monthly in advance.",
+          text: "The Technical and AI Visibility Audit starts at $400 for sites up to 100 URLs and is paid up front; larger sites are quoted after a crawl. Audit plus Implementation ($700) is split 50% up front and 50% on delivery. Monthly visibility reports ($250/mo) are billed monthly in advance.",
         },
       },
     ],
@@ -180,7 +180,8 @@ export default function AgencyServicesPage() {
             />
             <span>
               <strong>Fixed scope, fixed date:</strong> If I miss the delivery
-              date, the price drops 20%.
+              date, the price drops 20%. This applies to delivery, not fixes
+              waiting on your client&apos;s developers.
             </span>
           </div>
         </header>
@@ -262,10 +263,10 @@ export default function AgencyServicesPage() {
                 </h3>
                 <div className="flex items-baseline gap-2">
                   <span className="text-[22px] font-semibold text-ink">
-                    $400
+                    From $400
                   </span>
                   <span className="text-[13px] text-muted">
-                    · 5 business days
+                    · 5 business days for up to 100 URLs
                   </span>
                 </div>
               </div>
@@ -273,6 +274,11 @@ export default function AgencyServicesPage() {
               <p className="text-[13px] text-muted font-medium mb-4">
                 Paid up front · Delivered unbranded, so it goes out under your
                 logo.
+              </p>
+
+              <p className="text-[14px] text-ink/90 leading-relaxed mb-4">
+                From $400 for sites up to 100 URLs. Larger sites are quoted
+                after a crawl.
               </p>
 
               <div className="space-y-2.5 text-[14px] text-ink/90 leading-relaxed mb-6">
@@ -302,9 +308,16 @@ export default function AgencyServicesPage() {
                 </ul>
               </div>
 
+              <p className="text-[13px] text-muted leading-relaxed mb-6">
+                <strong className="text-ink">What&apos;s not included:</strong>{" "}
+                content rewriting, link building or outreach, or implementation
+                in this package. The 20% late-date term applies to the delivery
+                date, not to fixes waiting on your client&apos;s developers.
+              </p>
+
               <div className="pt-4 border-t border-ink/10 flex items-center justify-between">
                 <span className="text-[12px] text-muted">
-                  Turnaround: 5 business days
+                  Turnaround: 5 business days for sites up to 100 URLs
                 </span>
                 <a
                   href="mailto:hello@brightjasper.com?subject=Agency%20Technical%20%26%20AI%20Visibility%20Audit"

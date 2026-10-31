@@ -167,9 +167,10 @@ export default function ServicesPage() {
                 <p className="text-muted text-[11px] uppercase tracking-wider mb-1">
                   Audit
                 </p>
-                <p className="font-medium text-ink">$400 · 5 days</p>
+                <p className="font-medium text-ink">From $400</p>
                 <p className="text-muted text-[12px] mt-1">
-                  Crawl, schema code &amp; 15-20 AI prompt benchmarks.
+                  5 days for up to 100 URLs; larger sites are quoted after a
+                  crawl.
                 </p>
               </div>
 
