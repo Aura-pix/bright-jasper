@@ -45,7 +45,7 @@ export default function AgencyServicesPage() {
             "@type": "Service",
             name: "Technical SEO and AI Visibility Audit",
             description:
-              "From $400 for sites up to 100 URLs. Larger sites are quoted after a crawl. Full crawl, indexation review, schema fixes written as code, and 15-20 buyer prompts benchmarked across ChatGPT, Perplexity, and Google AI Overviews against two competitors. Delivered unbranded.",
+              "From $400 for sites up to 100 URLs. Bigger sites are quoted on size, usually within a day. Full crawl, indexation review, schema fixes written as code, and 15-20 buyer prompts benchmarked across ChatGPT, Perplexity, and Google AI Overviews against two competitors. Delivered unbranded.",
           },
           price: "400",
           priceCurrency: "USD",
@@ -101,7 +101,7 @@ export default function AgencyServicesPage() {
         name: "How are payments structured for agency work?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The Technical and AI Visibility Audit starts at $400 for sites up to 100 URLs and is paid up front; larger sites are quoted after a crawl. Audit plus Implementation ($700) is split 50% up front and 50% on delivery. Monthly visibility reports ($250/mo) are billed monthly in advance.",
+          text: "The Technical and AI Visibility Audit starts at $400 for sites up to 100 URLs and is paid up front; bigger sites are quoted on size, usually within a day. Audit plus Implementation ($700) is split 50% up front and 50% on delivery. Monthly visibility reports ($250/mo) are billed monthly in advance.",
         },
       },
     ],
@@ -277,8 +277,8 @@ export default function AgencyServicesPage() {
               </p>
 
               <p className="text-[14px] text-ink/90 leading-relaxed mb-4">
-                From $400 for sites up to 100 URLs. Larger sites are quoted
-                after a crawl.
+                From $400 for sites up to 100 URLs. Bigger sites are quoted on
+                size, usually within a day.
               </p>
 
               <div className="space-y-2.5 text-[14px] text-ink/90 leading-relaxed mb-6">

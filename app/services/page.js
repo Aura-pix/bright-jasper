@@ -169,8 +169,8 @@ export default function ServicesPage() {
                 </p>
                 <p className="font-medium text-ink">From $400</p>
                 <p className="text-muted text-[12px] mt-1">
-                  5 days for up to 100 URLs; larger sites are quoted after a
-                  crawl.
+                  5 days for up to 100 URLs; bigger sites are quoted on size,
+                  usually within a day.
                 </p>
               </div>
 
