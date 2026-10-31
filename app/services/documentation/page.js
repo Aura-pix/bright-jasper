@@ -94,7 +94,7 @@ export default function DocumentationServicesPage() {
         name: "What is the fixed-date guarantee?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "All projects run on a fixed scope and fixed delivery date. If I miss the agreed date, the price automatically drops 20%.",
+          text: "All projects run on a fixed scope and fixed delivery date. If I miss the agreed date, the price automatically drops 10%.",
         },
       },
       {
@@ -181,7 +181,7 @@ export default function DocumentationServicesPage() {
             />
             <span>
               <strong>Fixed scope, fixed date:</strong> If I miss the delivery
-              date, the price drops 20%.
+              date, the price drops 10%.
             </span>
           </div>
         </header>

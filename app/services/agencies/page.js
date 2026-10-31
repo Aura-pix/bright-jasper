@@ -93,7 +93,7 @@ export default function AgencyServicesPage() {
         name: "What happens if a delivery date is missed?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "All projects run on a fixed scope and a fixed date. If I miss the agreed delivery date, the project price automatically drops 20%. This applies to the delivery date, not to fixes waiting on your client's developers.",
+          text: "All projects run on a fixed scope and a fixed date. If I miss the agreed delivery date, the project price automatically drops 10%. This applies to the delivery date, not to fixes waiting on your client's developers.",
         },
       },
       {
@@ -180,7 +180,7 @@ export default function AgencyServicesPage() {
             />
             <span>
               <strong>Fixed scope, fixed date:</strong> If I miss the delivery
-              date, the price drops 20%. This applies to delivery, not fixes
+              date, the price drops 10%. This applies to delivery, not fixes
               waiting on your client&apos;s developers.
             </span>
           </div>
@@ -311,7 +311,7 @@ export default function AgencyServicesPage() {
               <p className="text-[13px] text-muted leading-relaxed mb-6">
                 <strong className="text-ink">What&apos;s not included:</strong>{" "}
                 content rewriting, link building or outreach, or implementation
-                in this package. The 20% late-date term applies to the delivery
+                in this package. The 10% late-date term applies to the delivery
                 date, not to fixes waiting on your client&apos;s developers.
               </p>
 

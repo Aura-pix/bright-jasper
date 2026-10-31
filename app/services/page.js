@@ -133,7 +133,7 @@ export default function ServicesPage() {
           <p className="text-[15px] text-ink/90 leading-relaxed max-w-xl">
             I don&apos;t sell open-ended hours or vague retainers. Every
             offering is priced up front with a fixed delivery date, backed by a
-            simple commitment: if I miss the date, the price drops 20%.
+            simple commitment: if I miss the date, the price drops 10%.
           </p>
         </header>
 
