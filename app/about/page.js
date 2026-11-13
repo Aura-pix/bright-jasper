@@ -204,6 +204,18 @@ export default function AboutPage() {
           Computer Science, which gives me a practical foundation for
           understanding the products and systems I write about.
         </p>
+        <p>
+          I also build software; my{" "}
+          <a
+            href="https://dev.brightjasper.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:underline"
+          >
+            engineering portfolio
+          </a>{" "}
+          is at dev.brightjasper.com.
+        </p>
 
         <h2>Right now</h2>
         <p>

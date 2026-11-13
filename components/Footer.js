@@ -3,6 +3,10 @@ const links = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/bright-jasper-20a8223b3",
   },
+  {
+    label: "Elsewhere: Software engineering",
+    href: "https://dev.brightjasper.com",
+  },
   { label: "Email", href: "mailto:brghtjasper@gmail.com" },
 ];
 
